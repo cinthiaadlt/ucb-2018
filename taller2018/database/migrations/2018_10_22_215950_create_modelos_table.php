@@ -13,6 +13,7 @@ class CreateModelosTable extends Migration
      */
     public function up()
     {
+        // crear tabla
         Schema::create('modelos', function (Blueprint $table) {
             $table->increments('id_modelos');
             $table->string('modelo',45);
