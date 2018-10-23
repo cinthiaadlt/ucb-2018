@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Vehiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VehiculoController extends Controller
 {
@@ -14,6 +16,8 @@ class VehiculoController extends Controller
     public function index()
     {
         //
+        return view('vehiculo.create');
+
     }
 
     /**
@@ -21,9 +25,13 @@ class VehiculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function list()
     {
-        //
+        $v = DB::table('vehiculos')
+            ->orderBy('id_vehiculos','desc')
+            ->paginate(5);
+
+        return view('vehiculo.list', compact('v'));
     }
 
     /**
@@ -34,7 +42,31 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $v = new Vehiculo();
+        $v->id_modelos = $request->input('id_modelos');
+        $v->id_usuarios= $request->input('id_usuarios');
+        $v->color = $request->input('color');
+        $v->placa = $request->input('placa');
+        $v->cat_tipo_vehiculo=$request->input('cat_tipo_vehiculo');
+        $v->foto_vehiculo = $request->input('foto_vehiculo');
+
+            $v->save();
+        return redirect()->route('vehiculo.index');
+
+
+       /*
+
+        $this->validate($request,[
+            'id_usuarios'=>'required',
+            'id_modelos'=>'required',
+            'color'=>'required',
+            'placa'=>'required'
+
+        ]);
+        Vehiculo::create($request->all());
+        return redirect()->route('vehiculo.create');
+       */
     }
 
     /**
@@ -56,7 +88,8 @@ class VehiculoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vh = Vehiculo::find($id);
+        return view('vehiculo.edit',compact('vh'));
     }
 
     /**
@@ -66,9 +99,10 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_vehiculos)
     {
-        //
+        Vehiculo::find($id_vehiculos)->update($request->all());
+        return redirect()->action('VehiculoController@list');
     }
 
     /**
@@ -79,6 +113,7 @@ class VehiculoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Vehiculo::find($id)->delete();
+        return redirect()->action('VehiculoController@list');
     }
 }

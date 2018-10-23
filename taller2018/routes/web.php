@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('vehiculo','VehiculoController');
+Route::get('/list','VehiculoController@list');
