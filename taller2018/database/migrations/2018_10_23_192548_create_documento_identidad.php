@@ -20,9 +20,6 @@ class CreateDocumentoIdentidad extends Migration
             $table->integer('numero_documento');
             $table->string('imagen_documento', 250);
             $table->integer('cat_tipo_documento');
-            $table->integer('tx_id_usuario');
-            $table->timestamp('tx_fecha');
-            $table->integer('tx_host');
             $table->timestamps();
         });
     }
