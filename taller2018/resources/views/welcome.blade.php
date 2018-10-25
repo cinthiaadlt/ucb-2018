@@ -78,7 +78,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel 1245555
+                    Proyecto PTC
                 </div>
 
                 <div class="links">
