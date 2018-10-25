@@ -69,7 +69,7 @@ class ParqueoController extends Controller
      */
     public function show(Parqueo $parqueo)
     {
-        //
+        return view('parqueo.show',compact('parqueo'));
     }
 
     /**

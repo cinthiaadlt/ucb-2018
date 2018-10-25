@@ -31,7 +31,7 @@
             @foreach($parqueos as $parqueo)
             <tr>
                 <th scope="row">{{ $parqueo->id_parqueos}}</th>
-                <td>{{ $parqueo->id_zonas}}</td>
+                <td><a href="{{ route('parqueo.show', $parqueo->id_parqueos) }}"> {{ $parqueo->id_zonas}}</a></td>
                 <td>{{ $parqueo->direccion}}</td>
                 <td>{{ $parqueo->latitud_x}}</td>
                 <td>{{ $parqueo->longitud_y}}</td>
