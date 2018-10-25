@@ -17,7 +17,7 @@ class CreateComentarios extends Migration
             $table->increments('id_comentarios');
             $table->unsignedInteger('id_parqueos');
             $table->unsignedInteger('id_usuarios');
-            $table->timestamps('fecha_cometario');
+            $table->timestamp('fecha_cometario');
             $table->string('comentario','250');
 
         });
