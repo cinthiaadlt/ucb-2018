@@ -15,8 +15,11 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
-        return view('vehiculo.create');
+        $vh2 = DB::table('modelos')
+            ->select('*')
+            ->orderBy('id_modelos')
+            ->get();
+        return view('vehiculo.create',compact('vh2'));
 
     }
 
@@ -28,6 +31,7 @@ class VehiculoController extends Controller
     public function list()
     {
         $v = DB::table('vehiculos')
+            ->join('modelos','modelos.id_modelos','=','vehiculos.id_modelos')
             ->orderBy('id_vehiculos','desc')
             ->paginate(5);
 
@@ -42,6 +46,15 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'id_modelos'=>'required',
+            'id_usuarios'=>'required',
+            'color'=>'required',
+            'placa'=>'required',
+            'foto_vehiculo' => 'required',
+            'cat_tipo_vehiculo'=> 'required'
+
+        ]);
 
         $v = new Vehiculo();
         $v->id_modelos = $request->input('id_modelos');
@@ -50,23 +63,13 @@ class VehiculoController extends Controller
         $v->placa = $request->input('placa');
         $v->cat_tipo_vehiculo=$request->input('cat_tipo_vehiculo');
         $v->foto_vehiculo = $request->input('foto_vehiculo');
-
-            $v->save();
-        return redirect()->route('vehiculo.index');
+        $v->save();
 
 
-       /*
+        //Vehiculo::create($request->all());
+        return redirect()->action('VehiculoController@list');
 
-        $this->validate($request,[
-            'id_usuarios'=>'required',
-            'id_modelos'=>'required',
-            'color'=>'required',
-            'placa'=>'required'
 
-        ]);
-        Vehiculo::create($request->all());
-        return redirect()->route('vehiculo.create');
-       */
     }
 
     /**
@@ -88,8 +91,14 @@ class VehiculoController extends Controller
      */
     public function edit($id)
     {
+
+        $vh2 = DB::table('modelos')
+            ->select('*')
+            ->orderBy('id_modelos')
+            ->get();
+
         $vh = Vehiculo::find($id);
-        return view('vehiculo.edit',compact('vh'));
+        return view('vehiculo.edit',compact(['vh','vh2']));
     }
 
     /**
@@ -101,6 +110,17 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, $id_vehiculos)
     {
+        $this->validate($request,[
+            'id_modelos'=>'required',
+            'id_usuarios'=>'required',
+            'color'=>'required',
+            'placa'=>'required',
+            'foto_vehiculo' => 'required',
+            'cat_tipo_vehiculo'=> 'required'
+
+        ]);
+
+
         Vehiculo::find($id_vehiculos)->update($request->all());
         return redirect()->action('VehiculoController@list');
     }

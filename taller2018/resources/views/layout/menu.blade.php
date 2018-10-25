@@ -1,113 +1,151 @@
-<div id="left-menu">
-    <div class="sub-left-menu scroll">
-        <ul class="nav nav-list">
-            <li><div class="left-bg"></div></li>
-            <li class="time">
-                <h1 class="animated fadeInLeft">21:00</h1>
-                <p class="animated fadeInRight">Sat,October 1st 2029</p>
-            </li>
-            <li class="active ripple">
-                <a class="tree-toggle nav-header"><span class="fa-home fa"></span> Dashboard
-                    <span class="fa-angle-right fa right-arrow text-right"></span>
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Brand -->
+        <a class="navbar-brand pt-0" href="./index.html">
+            <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        </a>
+        <!-- User -->
+        <ul class="nav align-items-center d-md-none">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ni ni-bell-55"></i>
                 </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="dashboard-v1.html">Dashboard v.1</a></li>
-                    <li><a href="dashboard-v2.html">Dashboard v.2</a></li>
-                </ul>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
             </li>
-            <li class="ripple">
-                <a class="tree-toggle nav-header">
-                    <span class="fa-diamond fa"></span> Layout
-                    <span class="fa-angle-right fa right-arrow text-right"></span>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+              </span>
+                    </div>
                 </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="topnav.html">Top Navigation</a></li>
-                    <li><a href="boxed.html">Boxed</a></li>
-                </ul>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome!</h6>
+                    </div>
+                    <a href="./examples/profile.html" class="dropdown-item">
+                        <i class="ni ni-single-02"></i>
+                        <span>My profile</span>
+                    </a>
+                    <a href="./examples/profile.html" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="./examples/profile.html" class="dropdown-item">
+                        <i class="ni ni-calendar-grid-58"></i>
+                        <span>Activity</span>
+                    </a>
+                    <a href="./examples/profile.html" class="dropdown-item">
+                        <i class="ni ni-support-16"></i>
+                        <span>Support</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#!" class="dropdown-item">
+                        <i class="ni ni-user-run"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
             </li>
-            <li class="ripple">
-                <a class="tree-toggle nav-header">
-                    <span class="fa-area-chart fa"></span> Charts
-                    <span class="fa-angle-right fa right-arrow text-right"></span>
-                </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="chartjs.html">ChartJs</a></li>
-                    <li><a href="morris.html">Morris</a></li>
-                    <li><a href="flot.html">Flot</a></li>
-                    <li><a href="sparkline.html">SparkLine</a></li>
-                </ul>
-            </li>
-            <li class="ripple"><a class="tree-toggle nav-header">
-                    <span class="fa fa-pencil-square"></span> Ui Elements  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="color.html">Color</a></li>
-                    <li><a href="weather.html">Weather</a></li>
-                    <li><a href="typography.html">Typography</a></li>
-                    <li><a href="icons.html">Icons</a></li>
-                    <li><a href="buttons.html">Buttons</a></li>
-                    <li><a href="media.html">Media</a></li>
-                    <li><a href="panels.html">Panels & Tabs</a></li>
-                    <li><a href="notifications.html">Notifications & Tooltip</a></li>
-                    <li><a href="badges.html">Badges & Label</a></li>
-                    <li><a href="progress.html">Progress</a></li>
-                    <li><a href="sliders.html">Sliders</a></li>
-                    <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="modal.html">Modals</a></li>
-                </ul>
-            </li>
-            <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> Forms  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="formelement.html">Form Element</a></li>
-                    <li><a href="#">Wizard</a></li>
-                    <li><a href="#">File Upload</a></li>
-                    <li><a href="#">Text Editor</a></li>
-                </ul>
-            </li>
-            <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-table"></span> Tables  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="datatables.html">Data Tables</a></li>
-                    <li><a href="handsontable.html">handsontable</a></li>
-                    <li><a href="tablestatic.html">Static</a></li>
-                </ul>
-            </li>
-            <li class="ripple"><a href="calendar.html"><span class="fa fa-calendar-o"></span>Calendar</a></li>
-            <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-envelope-o"></span> Mail <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="mail-box.html">Inbox</a></li>
-                    <li><a href="compose-mail.html">Compose Mail</a></li>
-                    <li><a href="view-mail.html">View Mail</a></li>
-                </ul>
-            </li>
-            <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-file-code-o"></span> Pages  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="forgotpass.html">Forgot Password</a></li>
-                    <li><a href="login.html">SignIn</a></li>
-                    <li><a href="reg.html">SignUp</a></li>
-                    <li><a href="article-v1.html">Article v1</a></li>
-                    <li><a href="search-v1.html">Search Result v1</a></li>
-                    <li><a href="productgrid.html">Product Grid</a></li>
-                    <li><a href="profile-v1.html">Profile v1</a></li>
-                    <li><a href="invoice-v1.html">Invoice v1</a></li>
-                </ul>
-            </li>
-            <li class="ripple"><a class="tree-toggle nav-header"><span class="fa "></span> MultiLevel  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-                <ul class="nav nav-list tree">
-                    <li><a href="view-mail.html">Level 1</a></li>
-                    <li><a href="view-mail.html">Level 1</a></li>
-                    <li class="ripple">
-                        <a class="sub-tree-toggle nav-header">
-                            <span class="fa fa-envelope-o"></span> Level 1
-                            <span class="fa-angle-right fa right-arrow text-right"></span>
-                        </a>
-                        <ul class="nav nav-list sub-tree">
-                            <li><a href="mail-box.html">Level 2</a></li>
-                            <li><a href="compose-mail.html">Level 2</a></li>
-                            <li><a href="view-mail.html">Level 2</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="credits.html">Credits</a></li>
         </ul>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+            <!-- Collapse header -->
+            <div class="navbar-collapse-header d-md-none">
+                <div class="row">
+                    <div class="col-6 collapse-brand">
+                        <a href="./index.html">
+                            <img src="./assets/img/brand/blue.png">
+                        </a>
+                    </div>
+                    <div class="col-6 collapse-close">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Form -->
+            <form class="mt-4 mb-3 d-md-none">
+                <div class="input-group input-group-rounded input-group-merge">
+                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="fa fa-search"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Navigation -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">
+                        <i class="ni ni-tv-2 text-primary"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./examples/icons.html">
+                        <i class="ni ni-planet text-blue"></i> Icons
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./examples/maps.html">
+                        <i class="ni ni-pin-3 text-orange"></i> Maps
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./examples/profile.html">
+                        <i class="ni ni-single-02 text-yellow"></i> User profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./examples/tables.html">
+                        <i class="ni ni-bullet-list-67 text-red"></i> Tables
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./examples/login.html">
+                        <i class="ni ni-key-25 text-info"></i> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./examples/register.html">
+                        <i class="ni ni-circle-08 text-pink"></i> Register
+                    </a>
+                </li>
+            </ul>
+            <!-- Divider -->
+            <hr class="my-3">
+            <!-- Heading -->
+            <h6 class="navbar-heading text-muted">Documentation</h6>
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
+                        <i class="ni ni-spaceship"></i> Getting started
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
+                        <i class="ni ni-palette"></i> Foundation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
+                        <i class="ni ni-ui-04"></i> Components
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
