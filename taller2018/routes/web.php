@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::resource('vehiculo','VehiculoController');
 Route::get('/list','VehiculoController@list');
+
+Route::resource ('/tipoMultas', 'TipoMultaController');
+Route::resource('parqueo','ParqueoController');
