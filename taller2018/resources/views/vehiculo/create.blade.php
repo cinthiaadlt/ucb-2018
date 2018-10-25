@@ -86,7 +86,7 @@
                                   <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" class="form-control form-control-alternative">
                               </div>
                           </div>
-                          <input class="submit btn btn-danger" type="submit" value="Submit">
+                          <input class="submit btn btn-danger" type="submit" value="Registrar">
                         </form>
                     </div>
                  </div>
