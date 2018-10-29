@@ -91,14 +91,20 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ url('vehiculo') }}">
                         <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Listado Vehiculo
+                    <a class="nav-link" href="{{ url('usuarios') }}">
+                        <i class="ni ni-circle-08 text-grey"></i> Usuarios
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('list') }}">
+                        <i class="ni ni-bullet-list-67 text-red"></i> Vehiculos
                     </a>
                 </li>
 
