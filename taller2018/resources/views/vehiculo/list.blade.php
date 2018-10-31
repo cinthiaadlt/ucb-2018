@@ -8,11 +8,11 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Card tables</h3>
+                        <h3 class="mb-0">Listado Vehiculos</h3>
                     </div>
                     <div class="pull-right">
                         <div class="btn-group">
-                            <a href="{{ route('vehiculo.index') }}" class="btn btn-info" >Añadir Libro</a>
+                            <a href="{{ route('vehiculo.index') }}" class="btn btn-info" >Añadir Vehiculo</a>
                         </div>
                     </div>
 
