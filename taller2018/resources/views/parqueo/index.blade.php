@@ -1,8 +1,8 @@
-@extends('parqueo.layout')
+@extends('layout.principal')
 
 @section('content')
 
-<h1 class="text-center">Parqueos</h1>>
+<h1 class="text-center">Parqueos</h1>
 
 <div class="container">
 

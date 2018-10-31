@@ -1,13 +1,13 @@
-@extends('parqueo.layout')
+@extends('layout.principal')
 
 @section('content')
 
 <h1 class="text-center">Registrar Parqueos</h1>
 <hr>
-@if (Session::has('message'))
+<!-- @if (Session::has('message'))
 <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
-
+-->
 <div class="container">
 
     <form action="{{ route('parqueo.store') }}" method="POST" class="needs-validation" novalidate>
@@ -18,10 +18,22 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="id_zona">Zona</label>
+                    <select class="custom-select mr-sm-2" id="id_zona" name="id_zona" >
+                        <option selected>Seleccionar...</option>
+                        <option value="1">Zona Uno</option>
+                        <option value="2">Zona Dos</option>
+                        <option value="3">Zona Tres</option>
+                        <option value="4">Zona Cuatro</option>
+                        <option value="5">Zona Cinco</option>
+
+                    </select>
+                    <!--
+                    <label for="id_zona">Zona</label>
                     <select id="id_zona" name="id_zona" class="form-control">
                         <option selected>Zona del Parqueo</option>
                         <option>...</option>
                     </select>
+                    -->
                 </div>
             </div>
             <div class="col-md-10">
@@ -100,7 +112,7 @@
             </div>
             <div class="col-md-10">
                 <div class="form-group">
-                    <strong>Telefono de Contacto 2</strong>
+                    <label>Telefono de Contacto 2</label>
                     <input type="text" name="telefono_contacto_2" class="form-control" placeholder="Telefono 2">
                 </div>
             </div>
@@ -109,20 +121,14 @@
                     <label for="estado_funcionamiento">Horarios de Funcionamiento</label>
                     <select class="custom-select mr-sm-2" id="estado_funcionamiento" name="estado_funcionamiento" >
                         <option selected>Seleccionar...</option>
-                        <option value="1">24 Horas</option>
-                        <option value="2">Mañana</option>
-                        <option value="3">Tarde</option>
-                        <option value="4">Noche</option>
-                        <option value="4">Madrugada</option>
-                        <option value="4">Mañana-Tarde</option>
-                        <option value="4">Tarde-Noche</option>
-                        <option value="4">Noche-Madrugada</option>
-                        <option value="4">Madrugada-Mañana</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
 
                     </select>
-
+                    <!--
                     <strong>Estado Funcionamiento</strong>
                     <input type="text" name="estado_funcionamiento" class="form-control" placeholder="Estado Funcionamiento">
+                    -->
                 </div>
             </div>
             <div class="col-md-10">
