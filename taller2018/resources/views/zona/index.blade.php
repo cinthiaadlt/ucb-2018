@@ -13,6 +13,13 @@
                         </div>
 
                         <div class="table-responsive">
+
+                            @if (\Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{ \Session::get('success') }}</p>
+                            </div><br />
+                            @endif
+
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
@@ -34,7 +41,7 @@
                                     <td><a class="btn btn-primary btn-xs" href="{{action('ZonaController@edit', $zona->id_zonas)}}" >
                                             <i class="ni ni-fat-add"></i></a></td>
                                     <td>
-                                        <form action="{{action('ZonaController@destroy', $zona->id_zonas)}}" method="post">
+                                        <form action="{{action('ZonaController@destroy', $zona['id_zonas'])}}" method="post">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('¿Quiere borrar la zona?')" >

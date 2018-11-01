@@ -54,7 +54,7 @@ class ZonaController extends Controller
 
         //Session::flash('message','Zona creada correctamente');
 
-        return redirect()->action('ZonaController@index');
+        return redirect()->action('ZonaController@index')->with('success','La zona fue añadida');
     }
 
     /**
@@ -101,7 +101,7 @@ class ZonaController extends Controller
 
        // Session::flash('message','Zona actualizado correctamente');
 
-        return redirect()->route('zona.index');
+        return redirect()->route('zona.index')->with('success','La zona fue editada');
 
 
     }
@@ -112,12 +112,17 @@ class ZonaController extends Controller
      * @param  \App\Zona  $zona
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Zona $zona)
+    public function destroy($id)
     {
-        $zona->delete();
+        //$zona->delete();
 
        // Session::flash('message','Parqueo eliminado correctamente');
 
-        return redirect()->route('zona.index');
+        //return redirect()->route('zona.index');
+
+        $passport = \App\Zona::find($id);
+        $passport->delete();
+        return redirect()->route('zona.index')->with('success','La zona fue eliminada');
+
     }
 }

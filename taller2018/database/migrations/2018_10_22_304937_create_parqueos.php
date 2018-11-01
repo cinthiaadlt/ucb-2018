@@ -15,7 +15,7 @@ class CreateParqueos extends Migration
     {
         Schema::create('parqueos', function (Blueprint $table) {
             $table->increments('id_parqueos');
-            $table->integer('id_zonas')->unsigned();
+            $table->unsignedInteger('id_zonas');
             $table->foreign('id_zonas')->references('id_zonas')->on('zonas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('direccion', 100);
             $table->decimal('latitud_x', 20, 10);
@@ -25,8 +25,8 @@ class CreateParqueos extends Migration
             $table->string('telefono_contacto_1', 45);
             $table->string('telefono_contacto_2', 45);
             $table->integer('estado_funcionamiento');
-            $table->integer('cat_estado_parqueo');
-            $table->integer('cat_validacion');
+            $table->unsignedInteger('cat_estado_parqueo');
+            $table->unsignedInteger('cat_validacion');
             $table->timestamps();
         });
     }

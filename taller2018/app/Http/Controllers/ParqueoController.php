@@ -16,8 +16,12 @@ class ParqueoController extends Controller
      */
     public function index()
     {
-        $parqueos = Parqueo::orderBy('id_parqueos') -> paginate(10);
-        return view('parqueo.index',compact('parqueos'));
+        $p = DB::table('parqueos')
+            ->join('zonas','zonas.id_zonas','=','parqueos.id_zonas')
+            ->orderBy('id_parqueos','desc')
+            ->paginate(5);
+
+        return view('parqueo.index',compact('p'));
     }
 
     /**
@@ -27,7 +31,11 @@ class ParqueoController extends Controller
      */
     public function create()
     {
-        return view('parqueo.create');
+        $pq2 = DB::table('zonas')
+            ->select('*')
+            ->orderBy('id_zonas')
+            ->get();
+        return view('parqueo.create',compact('pq2'));
     }
 
     /**
@@ -39,8 +47,8 @@ class ParqueoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'id_zona' => 'required',
+        $this->validate($request,[
+            'id_zonas' => 'required',
             'direccion' => 'required',
             'latitud_x' => 'required',
             'longitud_y' => 'required',
@@ -50,14 +58,28 @@ class ParqueoController extends Controller
             'telefono_contacto_2' => 'required',
             'estado_funcionamiento' => 'required',
             'cat_estado_parqueo' => 'required',
-            'cat_validacion' => 'required',
+            'cat_validacion' => 'required'
         ]);
 
-        Parqueo::create($request->all());
+        $p = new Parqueo();
+        $p->id_zonas = $request->input('id_zonas');
+        $p->direccion = $request->input('direccion');
+        $p->latitud_x = $request->input('latitud_x');
+        $p->longitud_y = $request->input('longitud_y');
+        $p->cantidad_p = $request->input('cantidad_p');
+        $p->foto = $request->input('foto');
+        $p->telefono_contacto_1 = $request->input('telefono_contacto_1');
+        $p->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $p->estado_funcionamiento = $request->input('estado_funcionamiento');
+        $p->cat_estado_parqueo = $request->input('cat_estado_parqueo');
+        $p->cat_validacion = $request->input('cat_validacion');
+        $p->save();
 
-        Session::flash('message','Parqueo creado correctamente');
+        //Vehiculo::create($request->all());
 
-        return redirect()->route('parqueo.index');
+        //Session::flash('message','Zona creada correctamente');
+
+        return redirect()->action('ParqueoController@index')->with('success','El parqueo fue añadido');
 
     }
 
@@ -69,7 +91,7 @@ class ParqueoController extends Controller
      */
     public function show(Parqueo $parqueo)
     {
-        return view('parqueo.show',compact('parqueo'));
+        //return view('parqueo.show',compact('parqueo'));
     }
 
     /**

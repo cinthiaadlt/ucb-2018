@@ -1,173 +1,149 @@
 @extends('layout.principal')
 
 @section('content')
+<div id="content">
+    <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl-12 order-xl-1">
+                <div class="card bg-secondary shadow">
 
-<h1 class="text-center">Registrar Parqueos</h1>
-<hr>
-<!-- @if (Session::has('message'))
-<div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
--->
-<div class="container">
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> Revise los campos obligatorios.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if(Session::has('success'))
+                    <div class="alert alert-info">
+                        {{Session::get('success')}}
+                    </div>
+                    @endif
 
-    <form action="{{ route('parqueo.store') }}" method="POST" class="needs-validation" novalidate>
 
-        @csrf
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Registro de Parqueo</h3>
+                            </div>
 
-        <div class="form-row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="id_zona">Zona</label>
-                    <select class="custom-select mr-sm-2" id="id_zona" name="id_zona" >
-                        <option selected>Seleccionar...</option>
-                        <option value="1">Zona Uno</option>
-                        <option value="2">Zona Dos</option>
-                        <option value="3">Zona Tres</option>
-                        <option value="4">Zona Cuatro</option>
-                        <option value="5">Zona Cinco</option>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('zona.store') }}" role="form" class="form-group" style="padding-bottom:30px;">
 
-                    </select>
-                    <!--
-                    <label for="id_zona">Zona</label>
-                    <select id="id_zona" name="id_zona" class="form-control">
-                        <option selected>Zona del Parqueo</option>
-                        <option>...</option>
-                    </select>
-                    -->
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="validationTooltip01">Direccion</label>
-                    <input type="text" name="direccion" class="form-control" id="validationTooltip01" placeholder="Direccion del Parqueo">
-                    <div class="valid-tooltip">
-                        ¡Correcto!
-                    </div>
-                    <div class="invalid-tooltip">
-                        Porfavor ingrese una direccion de parqueo.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="validationTooltip02">Latitud</label>
-                    <input type="text" name="latitud_x" class="form-control" id="validationTooltip02" placeholder="Latitud Mapa">
-                    <div class="valid-tooltip">
-                        ¡Correcto!
-                    </div>
-                    <div class="invalid-tooltip">
-                        Porfavor ingrese la latitud.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="validationTooltip03">Longitud</label>
-                    <input type="text" name="longitud_y" class="form-control" id="validationTooltip03" placeholder="Longitud Mapa">
-                    <div class="valid-tooltip">
-                        ¡Correcto!
-                    </div>
-                    <div class="invalid-tooltip">
-                        Porfavor ingrese la longitud.
-                    </div>
-                </div>
-            </div>
-            <div class="col-auto my-1">
-                <div class="form-group">
-                    <label for="cantidad_p">Cantidad de Espacios</label>
-                    <select class="custom-select mr-sm-2" id="cantidad_p" name="cantidad_p" >
-                        <option selected>Seleccionar...</option>
-                        <option value="1">Uno</option>
-                        <option value="2">Dos</option>
-                        <option value="3">Tres</option>
-                        <option value="4">Cuatro</option>
-                        <option value="5">Cinco</option>
+                            {{ csrf_field() }}
 
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="validationTooltip04">Foto</label>
-                    <input type="text" name="foto" class="form-control" id="validationTooltip04" placeholder="Foto Parqueo">
-                    <div class="valid-tooltip">
-                        ¡Correcto!
-                    </div>
-                    <div class="invalid-tooltip">
-                        Porfavor ingrese una foto.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="validationTooltip05">Telefono de Contacto 1</label>
-                    <input type="text" name="telefono_contacto_1" class="form-control" id="validationTooltip05" placeholder="Telefono 1">
-                    <div class="valid-tooltip">
-                        ¡Correcto!
-                    </div>
-                    <div class="invalid-tooltip">
-                        Porfavor ingrese un numero de telefono.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label>Telefono de Contacto 2</label>
-                    <input type="text" name="telefono_contacto_2" class="form-control" placeholder="Telefono 2">
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="estado_funcionamiento">Horarios de Funcionamiento</label>
-                    <select class="custom-select mr-sm-2" id="estado_funcionamiento" name="estado_funcionamiento" >
-                        <option selected>Seleccionar...</option>
-                        <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Zona</label>
+                                    <select name="id_zonas" id="id_zonas" class="form-control">
+                                        @foreach($pq2 as $p)
+                                        <option value ="{{$p->id_zonas}}">{{ $p->zona }}</option>
+                                        @endforeach
 
-                    </select>
-                    <!--
-                    <strong>Estado Funcionamiento</strong>
-                    <input type="text" name="estado_funcionamiento" class="form-control" placeholder="Estado Funcionamiento">
-                    -->
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="cat_estado_parqueo">Estado del Parqueo</label>
-                    <select class="custom-select mr-sm-2" id="cat_estado_parqueo" name="cat_estado_parqueo" >
-                        <option selected>Seleccionar...</option>
-                        <option value="1">Excelente</option>
-                        <option value="2">Bueno</option>
-                        <option value="3">Regular</option>
-                        <option value="4">Malo</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                    </select>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Direccion</label>
+                                    <input type="text" name="direccion" class="form-control form-control-alternative" id="direccion" >
+                                </div>
+                            </div>
 
-                    <!--
-                    <input type="text" name="cat_estado_parqueo" class="form-control" placeholder="Condiciones del Parqueo">
-                    -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Latitud</label>
+                                    <input type="text" name="latitud_x" class="form-control form-control-alternative" id="latitud_x" >
+                                </div>
+                            </div>
 
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label for="validationTooltip06">Codigo de Validacion</label>
-                    <input type="text" name="cat_validacion" class="form-control" id="validationTooltip06" placeholder="Validacion del Parqueo">
-                    <div class="valid-tooltip">
-                        ¡Correcto!
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Longitud</label>
+                                    <input type="text" name="longitud_y" class="form-control form-control-alternative" id="longitud_y" >
+                                </div>
+                            </div>
+
+                            <div class="col-auto my-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Cantidad de Espacios</label>
+                                    <select name="cantidad_p" id="cantidad_p" class="form-control" >
+                                        <option selected>Seleccionar...</option>
+                                        <option value="1">Uno</option>
+                                        <option value="2">Dos</option>
+                                        <option value="3">Tres</option>
+                                        <option value="4">Cuatro</option>
+                                        <option value="5">Cinco</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Foto</label>
+                                    <input type="text" name="foto" class="form-control form-control-alternative" id="foto" >
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Telefono de Contacto 1</label>
+                                    <input type="text" name="telefono_contacto_1" class="form-control form-control-alternative" id="telefono_contacto_1" >
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Telefono de Contacto 2</label>
+                                    <input type="text" name="telefono_contacto_2" class="form-control form-control-alternative" id="telefono_contacto_2">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Estado de Funcionamiento</label>
+                                    <select class="form-control" id="estado_funcionamiento" name="estado_funcionamiento" >
+                                        <option selected>Seleccionar...</option>
+                                        <option value="activo">Activo</option>
+                                        <option value="inactivo">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Estado del Parqueo</label>
+                                    <select class="form-control" id="cat_estado_parqueo" name="cat_estado_parqueo" >
+                                        <option selected>Seleccionar...</option>
+                                        <option value="excelente">Excelente</option>
+                                        <option value="bueno">Bueno</option>
+                                        <option value="regular">Regular</option>
+                                        <option value="malo">Malo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-parqueo">Codigo de Validacion</label>
+                                    <input type="text" name="cat_validacion" class="form-control form-control-alternative" id="cat_validacion" >
+                                </div>
+                            </div>
+
+                            <input class="submit btn btn-danger" type="submit" value="Registrar">
+                        </form>
                     </div>
-                    <div class="invalid-tooltip">
-                        Porfavor ingrese el codigo de validacion.
-                    </div>
                 </div>
-            </div>
-            <div class="col-md-10 text-center">
-                <button type="submit" class="btn btn-primary">Registrar</button>
             </div>
         </div>
-    </form>
-
+    </div>
 </div>
-
-
 @endsection
