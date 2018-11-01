@@ -23,27 +23,34 @@
                     <th>Zona</th>
                     <th>Calle</th>
                     <th>Ciudad</th>
-                    <th colspan="2">Action</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
                 </thead>
                 <tbody>
+                @if($zonas->count())
+                    @foreach($zonas as $zona)
+                    <tr>
+                        <td>{{$zona['zona']}}</td>
+                        <td>{{$zona['calle']}}</td>
+                        <td>{{$zona['ciudad']}}</td>
 
-                @foreach($zonas as $zona)
+                        <td><a class="btn btn-primary btn-xs" href="{{action('ZonaController@edit', $zona->id_zonas)}}" >
+                                <i class="ni ni-fat-add"></i></a></td>
+                        <td>
+                            <form action="{{action('ZonaController@destroy', $zona->id_zonas)}}" method="post">
+                                {{csrf_field()}}
+                                <input name="_method" type="hidden" value="DELETE">
+                                <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('¿Quiere borrar la zona?')" >
+                                    <i class="ni ni-fat-remove"></i></button>
+                        </td>
+                    </tr>
+                    @endforeach
+                @else
                 <tr>
-                    <td>{{$zona['zona']}}</td>
-                    <td>{{$zona['calle']}}</td>
-                    <td>{{$zona['ciudad']}}</td>
-
-                    <td><a href="{{action('ZonaController@edit', $zona['id_zonas'])}}" class="btn btn-warning">Edit</a></td>
-                    <td>
-                        <form action="{{action('ZonaController@destroy', $zona['id_zonas'])}}" method="post">
-                            @csrf
-                            <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                    </td>
+                    <td colspan="8">No hay registro !!</td>
                 </tr>
-                @endforeach
+                @endif
                 </tbody>
             </table>
             {{ $zonas->links() }}<br><br>

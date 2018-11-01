@@ -99,9 +99,11 @@ class ZonaController extends Controller
 
         $zona->update($request->all());
 
-        Session::flash('message','Zona actualizado correctamente');
+       // Session::flash('message','Zona actualizado correctamente');
 
         return redirect()->route('zona.index');
+
+
     }
 
     /**
@@ -112,6 +114,10 @@ class ZonaController extends Controller
      */
     public function destroy(Zona $zona)
     {
-        //
+        $zona->delete();
+
+       // Session::flash('message','Parqueo eliminado correctamente');
+
+        return redirect()->route('zona.index');
     }
 }
