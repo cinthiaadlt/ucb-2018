@@ -108,6 +108,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('zona') }}">
+                        <i class="ni ni-circle-08 text-grey"></i> Zonas
+                    </a>
+                </li>
+
             </ul>
             <!-- Divider -->
             <hr class="my-3">

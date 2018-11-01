@@ -14,7 +14,8 @@ class ZonaController extends Controller
      */
     public function index()
     {
-        //
+        $zonas = Zona::orderBy('id_zonas') -> paginate(10);
+        return view('zona.index',compact('zonas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ZonaController extends Controller
      */
     public function create()
     {
-        //
+        return view('zona.create');
     }
 
     /**
@@ -35,7 +36,25 @@ class ZonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'zona'=>'required',
+            'calle'=>'required',
+            'ciudad'=>'required',
+
+        ]);
+
+        $zona = new Zona();
+        $zona->zona = $request->input('zona');
+        $zona->calle = $request->input('calle');
+        $zona->ciudad = $request->input('ciudad');
+        $zona->save();
+
+
+        //Vehiculo::create($request->all());
+
+        //Session::flash('message','Zona creada correctamente');
+
+        return redirect()->action('ZonaController@index');
     }
 
     /**
@@ -46,7 +65,7 @@ class ZonaController extends Controller
      */
     public function show(Zona $zona)
     {
-        //
+        //return view('parqueo.show',compact('parqueo'));
     }
 
     /**
@@ -57,7 +76,10 @@ class ZonaController extends Controller
      */
     public function edit(Zona $zona)
     {
-        //
+        //$zona = Zona::find($id);
+        //return view('zona.edit',compact('zona','id'));
+
+        return view('zona.edit',compact('zona'));
     }
 
     /**
@@ -69,7 +91,17 @@ class ZonaController extends Controller
      */
     public function update(Request $request, Zona $zona)
     {
-        //
+        $request->validate([
+            'zona'=>'required',
+            'calle'=>'required',
+            'ciudad'=>'required',
+        ]);
+
+        $zona->update($request->all());
+
+        Session::flash('message','Zona actualizado correctamente');
+
+        return redirect()->route('zona.index');
     }
 
     /**
