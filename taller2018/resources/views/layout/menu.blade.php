@@ -110,7 +110,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
-                        <i class="ni ni-circle-08 text-grey"></i> Zonas
+                        <i class="ni ni-circle-08 text-green"></i> Zonas
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('parqueo') }}">
+                        <i class="ni ni-circle-08 text-blue"></i> Parqueos
                     </a>
                 </li>
 
