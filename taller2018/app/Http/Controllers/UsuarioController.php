@@ -16,8 +16,9 @@ class UsuarioController extends Controller
     {
         //
         $usuarios=\App\Usuario::paginate(10);
-        //$usuarios = DB::table('usuarios')->simplePaginate(3);
+        // $usuarios = DB::table('usuarios')->simplePaginate(3);
         return view('usuario.index',compact('usuarios'));
+        // return view ('usuario.create', compact('usuarios'));
     }
 
     /**
@@ -47,7 +48,7 @@ class UsuarioController extends Controller
         $usuario->password=$request->get('password');
         $usuario->nacionalidad=$request->get('nacionalidad');
         $usuario->save();
-        
+
         return redirect('usuarios')->with('success', 'Information has been added');
     }
 

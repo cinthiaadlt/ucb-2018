@@ -26,6 +26,4 @@ Route::resource('usuarios', 'UsuarioController');
 
 Route::resource('zona','ZonaController');
 
-Route::resource('reserva','GmapsController@index');
-
-Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index']);
+Route::resource('cliente_busqueda','ClienteController');
