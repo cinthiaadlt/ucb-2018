@@ -25,3 +25,5 @@ Route::resource('parqueo','ParqueoController');
 Route::resource('usuarios', 'UsuarioController');
 
 Route::resource('zona','ZonaController');
+
+Route::resource('cliente_busqueda','ClienteController');
