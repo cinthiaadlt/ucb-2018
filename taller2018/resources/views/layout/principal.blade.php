@@ -16,7 +16,7 @@
     <link href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('assets/css/argon.css?v=1.0.0') }}" rel="stylesheet">
-    <script type="text/javascript">var centreGot = false;</script>{!!$map['js']!!}
+    <!--script type="text/javascript">var centreGot = false;</script-->
 </head>
 
 <body>

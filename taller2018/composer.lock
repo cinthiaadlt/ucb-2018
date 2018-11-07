@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "5368298b5f87b17d85510efb5b1853d0",
-=======
-    "content-hash": "550f0bbfdaca67307be2dbd8c1b2de7a",
->>>>>>> 60c7c90ce42384bb32995a213044ffe22ad44d61
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -514,16 +510,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.12",
+            "version": "v5.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1"
+                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1",
-                "reference": "4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3ff3110ac14f2b4876acaff289bb55a1af74f02e",
+                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e",
                 "shasum": ""
             },
             "require": {
@@ -589,6 +585,7 @@
                 "aws/aws-sdk-php": "^3.0",
                 "doctrine/dbal": "^2.6",
                 "filp/whoops": "^2.1.4",
+                "guzzlehttp/guzzle": "^6.3",
                 "league/flysystem-cached-adapter": "^1.0",
                 "mockery/mockery": "^1.0",
                 "moontoast/math": "^1.1",
@@ -653,7 +650,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-10-30T14:44:34+00:00"
+            "time": "2018-11-07T12:41:02+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2647,62 +2644,6 @@
                 "fixtures"
             ],
             "time": "2018-07-12T10:23:15+00:00"
-        },
-        {
-            "name": "genealabs/phpgmaps",
-            "version": "0.3.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GeneaLabs/Phpgmaps.git",
-                "reference": "d258433d0491226597e7cd62b7ca388c35afe943"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GeneaLabs/Phpgmaps/zipball/d258433d0491226597e7cd62b7ca388c35afe943",
-                "reference": "d258433d0491226597e7cd62b7ca388c35afe943",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "5.*",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-laravel4": "1.0-dev",
-                    "dev-develop": "2.0-dev",
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GeneaLabs\\Phpgmaps\\": "src/GeneaLabs/Phpgmaps/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike Bronner",
-                    "email": "mike@genealabs.com",
-                    "role": "maintainer"
-                },
-                {
-                    "name": "Michael Hopkins",
-                    "role": "developer"
-                }
-            ],
-            "description": "Laravel implementation of BIOSTALL's CodeIgniter Google Maps API, originally by Michael Hopkins at Appitventures.",
-            "keywords": [
-                "biostall",
-                "googlemaps",
-                "laravel",
-                "phpgmaps"
-            ],
-            "abandoned": "GeneaLabs/laravel-maps",
-            "time": "2016-08-07T20:39:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
