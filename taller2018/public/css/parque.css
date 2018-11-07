@@ -1,0 +1,21 @@
+label{
+    margin-right: 50px;
+    font-size: 15px;
+}
+#tarifa_hora_normal{
+    width: 100px;
+}
+#direccion{
+    width: 500px;
+}
+.labpre{
+    font-size: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+#upimg{
+    font-size: 15px;
+}
+#selecfield{
+    font-size: 15px;
+}
