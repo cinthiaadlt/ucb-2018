@@ -16,12 +16,8 @@ class ParqueoController extends Controller
      */
     public function index()
     {
-        $p = DB::table('parqueos')
-            ->join('zonas','zonas.id_zonas','=','parqueos.id_zonas')
-            ->orderBy('id_parqueos','desc')
-            ->paginate(5);
-
-        return view('parqueo.index',compact('p'));
+        $parqueos=\App\Parqueo::paginate(10);
+        return view('parqueo.index',compact('parqueos'));
     }
 
     /**

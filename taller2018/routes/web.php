@@ -11,21 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/','LoginController');
+Route::resource('login','LoginController');
+Route::resource('signup','SignupController');
 
 Route::resource('vehiculo','VehiculoController');
 Route::get('/list','VehiculoController@list');
 
 Route::resource ('/tipoMultas', 'TipoMultaController');
 
-Route::resource('parqueo','ParqueoController');
+Route::resource('parqueos','ParqueoController');
 
 Route::resource('usuarios', 'UsuarioController');
 
 Route::resource('zona','ZonaController');
 
-Route::resource('reserva','GmapsController@index');
-
-Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index']);
+Route::resource('cliente_busqueda','ClienteController');
