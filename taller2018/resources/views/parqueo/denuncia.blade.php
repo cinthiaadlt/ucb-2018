@@ -8,7 +8,7 @@
                 <div class="card shadow">
 
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Listado Vehiculos</h3>
+                        <h3 class="mb-0">Listado Denuncias Usuario:</h3>
                     </div>
 
                     <div class="table-responsive">
@@ -22,15 +22,10 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                             <tr>
-                                <th>Zona</th>
-                                <th>Direccion</th>
-                                <th>Latitud-Longitud</th>
-                                <th>Cantidad Veiculos</th>
-                                <th>Foto</th>
-                                <th>Telefonos</th>
-                                <th>Actividad</th>
-                                <th>Estado del Parqueo</th>
-                                <th>Validacion</th>
+                                <th>Tipo Denuncia</th>
+                                <th>Tipo Usuario</th>
+                                <th>Fecha</th>
+                                <th>Descripcion Denuncia</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                                 <th>Denuncias</th>

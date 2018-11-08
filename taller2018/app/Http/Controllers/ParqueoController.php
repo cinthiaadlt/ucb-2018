@@ -94,6 +94,11 @@ class ParqueoController extends Controller
         //return view('parqueo.show',compact('parqueo'));
     }
 
+    public function denuncia(Parqueo $parqueo)
+    {
+        return view('parqueo.denuncia',compact('parqueo'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
