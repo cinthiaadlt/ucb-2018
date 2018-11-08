@@ -27,3 +27,5 @@ Route::resource('usuarios', 'UsuarioController');
 Route::resource('zona','ZonaController');
 
 Route::resource('cliente_busqueda','ClienteController');
+
+Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index']);//Ruta de prueba no eliminar
