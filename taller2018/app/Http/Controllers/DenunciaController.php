@@ -13,21 +13,15 @@ class DenunciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         $p2 = DB::table('denuncias')
             ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
             ->join('usuarios','usuarios.id_usuarios','=','denuncias.id_usuarios')
             ->orderBy('id_denuncias','desc')
             ->paginate(5);
-
-        /*$p = DB::table('usuarios')
-            ->select('*')
-            ->orderBy('id_usuarios')
-            ->get();*/
-
-        $p1 = Denuncia::find($id);
-        return view('denuncia.index',compact(['p2','p1']));
+        //$p1 = Parqueo::find($id);
+        return view('denuncia.index',compact('p2'));
     }
 
     /**

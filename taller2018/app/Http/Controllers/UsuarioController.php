@@ -105,8 +105,8 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        $passport = \App\Usuario::find($id);
-        $passport->delete();
+        $usuario = \App\Usuario::find($id);
+        $usuario->delete();
         return redirect('usuarios')->with('success','Information has been  deleted');
     }
 }

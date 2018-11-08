@@ -121,9 +121,15 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('parqueo') }}">
-                        <i class="ni ni-circle-08 text-red"></i> Cerrar Sesión
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                               <i class="ni ni-circle-08 text-red"></i> Cerrar Sesión
                     </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
 
             </ul>

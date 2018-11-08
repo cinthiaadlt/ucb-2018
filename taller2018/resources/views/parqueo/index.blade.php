@@ -1,6 +1,7 @@
 @extends('layout.principal')
 
 @section('content')
+
 <div id="content">
     <div class="container-fluid mt--7">
         <div class="row">
@@ -20,58 +21,45 @@
                         @endif
 
                         <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
+                            <thead>
                             <tr>
                                 <th>Zona</th>
                                 <th>Direccion</th>
-                                <th>Latitud-Longitud</th>
-                                <th>Cantidad Veiculos</th>
-                                <th>Foto</th>
-                                <th>Telefonos</th>
-                                <th>Actividad</th>
-                                <th>Estado del Parqueo</th>
-                                <th>Validacion</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
-                                <th>Denuncias</th>
-
+                                <th>Capacidad</th>
+                                <th>Imagen</th>
+                                <th>Contacto</th>
+                                <th>Estado</th>
+                                <th colspan="2">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if($p->count())
-                            @foreach($p as $parqueo)
-                            <tr>
-                                <td>{{ $parqueo->id_zonas}}</td>
-                                <td>{{ $parqueo->direccion}}</td>
-                                <td>{{ $parqueo->latitud_x}}-{{ $parqueo->longitud_y}}</td>
-                                <td>{{ $parqueo->cantidad_p}}</td>
-                                <td>{{ $parqueo->foto}}</td>
-                                <td>{{ $parqueo->telefono_contacto_1}}<br>{{ $parqueo->telefono_contacto_2}}</td>
-                                <td>{{ $parqueo->estado_funcionamiento}}</td>
-                                <td>{{ $parqueo->cat_estado_parqueo}}</td>
-                                <td>{{ $parqueo->cat_validacion}}</td>
 
-                                <td><a class="btn btn-primary btn-xs" href="{{action('ParqueoController@edit', $parqueo->id_parqueos)}}" >
-                                        <i class="ni ni-fat-add"></i></a></td>
+                            @foreach($parqueos as $parqueo)
+                            <tr>
+                                <td>@foreach($pq2 as $p)
+                                    @if($p->id_zonas == $parqueo['id_zonas']){{ $p->zona }}@endif
+                                    @endforeach</td>
+                                <td>{{$parqueo['direccion']}}</td>
+                                <td>{{$parqueo['cantidad_p']}}</td>
+                                <td>{{$parqueo['foto']}}</td>
+                                <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
+                                <td>@if($parqueo['estado_funcionamiento'] == '0') Invalido @endif</td>
+
+                                <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
                                 <td>
-                                    <form action="{{action('ParqueoController@destroy', $parqueo->id_parqueos)}}" method="post">
-                                        {{csrf_field()}}
+                                    <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
+                                        @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('¿Quiere borrar la zona?')" >
-                                            <i class="ni ni-fat-remove"></i></button>
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Delete</button>
+                                    </form>
                                 </td>
                                 <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@index', $parqueo->id_parqueos)}}" >
                                         <i class="ni ni-fat-add"></i></a></td>
                             </tr>
                             @endforeach
-                            @else
-                            <tr>
-                                <td colspan="8">No hay registro !!</td>
-                            </tr>
-                            @endif
                             </tbody>
                         </table>
-                        {{ $p->links() }}<br><br>
+
                         <a href="{{action('ParqueoController@create')}}" class="btn btn-primary">Registro</a>
                     </div>
                 </div>
@@ -79,6 +67,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

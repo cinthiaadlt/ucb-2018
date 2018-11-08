@@ -1,7 +1,4 @@
 @extends('layout.principal')
-@section('scripts')
-<script src="{{asset('_js/parq.js')}}"></script>
-@endsectiongi
 @section('content')
 <link href="{{asset('css/parque.css')}}" rel="stylesheet">
 <div id="content">
@@ -35,54 +32,60 @@
                         </div>
                     </div>
                     <div class="card-body">
-                            <form method="post" action="{{url('parqueo')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{url('parqueos')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                  <div class="col-md-4"></div>
-                                  <div class="form-group col-md-4">
-                                    <label for="Name">Name:</label>
-                                    <input type="text" class="form-control" name="name">
+                                  <div class="form-group col-md-10">
+                                    <label for="PrimerNombre">Zonas:</label>
+                                    <select name="id_zonas" id="id_zonas" class="form-control">
+                                            @foreach($pq2 as $p)
+                                            <option value ="{{$p->id_zonas}}">{{ $p->zona }}</option>
+                                            @endforeach
+                                         </select>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-4"></div>
-                                    <div class="form-group col-md-4">
-                                      <label for="Email">Email:</label>
-                                      <input type="text" class="form-control" name="email">
+                                    <div class="form-group col-md-10">
+                                      <label for="Direccion">Direccion:</label>
+                                      <input type="text" class="form-control" name="direccion">
                                     </div>
                                   </div>
                                 <div class="row">
-                                  <div class="col-md-4"></div>
-                                    <div class="form-group col-md-4">
-                                      <label for="Number">Phone Number:</label>
-                                      <input type="text" class="form-control" name="number">
+                                    <div class="form-group col-md-10">
+                                      <label for="Latitud">Latitud:</label>
+                                      <input type="text" class="form-control" name="latitud_x">
                                     </div>
                                   </div>
-                                <div class="row">
-                                  <div class="col-md-4"></div>
-                                  <div class="form-group col-md-4">
-                                    <input type="file" name="filename">    
-                                 </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-4"></div>
-                                  <div class="form-group col-md-4">
-                                    <strong>Date : </strong>  
-                                    <input class="date form-control"  type="text" id="datepicker" name="date">   
-                                 </div>
-                                </div>
-                                 <div class="row">
-                                  <div class="col-md-4"></div>
-                                    <div class="form-group col-md-4">
-                                        <lable>Passport Office</lable>
-                                        <select name="office">
-                                          <option value="Mumbai">Mumbai</option>
-                                          <option value="Chennai">Chennai</option>
-                                          <option value="Delhi">Delhi</option>  
-                                          <option value="Bangalore">Bangalore</option>  
-                                        </select>
+                                  <div class="row">
+                                      <div class="form-group col-md-10">
+                                        <label for="Longitud">Longitud:</label>
+                                        <input type="text" class="form-control" name="longitud_y">
+                                      </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-10">
+                                            <label for="Cantidad">Cantidad Vehiculos:</label>
+                                            <input type="text" class="form-control" name="cantidad_p">
+                                        </div>
+                                    </div>
+                                        <div class="row">
+                                                <div class="form-group col-md-4">
+                                                        <label for="Imagen">Imagen:</label>
+                                                  <input type="file" accept="image/*" name="filename">    
+                                               </div>
+                                              </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-10">
+                                            <label for="Nacionalidad">Contacto 1:</label>
+                                            <input type="text" class="form-control" name="telefono_contacto_1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label for="Nacionalidad">Estado Funcionamiento:</label>
+                                            <input type="text" value="Inactivo" class="form-control" name="estado_funcionamiento" readonly>
+                                        </div>
+                                    </div>
                                 <div class="row">
                                   <div class="col-md-4"></div>
                                   <div class="form-group col-md-4" style="margin-top:60px">

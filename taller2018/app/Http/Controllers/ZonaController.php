@@ -120,8 +120,8 @@ class ZonaController extends Controller
 
         //return redirect()->route('zona.index');
 
-        $passport = \App\Zona::find($id);
-        $passport->delete();
+        $usuario = \App\Zona::find($id);
+        $usuario->delete();
         return redirect()->route('zona.index')->with('success','La zona fue eliminada');
 
     }
