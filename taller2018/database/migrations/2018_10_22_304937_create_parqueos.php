@@ -23,10 +23,10 @@ class CreateParqueos extends Migration
             $table->integer('cantidad_p');
             $table->string('foto', 250);
             $table->string('telefono_contacto_1', 45);
-            $table->string('telefono_contacto_2', 45);
-            $table->integer('estado_funcionamiento');
-            $table->unsignedInteger('cat_estado_parqueo');
-            $table->unsignedInteger('cat_validacion');
+            $table->string('telefono_contacto_2', 45)->nullable();
+            $table->boolean('estado_funcionamiento');
+            $table->unsignedInteger('cat_estado_parqueo')->nullable();
+            $table->unsignedInteger('cat_validacion')->nullable();
             $table->timestamps();
         });
     }

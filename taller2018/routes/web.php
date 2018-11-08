@@ -20,7 +20,7 @@ Route::get('/list','VehiculoController@list');
 
 Route::resource ('/tipoMultas', 'TipoMultaController');
 
-Route::resource('parqueo','ParqueoController');
+Route::resource('parqueos','ParqueoController');
 
 Route::resource('usuarios', 'UsuarioController');
 
