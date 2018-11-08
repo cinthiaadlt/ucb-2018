@@ -20,7 +20,7 @@
 
 <body>
 <!-- Sidenav Menu lateral-->
-@include('layout.menu')
+@include('layout.unlogged-menu')
 <!-- Main content Contenido principal-->
 <div class="main-content">
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -28,7 +28,7 @@
             <!-- Brand -->
             <a class="h3 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{url('zona')}}">PTC</a>
             <!-- Form -->
-            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                 <div class="form-group mb-0">
                     <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
@@ -39,7 +39,7 @@
                 </div>
             </form> -->
             <!-- User -->
-             <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <!-- <ul class="navbar-nav align-items-center d-none d-md-flex">
                 <li class="nav-item dropdown">
                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media align-items-center">
@@ -47,7 +47,7 @@
                   <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
                 </span>
                             <div class="media-body ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold">{{ auth::user()->name}}</span>
+                                <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
                             </div>
                         </div>
                     </a>
@@ -78,7 +78,7 @@
                         </a>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </nav>
 
