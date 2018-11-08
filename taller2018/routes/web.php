@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/','LoginController');
+Route::resource('login','LoginController');
+Route::resource('signup','SignupController');
 
 Route::resource('vehiculo','VehiculoController');
 Route::get('/list','VehiculoController@list');

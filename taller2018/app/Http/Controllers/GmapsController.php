@@ -11,8 +11,8 @@ class GmapsController extends Controller
         //configuaración
         $config = array();
         $config['center'] = 'auto';
-        $config['map_width'] = 400;
-        $config['map_height'] = 400;
+        $config['map_width'] = 800;
+        $config['map_height'] = 600;
         $config['zoom'] = 15;
         $config['onboundschanged'] = 'if (!centreGot) {
             var mapCentre = map.getCenter();
@@ -33,6 +33,6 @@ class GmapsController extends Controller
         $map = \Gmaps::create_map();
 
         //Devolver vista con datos del mapa
-        return view('gmaps', compact('map'));
+        return view('cliente.busqueda_parqueo', compact('map'));
     }
 }
