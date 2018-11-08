@@ -11,11 +11,12 @@
         <table class="table table-striped">
         <thead>
           <tr>
+            <th>Zona</th>
             <th>Direccion</th>
-            <th>Cantidad Vehiculos</th>
+            <th>Capacidad</th>
             <th>Imagen</th>
-            <th>Telefono Contacto</th>
-            <th>Estado Funcionamiento</th>
+            <th>Contacto</th>
+            <th>Estado</th>
             <th colspan="2">Action</th>
           </tr>
         </thead>
@@ -23,10 +24,13 @@
           
           @foreach($parqueos as $parqueo)
           <tr>
+            <td>@foreach($pq2 as $p)
+                @if($p->id_zonas == $parqueo['id_zonas']){{ $p->zona }}@endif
+                @endforeach</td>
             <td>{{$parqueo['direccion']}}</td>
             <td>{{$parqueo['cantidad_p']}}</td>
             <td>{{$parqueo['foto']}}</td>
-            <td>{{$parqueo['telefono_contacto_1']}}</td>
+            <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
             <td>@if($parqueo['estado_funcionamiento'] == '0') Invalido @endif</td>
             
             <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
