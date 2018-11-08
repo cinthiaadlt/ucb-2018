@@ -33,6 +33,6 @@ class GmapsController extends Controller
         $map = \Gmaps::create_map();
 
         //Devolver vista con datos del mapa
-        return view('cliente.busqueda_parqueo', compact('map'));
+        return view('cliente.gmaps', compact('map'));
     }
 }
