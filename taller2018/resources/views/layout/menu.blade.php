@@ -115,7 +115,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('parqueo') }}">
+                    <a class="nav-link" href="{{ url('parqueos') }}">
                         <i class="ni ni-circle-08 text-blue"></i> Parqueos
                     </a>
                 </li>
