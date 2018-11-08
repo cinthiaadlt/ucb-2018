@@ -71,7 +71,7 @@
                                         <div class="row">
                                                 <div class="form-group col-md-4">
                                                         <label for="Imagen">Imagen:</label>
-                                                  <input type="file" name="filename">    
+                                                  <input type="file" accept="image/*" name="filename">    
                                                </div>
                                               </div>
                                     <div class="row">
@@ -83,7 +83,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="Nacionalidad">Estado Funcionamiento:</label>
-                                            <input type="text" class="form-control" name="estado_funcionamiento">
+                                            <input type="text" value="Inactivo" class="form-control" name="estado_funcionamiento" readonly>
                                         </div>
                                     </div>
                                 <div class="row">

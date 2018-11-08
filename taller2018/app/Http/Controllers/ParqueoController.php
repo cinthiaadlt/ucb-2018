@@ -49,7 +49,6 @@ class ParqueoController extends Controller
             $name=time().$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
          }
-
         $parqueo= new \App\Parqueo;
         $parqueo->id_zonas = $request->input('id_zonas');
         $parqueo->direccion = $request->input('direccion');
@@ -59,7 +58,7 @@ class ParqueoController extends Controller
         $parqueo->foto = $name;
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
-        $parqueo->estado_funcionamiento = $request->input('estado_funcionamiento');
+        $parqueo->estado_funcionamiento = 'false';
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
         $parqueo->save();
@@ -129,7 +128,7 @@ class ParqueoController extends Controller
     {
         $parqueo = \App\Parqueo::find($id);
         $parqueo->delete();
-        return redirect('parqueos')->with('success','Information has been  deleted');
+        return redirect('parqueos')->with('success','Information has been deleted');
     }
 
 }

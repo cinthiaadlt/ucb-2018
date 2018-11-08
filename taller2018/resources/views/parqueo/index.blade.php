@@ -11,10 +11,9 @@
         <table class="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Direccion</th>
-            <th>Cantidad</th>
-            <th>Foto</th>
+            <th>Cantidad Vehiculos</th>
+            <th>Imagen</th>
             <th>Telefono Contacto</th>
             <th>Estado Funcionamiento</th>
             <th colspan="2">Action</th>
@@ -24,12 +23,11 @@
           
           @foreach($parqueos as $parqueo)
           <tr>
-            <td>{{$parqueo['id_parqueos']}}</td>
             <td>{{$parqueo['direccion']}}</td>
             <td>{{$parqueo['cantidad_p']}}</td>
             <td>{{$parqueo['foto']}}</td>
             <td>{{$parqueo['telefono_contacto_1']}}</td>
-            <td>{{$parqueo['estado_funcionamiento']}}</td>
+            <td>@if($parqueo['estado_funcionamiento'] == '0') Invalido @endif</td>
             
             <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
             <td>
