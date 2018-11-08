@@ -27,3 +27,5 @@ Route::resource('usuarios', 'UsuarioController');
 Route::resource('zona','ZonaController');
 
 Route::resource('cliente_busqueda','ClienteController');
+
+Route::resource('denuncia','DenunciaController');

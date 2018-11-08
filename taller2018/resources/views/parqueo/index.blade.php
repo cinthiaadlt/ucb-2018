@@ -1,7 +1,6 @@
 @extends('layout.principal')
 
 @section('content')
-
 <div id="content">
     <div class="container-fluid mt--7">
         <div class="row">
@@ -61,7 +60,7 @@
                                         <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('¿Quiere borrar la zona?')" >
                                             <i class="ni ni-fat-remove"></i></button>
                                 </td>
-                                <td><a class="btn btn-primary btn-xs" href="{{action('ParqueoController@show', $parqueo->id_parqueos)}}" >
+                                <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@index', $parqueo->id_parqueos)}}" >
                                         <i class="ni ni-fat-add"></i></a></td>
                             </tr>
                             @endforeach

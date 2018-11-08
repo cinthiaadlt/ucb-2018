@@ -16,8 +16,12 @@ class ParqueoController extends Controller
      */
     public function index()
     {
-        $parqueos=\App\Parqueo::paginate(10);
-        return view('parqueo.index',compact('parqueos'));
+        $p = DB::table('parqueos')
+            ->join('zonas','zonas.id_zonas','=','parqueos.id_zonas')
+            ->orderBy('id_parqueos','desc')
+            ->paginate(5);
+
+        return view('parqueo.index',compact('p'));
     }
 
     /**
@@ -90,10 +94,6 @@ class ParqueoController extends Controller
         //return view('parqueo.show',compact('parqueo'));
     }
 
-    public function denuncia(Parqueo $parqueo)
-    {
-        return view('parqueo.denuncia',compact('parqueo'));
-    }
 
     /**
      * Show the form for editing the specified resource.
