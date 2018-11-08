@@ -43,40 +43,32 @@ class ParqueoController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'id_zonas' => 'required',
-            'direccion' => 'required',
-            'latitud_x' => 'required',
-            'longitud_y' => 'required',
-            'cantidad_p' => 'required',
-            'foto' => 'required',
-            'telefono_contacto_1' => 'required',
-            'telefono_contacto_2' => 'required',
-            'estado_funcionamiento' => 'required',
-            'cat_estado_parqueo' => 'required',
-            'cat_validacion' => 'required'
-        ]);
+        if($request->hasfile('filename'))
+         {
+            $file = $request->file('filename');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+         }
 
-        $p = new Parqueo();
-        $p->id_zonas = $request->input('id_zonas');
-        $p->direccion = $request->input('direccion');
-        $p->latitud_x = $request->input('latitud_x');
-        $p->longitud_y = $request->input('longitud_y');
-        $p->cantidad_p = $request->input('cantidad_p');
-        $p->foto = $request->input('foto');
-        $p->telefono_contacto_1 = $request->input('telefono_contacto_1');
-        $p->telefono_contacto_2 = $request->input('telefono_contacto_2');
-        $p->estado_funcionamiento = $request->input('estado_funcionamiento');
-        $p->cat_estado_parqueo = $request->input('cat_estado_parqueo');
-        $p->cat_validacion = $request->input('cat_validacion');
-        $p->save();
+        $parqueo= new \App\Parqueo;
+        $parqueo->id_zonas = $request->input('id_zonas');
+        $parqueo->direccion = $request->input('direccion');
+        $parqueo->latitud_x = $request->input('latitud_x');
+        $parqueo->longitud_y = $request->input('longitud_y');
+        $parqueo->cantidad_p = $request->input('cantidad_p');
+        $parqueo->foto = $name;
+        $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
+        $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->estado_funcionamiento = $request->input('estado_funcionamiento');
+        $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
+        $parqueo->cat_validacion = $request->input('cat_validacion');
+        $parqueo->save();
 
         //Vehiculo::create($request->all());
 
         //Session::flash('message','Zona creada correctamente');
 
-        return redirect()->action('ParqueoController@index')->with('success','El parqueo fue añadido');
-
+        return redirect('parqueos')->with('success', 'Parqueo Anadido');
     }
 
     /**
@@ -97,9 +89,10 @@ class ParqueoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Parqueo $parqueo)
+    public function edit($id)
     {
-        return view('parqueo.edit',compact('parqueo'));
+        $parqueo = \App\Parqueo::find($id);
+        return view('parqueo.edit',compact('parqueo','id'));
     }
 
     /**
@@ -109,27 +102,21 @@ class ParqueoController extends Controller
      * @param  \App\Parqueo $parqueo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Parqueo $parqueo)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'id_zona' => 'required',
-            'direccion' => 'required',
-            'latitud_x' => 'required',
-            'longitud_y' => 'required',
-            'cantidad_p' => 'required',
-            'foto' => 'required',
-            'telefono_contacto_1' => 'required',
-            'telefono_contacto_2' => 'required',
-            'estado_funcionamiento' => 'required',
-            'cat_estado_parqueo' => 'required',
-            'cat_validacion' => 'required',
-        ]);
-
-        $parqueo->update($request->all());
-
-        Session::flash('message','Parqueo actualizado correctamente');
-
-        return redirect()->route('parqueo.index');
+        $parqueo= \App\Parqueo::find($id);
+        $parqueo->id_zonas = $request->input('id_zonas');
+        $parqueo->direccion = $request->input('direccion');
+        $parqueo->latitud_x = $request->input('latitud_x');
+        $parqueo->longitud_y = $request->input('longitud_y');
+        $parqueo->cantidad_p = $request->input('cantidad_p');
+        $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
+        $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->estado_funcionamiento = $request->input('estado_funcionamiento');
+        $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
+        $parqueo->cat_validacion = $request->input('cat_validacion');
+        $parqueo->save();
+        return redirect('parqueos');
     }
 
     /**
@@ -138,13 +125,11 @@ class ParqueoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Parqueo $parqueo)
+    public function destroy($id)
     {
+        $parqueo = \App\Parqueo::find($id);
         $parqueo->delete();
-
-        Session::flash('message','Parqueo eliminado correctamente');
-
-        return redirect()->route('parqueo.index');
+        return redirect('parqueos')->with('success','Information has been  deleted');
     }
 
 }

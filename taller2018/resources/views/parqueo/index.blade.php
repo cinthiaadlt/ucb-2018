@@ -12,30 +12,28 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Passport Office</th>
+            <th>Direccion</th>
+            <th>Cantidad</th>
+            <th>Foto</th>
+            <th>Telefono Contacto</th>
+            <th>Estado Funcionamiento</th>
             <th colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
           
           @foreach($parqueos as $parqueo)
-          @php
-            $date=date('Y-m-d', $parqueo['date']);
-            @endphp
           <tr>
-            <td>{{$parqueo['id']}}</td>
-            <td>{{$parqueo['name']}}</td>
-            <td>{{$parqueo['email']}}</td>
-            <td>{{$parqueo['number']}}</td>
-            <td>{{$parqueo['office']}}</td>
+            <td>{{$parqueo['id_parqueos']}}</td>
+            <td>{{$parqueo['direccion']}}</td>
+            <td>{{$parqueo['cantidad_p']}}</td>
+            <td>{{$parqueo['foto']}}</td>
+            <td>{{$parqueo['telefono_contacto_1']}}</td>
+            <td>{{$parqueo['estado_funcionamiento']}}</td>
             
-            <td><a href="{{action('ParqueoController@edit', $parqueo['id'])}}" class="btn btn-warning">Edit</a></td>
+            <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
             <td>
-              <form action="{{action('ParqueoController@destroy', $parqueo['id'])}}" method="post">
+              <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
                 @csrf
                 <input name="_method" type="hidden" value="DELETE">
                 <button class="btn btn-danger" type="submit">Delete</button>
