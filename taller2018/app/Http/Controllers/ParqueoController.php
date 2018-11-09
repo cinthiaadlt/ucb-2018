@@ -16,12 +16,14 @@ class ParqueoController extends Controller
      */
     public function index()
     {
+
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
         $parqueos=\App\Parqueo::paginate(10);
         return view('parqueo.index',compact('parqueos','pq2'));
+
     }
 
     /**
@@ -84,6 +86,7 @@ class ParqueoController extends Controller
     {
         //return view('parqueo.show',compact('parqueo'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
