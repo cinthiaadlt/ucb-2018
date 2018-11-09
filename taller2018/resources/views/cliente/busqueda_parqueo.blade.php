@@ -2,6 +2,9 @@
 
 @section('content')
     <div id="content">
+        <script type="text/javascript"
+                src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBqM_uRRSwywJEZ7kyEQxg_eLbrvTU-VNA&sensor=TRUE_OR_FALSE">
+        </script>
         <script type="text/javascript">var centreGot = false;</script>
         {!!$map['js']!!}
         <div class="container-fluid mt--7">
