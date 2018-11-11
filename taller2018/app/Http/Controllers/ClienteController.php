@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ClienteController extends Controller
 {
@@ -32,7 +34,24 @@ class ClienteController extends Controller
 
         // Colocar el marcador
         // Una vez se conozca la posición del usuario
+
         $marker = array();
+        $marker['position'] = 'auto';
+        $marker['infowindow_content'] = 'Posicion Actual';
+        \Gmaps::add_marker($marker);
+
+        $marker = array();
+        $marker['position'] = '-16.498605, -68.123590';
+        $marker['infowindow_content'] = 'Hello World!';
+        $marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+        \Gmaps::add_marker($marker);
+
+        $marker = array();
+        $location = DB::table('parqueos')->select(['latitud_x','longitud_y'])->where('id_parqueos', '=', '1')->get();
+        $ubicacion = json_encode($location);
+        $marker['position'] = $ubicacion;
+        $marker['infowindow_content'] = 'Hello World!';
+        $marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
         \Gmaps::add_marker($marker);
 
         $map = \Gmaps::create_map();
