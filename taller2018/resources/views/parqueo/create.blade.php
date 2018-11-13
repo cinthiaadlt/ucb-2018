@@ -91,8 +91,20 @@
                                               </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="Nacionalidad">Contacto 1:</label>
+                                            <label for="Contacto1">Contacto 1:</label>
                                             <input type="text" class="form-control" name="telefono_contacto_1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Lun</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mar</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mie</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Jue</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Vie</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Sab</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Dom</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -100,7 +112,7 @@
                                             <label for="Nacionalidad">Estado Funcionamiento:</label>
                                             <input type="text" value="Inactivo" class="form-control" name="estado_funcionamiento" readonly>
                                         </div>
-                                    </div>
+                                    </div> 
                                 <div class="row">
                                   <div class="col-md-4"></div>
                                   <div class="form-group col-md-4" style="margin-top:60px">

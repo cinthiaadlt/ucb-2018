@@ -60,7 +60,7 @@
                                         </div>
                                       </div>
                                 <div class="row">
-                                        <div class="form-group col-md-10">
+                                        <div class="form-group col-md-12">
                                           <label for="PrimerNombre">Zonas:</label>
                                           <select name="id_zonas" id="id_zonas" class="form-control">
                                                   @foreach($pq2 as $p)
@@ -73,29 +73,41 @@
                                         </div>
                                       </div>
                                 <div class="row">
-                                    <div class="form-group col-md-10">
+                                    <div class="form-group col-md-12">
                                       <label for="Direccion">Direccion:</label>
                                       <input type="text" class="form-control" name="direccion" value="{{$parqueo->direccion}}">
                                     </div>
                                   </div>
                                     <div class="row">
-                                        <div class="form-group col-md-10">
+                                        <div class="form-group col-md-12">
                                             <label for="Cantidad">Cantidad Vehiculos:</label>
                                             <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-10">
+                                        <div class="form-group col-md-12">
                                             <label for="Contacto">Contacto 1:</label>
                                             <input type="text" class="form-control" name="telefono_contacto_1" value="{{$parqueo->telefono_contacto_1}}">
                                         </div>
                                     </div>
                                     <div class="row">
-                                            <div class="form-group col-md-10">
+                                            <div class="form-group col-md-12">
                                                 <label for="Contacto">Contacto 2:</label>
                                                 <input type="text" class="form-control" name="telefono_contacto_2" value="{{$parqueo->telefono_contacto_2}}">
                                             </div>
                                         </div>
+                                        <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Lun</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mar</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mie</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Jue</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Vie</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Sab</label>
+                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Dom</label>
+                                                </div>
+                                            </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="Estado">Estado Funcionamiento:</label>

@@ -125,9 +125,11 @@ class ParqueoController extends Controller
 
     public function edit($id)
     {
+        
+        $parqueo = \App\Parqueo::find($id);
         //configuaración
         $config = array();
-        $config['center'] = 'auto';
+        $config['center'] = ''. $parqueo->latitud_x . '' . ',' . '' .$parqueo->longitud_y . '';
         $config['map_width'] = 'auto';
         $config['map_height'] = 400;
         $config['zoom'] = 15;
@@ -145,11 +147,11 @@ class ParqueoController extends Controller
         // Colocar el marcador
         // Una vez se conozca la posición del usuario
 
-        $parqueo = \App\Parqueo::find($id);
         $marker = array();
         $marker['position'] = ''. $parqueo->latitud_x . '' . ',' . '' .$parqueo->longitud_y . '';
-        echo "<script>console.log( 'Debug Objects: " . $marker['position'] . "' );</script>";
-        $marker['infowindow_content'] = 'Hello World!';
+        $marker['draggable'] = true;
+        $marker['ondragend'] = 'document.getElementById("lat").value = event.latLng.lat(); document.getElementById("lon").value = event.latLng.lng();';
+        $marker['infowindow_content'] = 'Ubicacion Actual';
         \Gmaps::add_marker($marker);
 
         $map = \Gmaps::create_map();
