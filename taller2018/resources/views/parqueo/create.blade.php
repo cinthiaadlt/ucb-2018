@@ -50,8 +50,19 @@
                             <form method="post" action="{{url('parqueos')}}" enctype="multipart/form-data">
                                 @csrf
                                     <br>
+                                    <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                              <label for="Latitud">Latitud:</label>
+                                              <input type="text" class="form-control" name="latitud_x" id="lat" readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                              <label for="Longitud">Longitud:</label>
+                                              <input type="text" class="form-control" name="longitud_y" id="lon" readonly>
+                                            </div>
+                                          </div>
+
                                 <div class="row">
-                                  <div class="form-group col-md-10">
+                                  <div class="form-group col-md-12">
                                     <label for="PrimerNombre">Zonas:</label>
                                     <select name="id_zonas" id="id_zonas" class="form-control">
                                             @foreach($pq2 as $p)
@@ -61,25 +72,13 @@
                                   </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-10">
+                                    <div class="form-group col-md-12">
                                       <label for="Direccion">Direccion:</label>
                                       <input type="text" class="form-control" name="direccion">
                                     </div>
                                   </div>
-                                <div class="row">
-                                    <div class="form-group col-md-10">
-                                      <label for="Latitud">Latitud:</label>
-                                      <input type="text" class="form-control" name="latitud_x">
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                      <div class="form-group col-md-10">
-                                        <label for="Longitud">Longitud:</label>
-                                        <input type="text" class="form-control" name="longitud_y">
-                                      </div>
-                                    </div>
                                     <div class="row">
-                                        <div class="form-group col-md-10">
+                                        <div class="form-group col-md-12">
                                             <label for="Cantidad">Cantidad Vehiculos:</label>
                                             <input type="text" class="form-control" name="cantidad_p">
                                         </div>
@@ -91,7 +90,7 @@
                                                </div>
                                               </div>
                                     <div class="row">
-                                        <div class="form-group col-md-10">
+                                        <div class="form-group col-md-12">
                                             <label for="Nacionalidad">Contacto 1:</label>
                                             <input type="text" class="form-control" name="telefono_contacto_1">
                                         </div>
