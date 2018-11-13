@@ -15,8 +15,7 @@ class ParqueoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
+    {   
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
@@ -33,11 +32,52 @@ class ParqueoController extends Controller
      */
     public function create()
     {
+           //configuaración
+           $config = array();
+           $config['center'] = 'auto';
+           $config['map_width'] = 'auto';
+           $config['map_height'] = 400;
+           $config['zoom'] = 15;
+           $config['onboundschanged'] = 'if (!centreGot) {
+               var mapCentre = map.getCenter();
+               marker_0.setOptions({
+                   position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+   
+               });
+           }
+           centreGot = true;';
+   
+           \Gmaps::initialize($config);
+   
+           // Colocar el marcador
+           // Una vez se conozca la posición del usuario
+   
+           $marker = array();
+           $marker['position'] = 'auto';
+           $marker['infowindow_content'] = 'Posicion Actual';
+           \Gmaps::add_marker($marker);
+   
+           $marker = array();
+           $marker['position'] = '-16.498605, -68.123590';
+           $marker['infowindow_content'] = 'Hello World!';
+           $marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+           \Gmaps::add_marker($marker);
+   
+           $marker = array();
+           $location = DB::table('parqueos')->select(['latitud_x','longitud_y'])->where('id_parqueos', '=', '1')->get();
+           $ubicacion = json_encode($location);
+           $marker['position'] = $ubicacion;
+           $marker['infowindow_content'] = 'Hello World!';
+           $marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+           \Gmaps::add_marker($marker);
+   
+           $map = \Gmaps::create_map();
+
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
-        return view('parqueo.create',compact('pq2'));
+        return view('parqueo.create',compact('pq2','map'));
     }
 
     /**
