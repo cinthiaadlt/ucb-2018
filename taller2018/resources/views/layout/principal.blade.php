@@ -16,6 +16,14 @@
     <link href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('assets/css/argon.css?v=1.0.0') }}" rel="stylesheet">
+
+    <style type="text/css">
+        #mymap {
+            border:1px solid #070000;
+            width: 800px;
+            height: 500px;
+        }
+    </style>
 </head>
 
 <body>
