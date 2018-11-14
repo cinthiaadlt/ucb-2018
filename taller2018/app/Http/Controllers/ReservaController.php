@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-
-class ClienteController extends Controller
+class ReservaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +13,9 @@ class ClienteController extends Controller
      */
     public function index()
     {
-
-        $locations = DB::table('parqueos')->get();
-        return view('cliente.busqueda_parqueo',compact('locations'));
-
+        //
+        $reservas=\App\Reserva::paginate(10);
+        return view('reserva.index',compact('reservas'));
     }
 
     /**
@@ -84,6 +81,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reserva = \App\Reserva::find($id);
+        $reserva->delete();
+        return redirect('reservas')->with('success','Information has been  deleted');
     }
 }

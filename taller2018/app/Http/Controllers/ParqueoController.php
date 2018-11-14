@@ -15,8 +15,7 @@ class ParqueoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
+    {   
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
@@ -33,11 +32,40 @@ class ParqueoController extends Controller
      */
     public function create()
     {
+           //configuaración
+           $config = array();
+           $config['center'] = 'auto';
+           $config['map_width'] = 'auto';
+           $config['map_height'] = 400;
+           $config['zoom'] = '15';
+           $config['onboundschanged'] = 'if (!centreGot) {
+               var mapCentre = map.getCenter();
+               marker_0.setOptions({
+                   position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+   
+               });
+           }
+           centreGot = true;';
+   
+           \Gmaps::initialize($config);
+   
+           // Colocar el marcador
+           // Una vez se conozca la posición del usuario
+   
+           $marker = array();
+           $marker['position'] = 'auto';
+           $marker['infowindow_content'] = 'Posicion Actual';
+           $marker['draggable'] = true;
+           $marker['ondragend'] = 'document.getElementById("lat").value = event.latLng.lat(); document.getElementById("lon").value = event.latLng.lng();';
+           \Gmaps::add_marker($marker);
+   
+           $map = \Gmaps::create_map();
+
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
-        return view('parqueo.create',compact('pq2'));
+        return view('parqueo.create',compact('pq2','map'));
     }
 
     /**
@@ -97,12 +125,41 @@ class ParqueoController extends Controller
 
     public function edit($id)
     {
+        
         $parqueo = \App\Parqueo::find($id);
+        //configuaración
+        $config = array();
+        $config['center'] = ''. $parqueo->latitud_x . '' . ',' . '' .$parqueo->longitud_y . '';
+        $config['map_width'] = 'auto';
+        $config['map_height'] = 400;
+        $config['zoom'] = 15;
+        $config['onboundschanged'] = 'if (!centreGot) {
+            var mapCentre = map.getCenter();
+            marker_0.setOptions({
+                position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+
+            });
+        }
+        centreGot = true;';
+
+        \Gmaps::initialize($config);
+
+        // Colocar el marcador
+        // Una vez se conozca la posición del usuario
+
+        $marker = array();
+        $marker['position'] = ''. $parqueo->latitud_x . '' . ',' . '' .$parqueo->longitud_y . '';
+        $marker['draggable'] = true;
+        $marker['ondragend'] = 'document.getElementById("lat").value = event.latLng.lat(); document.getElementById("lon").value = event.latLng.lng();';
+        $marker['infowindow_content'] = 'Ubicacion Actual';
+        \Gmaps::add_marker($marker);
+
+        $map = \Gmaps::create_map();
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
-        return view('parqueo.edit',compact('parqueo','id','pq2'));
+        return view('parqueo.edit',compact('parqueo','id','pq2','map'));
     }
 
     /**
