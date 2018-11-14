@@ -9,7 +9,7 @@
                 <div class="card shadow">
 
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Reservas:</h3>
+                        <h3 class="mb-0">Reservas de Hoy:</h3>
                     </div>
 
                     <div class="table-responsive">
@@ -24,7 +24,7 @@
                             <thead>
                             <tr>
                                 <th>Cliente</th>
-                                <th>Precio Alquiler</th>
+                                <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
                                 <th colspan="2">Action</th>
@@ -33,15 +33,16 @@
                             <tbody>
 
                             @foreach($reservas as $reserva)
+                            @if($reserva['dia_reserva'] == date("Y-m-d"))
                             <tr>
                                 <td>@foreach($pq2 as $p)
-                                    @if($p->id_usuarios == $reserva['id_usuarios']){{ $p->usuario }}@endif
+                                    @if($p->id_usuarios == $reserva['id_usuarios']){{ $p->primer_nombre }}&nbsp;{{ $p->primer_apellido }}@endif
                                     @endforeach</td>
                                 <td>@foreach($pq1 as $p1)
-                                    @if($p1->id_precios_alquiler == $reserva['id_precios_alquiler']){{ $p1->precios_alquiler }}@endif
+                                    @if($p1->id_precios_alquiler == $reserva['id_precios_alquiler']){{ number_format((float)$p1->tarifa_hora_normal, 2, '.', '') }}Bs @endif
                                     @endforeach</td>
-                                <td>{{$reserva['inicio_reserva']}}</td>
-                                <td>{{$reserva['fin_reserva']}}</td>
+                                <td>{{$reserva['h_inicio_reserva']}}</td>
+                                <td>{{$reserva['h_fin_reserva']}}</td>
                                 <td>
                                     <form action="{{action('ReservaController@destroy', $reserva['id_reservas'])}}" method="post">
                                         @csrf
@@ -50,6 +51,7 @@
                                     </form>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                             </tbody>
                         </table>

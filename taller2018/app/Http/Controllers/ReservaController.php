@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ReservaController extends Controller
 {
@@ -14,8 +16,17 @@ class ReservaController extends Controller
     public function index()
     {
         //
+        $pq2 = DB::table('usuarios')
+            ->select('*')
+            ->orderBy('id_usuarios')
+            ->get();
+        $pq1 = DB::table('precios_alquiler')
+            ->select('*')
+            ->orderBy('id_precios_alquiler')
+            ->get();
         $reservas=\App\Reserva::paginate(10);
-        return view('reserva.index',compact('reservas'));
+        $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
+        return view('reserva.index',compact('reservas','pq2','pq1'));
     }
 
     /**

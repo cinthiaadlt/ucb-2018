@@ -6,6 +6,7 @@ Route::get('/list','VehiculoController@list');
 Route::get('/roles','RoleController@index');
 Route::resource ('/tipoMultas', 'TipoMultaController')->middleware('auth');
 Route::resource('parqueos','ParqueoController')->middleware('auth');
+Route::resource('reservas','ReservaController')->middleware('auth');
 Route::resource('usuarios', 'UsuarioController')->middleware('auth');
 Route::resource('zona','ZonaController')->middleware('auth');
 Route::resource('denuncia','DenunciaController')->middleware('auth');
