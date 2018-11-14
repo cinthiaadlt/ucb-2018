@@ -100,9 +100,17 @@ class DenunciaController extends Controller
             ->orderBy('id_usuarios')
             ->get();
 
-        $d = Denuncia::find($id);
+        $denuncia = \App\Denuncia::find($id);
 
-        return view('denuncia.edit',compact(['d','d1','d2']));
+        return view('denuncia.edit',compact('denuncia','id','d1','d2'));
+
+      //  $parqueo = \App\Parqueo::find($id);
+        //$pq2 = DB::table('zonas')
+            //->select('*')
+          //  ->orderBy('id_zonas')
+            //->get();
+        //return view('parqueo.edit',compact('parqueo','id','pq2'));
+
     }
 
     /**
@@ -112,7 +120,7 @@ class DenunciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Denuncia $denuncia)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_parqueos'=>'required',
@@ -132,6 +140,27 @@ class DenunciaController extends Controller
         // Session::flash('message','Zona actualizado correctamente');
 
         return redirect()->action('DenunciaController@index')->with('success','La denuncia fue revisada');
+
+        if($request->input('estado_funcionamiento') == 'Inactivo')
+        {
+            $chozni = 0;
+        }else{
+            $chozni = 1;
+        }
+        $parqueo= \App\Parqueo::find($id);
+        $parqueo->id_zonas = $request->input('id_zonas');
+        $parqueo->direccion = $request->input('direccion');
+        $parqueo->latitud_x = $request->input('latitud_x');
+        $parqueo->longitud_y = $request->input('longitud_y');
+        $parqueo->cantidad_p = $request->input('cantidad_p');
+        $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
+        $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->estado_funcionamiento = $chozni;
+        $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
+        $parqueo->cat_validacion = $request->input('cat_validacion');
+        $parqueo->save();
+        return redirect('parqueos');
+
     }
 
     /**

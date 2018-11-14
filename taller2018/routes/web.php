@@ -26,7 +26,7 @@ Route::resource('usuarios', 'UsuarioController')->middleware('auth');
 
 Route::resource('zona','ZonaController')->middleware('auth');
 
-Route::resource('denuncia','DenunciaController');
+Route::resource('denuncia','DenunciaController')->middleware('auth');
 
 Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
 
