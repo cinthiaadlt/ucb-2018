@@ -3,15 +3,16 @@
 @section('content')
     <div id="content">
 
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-        <script type="text/javascript"
-                src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBqM_uRRSwywJEZ7kyEQxg_eLbrvTU-VNA&sensor=TRUE_OR_FALSE">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <!-- LLAVE API KEY -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBqM_uRRSwywJEZ7kyEQxg_eLbrvTU-VNA&sensor=TRUE_OR_FALSE">
         </script>
-        <script src="../../js/gmaps.js"></script>
-        <script src="../../prettify/prettify.js"></script>
-        <script src="../../prettify/prettify.css"></script>
+        <!-- LLAVE API KEY -->
+        <script type="text/javascript" src="https://hpneo.github.io/gmaps/gmaps.js"></script>
+        <script type="text/javascript" src="https://hpneo.github.io/gmaps/prettify/prettify.js"></script>
+        <script type="text/javascript"src="https://hpneo.github.io/gmaps/styles.css"></script>
+        <link href='https://hpneo.github.io/gmaps/prettify/prettify.css' rel='stylesheet' type='text/css' />
+
         <div class="container-fluid mt--7">
             <div class="row">
 
@@ -19,22 +20,18 @@
                     <div class="card shadow">
                         <div class="card-header border-0">
                             <h3 class="mb-0">Parqueos Disponibles</h3>
+                            <img src="/public/images/1542165315parqueo1.jpg">
                         </div>
-
-                            <div class="col-md-4">
-                            <form method="post" id="geocoding_form">
-                                <label for="address">Direccion:</label>
-                                <div class="input">
-                                    <input type="text" id="address" name="address" />
-                                    <input type="submit" class="btn" value="Search" />
-                                </div>
-                            </form>
+                        <div>
+                        <form method="post" id="geocoding_form">
+                            <label for="address">Ubicacion:</label>
+                            <div class="input">
+                                <input type="text" id="address" name="address" />
+                                <input type="submit" class="btn" value="Search" />
                             </div>
-                            <div class="col-md-8" id="mymap" align="right">
-
-                            </div>
-
-
+                        </form>
+                        </div>
+                        <div align="right" id="mymap" > </div>
                     </div>
                 </div>
             </div>
@@ -77,7 +74,8 @@
                 lng: value.longitud_y,
                 title: value.direccion,
                 infoWindow: {
-                    content: 'La direccion es: '+value.direccion
+                    content:'<b>La direccion es: </b>'+value.direccion+
+                            '<br>Foto de referencia:<img src="public/images/1542165315parqueo1.jpg">'
                 }
 
             });
@@ -93,17 +91,12 @@
                 callback: function(results, status){
                     if(status=='OK'){
                         var latlng = results[0].geometry.location;
-                        map.setCenter(latlng.lat(), latlng.lng());
-                        map.addMarker({
-                            lat: latlng.lat(),
-                            lng: latlng.lng()
-                        });
+                        mymap.setCenter(latlng.lat(), latlng.lng());
                     }
                 }
             });
         });
         });
-
 
 
     </script>
