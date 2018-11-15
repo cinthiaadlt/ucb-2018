@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -27,4 +27,44 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function role () {
+      return $this->belongsTo ('App\Role');
+    }
+
+    public function getRole () {
+      // return $this->role->id_roles;
+      // if ($this->role->id_roles == 2) {
+        // return true;
+      // }
+        // return false;
+      // if ($this->role_id == 2) {
+      //   return true;
+      // }
+      return $this->role_id;
+    }
+
+    public function isAdmin () {
+      if ($this->role_id == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public function isOwner () {
+      if ($this->role_id == 3) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public function isUser () {
+      if ($this->role_id == 2) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 }
