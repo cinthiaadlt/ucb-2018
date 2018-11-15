@@ -9,57 +9,6 @@
         <a class="navbar-brand pt-0" href="./index.html">
             <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
         </a>
-        <!-- User -->
-        <!-- <ul class="nav align-items-center d-md-none">
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ni ni-bell-55"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li> -->
-            <!--Menu del icono del nombre  -->
-            <!-- <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
-              </span>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome!</h6>
-                    </div>
-                    <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-single-02"></i>
-                        <span>My profile</span>
-                    </a>
-                    <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>Settings</span>
-                    </a>
-                    <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>Activity</span>
-                    </a>
-                    <a href="./examples/profile.html" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>Support</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item">
-                        <i class="ni ni-user-run"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </li> -->
-        <!-- </ul> -->
-        <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
@@ -91,7 +40,7 @@
             <!-- Navigation -->
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
-            @if (auth::user()->isAdmin)
+            @if (auth::user()->isAdmin ())
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('vehiculo') }}">
@@ -131,7 +80,7 @@
             </ul>
 
             <!-- AQUI PONER EL MENU DEL USUARIO -->
-            @elseif (auth::user()->isUser)
+            @elseif (auth::user()->isUser ())
 
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -220,56 +169,6 @@
             @endif
 
 
-
-
-
-
-
-
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('vehiculo') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
-                    </a>
-                </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="{{ url('usuarios') }}">
-                        <i class="ni ni-circle-08 text-grey"></i> Usuarios
-                    </a>
-                </li> -->
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('list') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Vehiculos
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('zona') }}">
-                        <i class="ni ni-circle-08 text-green"></i> Zonas
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('parqueos') }}">
-                        <i class="ni ni-circle-08 text-blue"></i> Parqueos
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                               <i class="ni ni-circle-08 text-red"></i> Cerrar Sesión
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-
-            </ul>
             <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
