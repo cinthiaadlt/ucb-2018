@@ -14,26 +14,32 @@
         <link href='https://hpneo.github.io/gmaps/prettify/prettify.css' rel='stylesheet' type='text/css' />
 
         <div class="container-fluid mt--7">
+            <div class="card shadow">
             <div class="row">
 
                 <div class="col-md-12">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <h3 class="mb-0">Parqueos Disponibles</h3>
-                            <img src="/public/images/1542165315parqueo1.jpg">
-                        </div>
-                        <div>
-                        <form method="post" id="geocoding_form">
-                            <label for="address">Ubicacion:</label>
-                            <div class="input">
-                                <input type="text" id="address" name="address" />
-                                <input type="submit" class="btn" value="Search" />
-                            </div>
-                        </form>
-                        </div>
-                        <div align="right" id="mymap" > </div>
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Parqueos Disponibles</h3>
                     </div>
                 </div>
+
+                <div class="col-md-4" align="center">
+                    <div class="card-header border-1">
+                        <img width="300" height="200" src="./assets/img/reserva_1.jpg">
+                    <form method="post" id="geocoding_form">
+                        <label for="address">Ubicacion:</label>
+                            <div class="input">
+                                <input type="text" id="address" name="address" />
+                                <input type="submit" class="btn" value="Buscar" />
+                            </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="form-group col-md-8" >
+                    <div class="card-header border-1" id="mymap">
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -45,7 +51,7 @@
             el: '#mymap',
             lat: -16.4897,
             lng: -68.1193,
-            zoom:15
+            zoom:13
         });
         var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/009900/");
 
@@ -74,8 +80,13 @@
                 lng: value.longitud_y,
                 title: value.direccion,
                 infoWindow: {
-                    content:'<b>La direccion es: </b>'+value.direccion+
-                            '<br>Foto de referencia:<img src="public/images/1542165315parqueo1.jpg">'
+                    content:'<b>Direccion: </b>'+
+                            '<br>'+value.direccion+
+                            '<br><b>Espacios del parqueo:</b>'+
+                            '<br>'+value.cantidad_p+
+                            '<br><b>Foto de referencia:</b><br>' +
+                            '<img width="200" height="100" src="./images/'+value.foto+'">'
+
                 }
 
             });
