@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Denuncia extends Model
 {
     protected $primaryKey = 'id_denuncias';
+
     Protected $fillable=['id_parqueos',
         'id_usuarios',
         'descripcion_adicional',

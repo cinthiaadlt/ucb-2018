@@ -53,11 +53,11 @@
                                     <div class="form-row">
                                             <div class="form-group col-md-6">
                                               <label for="Latitud">Latitud:</label>
-                                              <input type="text" class="form-control" name="latitud_x" id="lat" readonly>
+                                              <input type="text" class="form-control" name="latitud_x" id="lat" >
                                             </div>
                                             <div class="form-group col-md-6">
                                               <label for="Longitud">Longitud:</label>
-                                              <input type="text" class="form-control" name="longitud_y" id="lon" readonly>
+                                              <input type="text" class="form-control" name="longitud_y" id="lon" >
                                             </div>
                                           </div>
 
@@ -83,18 +83,23 @@
                                             <input type="text" class="form-control" name="cantidad_p">
                                         </div>
                                     </div>
+
                                         <div class="row">
                                                 <div class="form-group col-md-4">
                                                         <label for="Imagen">Imagen:</label>
                                                   <input type="file" accept="image/*" name="filename">    
                                                </div>
-                                              </div>
+                                        </div>
+
+                                    <!-- no mostrar cuando este listo twilio para la verificacion de telefono -->
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Contacto1">Contacto 1:</label>
                                             <input type="text" class="form-control" name="telefono_contacto_1">
                                         </div>
                                     </div>
+                                    <!-- -->
+
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>

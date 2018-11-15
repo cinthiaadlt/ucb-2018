@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
+
                     @if (count($errors) > 0)
                     <div class="alert alert-danger">
                         <strong>Error!</strong> Revise los campos obligatorios.<br><br>
@@ -25,55 +26,66 @@
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Estado de la denuncia:</h3>
+                                <h3 class="mb-0">Registrar denuncia:</h3>
                             </div>
 
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('denuncia.update',$denuncia->id_denuncias) }}" role="form" class="panel-body" style="padding-bottom:30px;">
+                        <form method="POST" action="{{ route('denuncia.store') }}" role="form" class="panel-body" style="padding-bottom:30px;">
+
                             {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Parqueo</label>
-                                    <input type="text" name="id_parqueos" class="form-control form-control-alternative" id="id_parqueos" value ="{{$denuncia->id_parqueos}}" readonly>
+                                    <select name="id_parqueos" id="id_parqueos" class="form-control">
+                                        @foreach($d1 as $den1)
+                                        <option value ="{{$den1->id_parqueos}}">{{ $den1->id_parqueos }}</option>
+                                        @endforeach
+
+                                    </select>
+
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Usuario</label>
-                                    <input type="text" name="id_usuarios" class="form-control form-control-alternative" id="id_usuarios" value ="{{$denuncia->id_usuarios}}" readonly>
+                                    <select name="id_usuarios" id="id_usuarios" class="form-control">
+                                        @foreach($d2 as $den2)
+                                        <option value ="{{$den2->id_usuarios}}">{{ $den2->id_usuarios }}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Tipo Denuncia</label>
-                                    <input type="text" name="cat_tipo_denuncia" class="form-control form-control-alternative" id="cat_tipo_denuncia" value ="{{$denuncia->cat_tipo_denuncia}}" readonly>
+                                    <input type="text" name="cat_tipo_denuncia" class="form-control form-control-alternative" id="cat_tipo_denuncia" >
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Nivel Gravedad</label>
-                                    <input type="text" name="cat_nivel_gravedad" class="form-control form-control-alternative" id="cat_nivel_gravedad" value ="{{$denuncia->cat_nivel_gravedad}}" readonly>
+                                    <input type="text" name="cat_nivel_gravedad" class="form-control form-control-alternative" id="cat_nivel_gravedad" >
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Descripcion Denuncia</label>
-                                    <input type="text" name="descripcion_adicional" class="form-control form-control-alternative" id="descripcion_adicional" value ="{{$denuncia->descripcion_adicional}}" readonly>
+                                    <input type="text" name="descripcion_adicional" class="form-control form-control-alternative" id="descripcion_adicional" >
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Numero Strikes</label>
-                                    <input type="text" name="num_strikes" class="form-control form-control-alternative" id="num_strikes" value ="{{$denuncia->num_strikes}}" readonly>
+                                    <input type="text" name="num_strikes" class="form-control form-control-alternative" id="num_strikes" >
                                 </div>
                             </div>
 
@@ -81,20 +93,15 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Estado Denuncia</label>
-                                    <select name="estado_denuncia" id="estado_denuncia" class="form-control" value ="{{$denuncia->estado_denuncia}}">
-                                        <option value="INICIAL">INICIAL</option>
-                                        <option value="PROCEDENTE">PROCEDENTE</option>
-                                        <option value="IMPROCEDENTE">IMPROCEDENTE</option>
-                                        <option value="RESUELTO">RESUELTO</option>
-                                        <option value="DENEGADO">DENEGADO</option>
+                                    <input type="text" value="INICIAL" class="form-control" name="estado_denuncia" readonly>
 
-                                    </select>
                                 </div>
                             </div>
 
                             <input class="submit btn btn-danger" type="submit" value="Submit">
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>

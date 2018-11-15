@@ -121,6 +121,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('validacion') }}">
+                        <i class="ni ni-circle-08 text-blue"></i> Validar Parqueos
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('reservas') }}">
                         <i class="ni ni-circle-08 text-black"></i> Reservas
                     </a>

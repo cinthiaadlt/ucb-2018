@@ -24,6 +24,7 @@ class CreateDenuncias extends Migration
             $table->string('estado_denuncia','10');
             $table->integer('num_strikes')->nullable();
             $table->integer('cat_tipo_denuncia');
+            $table->timestamps();
 
         });
     }

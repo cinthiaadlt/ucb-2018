@@ -107,6 +107,15 @@
 
 </div>
 
+@yield('styles')
+
+@section('styles')
+@if(Auth::user()->id != 1)
+<style>
+    .hidden { display: none; }
+</style>
+@endif
+@endsection
 
 <!-- Argon Scripts -->
 <!-- Core -->

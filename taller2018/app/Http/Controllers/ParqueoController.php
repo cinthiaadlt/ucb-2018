@@ -205,4 +205,15 @@ class ParqueoController extends Controller
         return redirect('parqueos')->with('success','Information has been deleted');
     }
 
+    /*public function getParqueoEdit()
+    {
+        $pq2 = DB::table('zonas')
+            ->select('*')
+            ->orderBy('id_zonas')
+            ->get();
+        return view('parqueo.edit',compact('parqueo','id','pq2','map'));
+    }*/
+
+
+
 }

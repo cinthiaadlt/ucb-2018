@@ -59,6 +59,7 @@
                                           <input type="text" class="form-control" name="longitud_y" value="{{$parqueo->longitud_y}}" id="lon" readonly>
                                         </div>
                                       </div>
+
                                 <div class="row">
                                         <div class="form-group col-md-12">
                                           <label for="PrimerNombre">Zonas:</label>
@@ -72,6 +73,7 @@
                                                </select>
                                         </div>
                                       </div>
+
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                       <label for="Direccion">Direccion:</label>
@@ -84,18 +86,30 @@
                                             <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}">
                                         </div>
                                     </div>
+
+                                <!-- Codigo de pais para uso de herramienta twilio
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="Contacto">Codigo Pais:</label>
+                                            <input type="text" class="form-control" name="codigo_pais" value="{{$parqueo->codigo_pais}}">
+                                        </div>
+                                    </div>
+                                -->
+
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Contacto">Contacto 1:</label>
                                             <input type="text" class="form-control" name="telefono_contacto_1" value="{{$parqueo->telefono_contacto_1}}">
                                         </div>
                                     </div>
+
                                     <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="Contacto">Contacto 2:</label>
                                                 <input type="text" class="form-control" name="telefono_contacto_2" value="{{$parqueo->telefono_contacto_2}}">
                                             </div>
                                         </div>
+
                                         <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>

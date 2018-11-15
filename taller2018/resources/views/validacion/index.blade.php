@@ -9,7 +9,7 @@
                 <div class="card shadow">
 
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Listado Parqueos</h3>
+                        <h3 class="mb-0">Validar Parqueos</h3>
                     </div>
 
                     <div class="table-responsive">
@@ -23,10 +23,10 @@
                         <table class="table align-items-center table-flush">
                             <thead>
                             <tr>
-                                <th>Zona</th>
                                 <th>Direccion</th>
                                 <th>Capacidad</th>
-                                <th>Imagen</th>
+                                <th>Imagen Parqueo</th>
+                                <th>Imagen Visita</th>
                                 <th>Contacto</th>
                                 <th>Estado</th>
                                 <th colspan="2">Action</th>
@@ -36,31 +36,39 @@
 
                             @foreach($parqueos as $parqueo)
                             <tr>
-                                <td>@foreach($pq2 as $p)
-                                    @if($p->id_zonas == $parqueo['id_zonas']){{ $p->zona }}@endif
-                                    @endforeach</td>
                                 <td>{{$parqueo['direccion']}}</td>
                                 <td>{{$parqueo['cantidad_p']}}</td>
                                 <td>{{$parqueo['foto']}}</td>
+                                <td></td>
                                 <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
-                                <td>@if($parqueo['estado_funcionamiento'] == '0') Invalido @endif</td>
 
-                                <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
                                 <td>
-                                    <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Delete</button>
-                                    </form>
+                                    @if($parqueo['estado_funcionamiento'] == '0')
+                                        Invalido
+                                    @else
+                                        @if($parqueo['estado_funcionamiento'] == '1')
+                                            Aprobado
+                                        @else
+                                            @if($parqueo['estado_funcionamiento'] == '2')
+                                                Denegado
+                                            @else
+                                                @if($parqueo['estado_funcionamiento'] == '3')
+                                                    Observar
+                                                @endif
+                                            @endif
+
+                                        @endif
+
+                                    @endif
+
                                 </td>
-                                <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@index', $parqueo->id_parqueos)}}" >
-                                        <i class="ni ni-fat-add"></i></a></td>
+
+                                <td><a href="{{action('ValidacionController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning" onclick="return confirm('¿Quiere validar el parqueo?')">Editar Validacion</a></td>
+
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
-
-                        <a href="{{action('ParqueoController@create')}}" class="btn btn-primary">Registro</a>
                     </div>
                 </div>
             </div>
