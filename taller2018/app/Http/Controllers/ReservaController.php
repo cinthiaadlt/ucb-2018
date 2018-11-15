@@ -24,9 +24,10 @@ class ReservaController extends Controller
             ->select('*')
             ->orderBy('id_precios_alquiler')
             ->get();
-        $reservas=\App\Reserva::paginate(10);
-        $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
-        return view('reserva.index',compact('reservas','pq2','pq1'));
+       $date = '==';
+       $reservas=\App\Reserva::paginate(10);
+       $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
+       return view('reserva.index',compact('reservas','pq2','pq1','date'));
     }
 
     /**
@@ -37,6 +38,18 @@ class ReservaController extends Controller
     public function create()
     {
         //
+        $pq2 = DB::table('usuarios')
+        ->select('*')
+        ->orderBy('id_usuarios')
+        ->get();
+         $pq1 = DB::table('precios_alquiler')
+        ->select('*')
+        ->orderBy('id_precios_alquiler')
+        ->get();
+         $date = '==';
+        $reservas=\App\Reserva::paginate(10);
+        $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
+         return view('reserva.historia',compact('reservas','pq2','pq1','date'));
     }
 
     /**
@@ -48,6 +61,7 @@ class ReservaController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
