@@ -19,8 +19,8 @@
 
     <style type="text/css">
         #mymap {
-            border:1px solid #070000;
-            width: 800px;
+            border:0px;
+            width: auto;
             height: 500px;
         }
     </style>
