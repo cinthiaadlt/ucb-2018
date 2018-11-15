@@ -67,4 +67,15 @@ class User extends Authenticatable
         return false;
       }
     }
+/*
+    public function isUserInRole($role) {
+      // IR a la BBDD para buscar los roles del usuarii
+      // Si tiene el rol retorno true
+      if ($this->role_id == 2) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+*/
 }

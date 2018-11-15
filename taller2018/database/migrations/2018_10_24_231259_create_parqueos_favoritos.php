@@ -16,7 +16,8 @@ class CreateParqueosFavoritos extends Migration
         Schema::create('parqueos_favoritos', function (Blueprint $table) {
             $table->increments('id_parqueos_favoritos');
             $table->unsignedInteger('id_parqueos');
-            $table->unsignedInteger('id_usuarios');
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->string('favorito');
 
 

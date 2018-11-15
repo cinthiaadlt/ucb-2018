@@ -45,7 +45,7 @@
                         <input class="form-control" placeholder="Search" type="text">
                     </div>
                 </div>
-            </form> -->
+            </form> 
             <!-- User -->
              <ul class="navbar-nav align-items-center d-none d-md-flex">
                 <li class="nav-item dropdown">

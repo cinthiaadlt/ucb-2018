@@ -15,8 +15,8 @@ class CreateDocumentoIdentidad extends Migration
     {
         Schema::create('documentos_identidad', function (Blueprint $table) {
             $table->increments('id_docs_identidad');
-            $table->unsignedInteger('id_usuarios');
-            $table->foreign('id_usuarios')->references('id_usuarios')->on('usuarios');
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->integer('numero_documento');
             $table->string('imagen_documento', 250);
             $table->integer('cat_tipo_documento');

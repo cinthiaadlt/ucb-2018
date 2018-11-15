@@ -40,13 +40,9 @@
             <!-- Navigation -->
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
-            @if (auth::user()->isAdmin ())
+            @if (auth::user()->isUserInRole ("OWNER"))
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('vehiculo') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
-                    </a>
-                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('list') }}">

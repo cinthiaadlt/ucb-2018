@@ -13,6 +13,7 @@ class RolesTableSeeder extends Seeder
     {
       DB::table('roles')->insert([
         // Para que los tres tipos de roles puedan darse,
+        // Poner php artisan migrate:fresh --seed para hacer la migración del seed
         //  php artisan db:seed --class=RolesTableSeeder
       [
         'nombre_rol' => 'Administrador',

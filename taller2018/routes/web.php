@@ -15,7 +15,8 @@ Route::resource('denuncia','DenunciaController')->middleware('auth');
 Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
 Route::resource('validacion','ValidacionController')->middleware('auth');
 Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index'])->middleware('auth');//Ruta de prueba no eliminar
-
+Route::get ('adminOnly', function () {})->middleware('auth', 'admin');
+Route::get ('userOnly', function () {})->middleware('auth', 'user');
 
 // Dejo dos opciones para que veáis cómo implementar los middlewares para cada URL,
 // Cambia ligeramente entre Route::get y Route::resource.

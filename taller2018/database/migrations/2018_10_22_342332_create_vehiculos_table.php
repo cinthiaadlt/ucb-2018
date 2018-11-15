@@ -16,13 +16,13 @@ class CreateVehiculosTable extends Migration
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->increments('id_vehiculos');
             $table->unsignedInteger('id_modelos');
-            $table->unsignedInteger('id_usuarios');
+            $table->unsignedInteger('id_users');
             $table->string('color','10');
             $table->string('placa','100');
             $table->string('foto_vehiculo','100')->nullable();
             $table->unsignedInteger('cat_tipo_vehiculo');
             $table->foreign('id_modelos')->references('id_modelos')->on('modelos');
-            $table->foreign('id_usuarios')->references('id_usuarios')->on('usuarios');
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

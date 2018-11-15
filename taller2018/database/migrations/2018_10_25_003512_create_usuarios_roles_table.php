@@ -17,8 +17,8 @@ class CreateUsuariosRolesTable extends Migration
             $table->increments('id_usuario_rol');
             $table->unsignedInteger('id_roles');
             $table->foreign('id_roles')->references('id_roles')->on('roles');
-            $table->unsignedInteger('id_usuarios');
-            $table->foreign('id_usuarios')->references('id_usuarios')->on('usuarios');
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }
