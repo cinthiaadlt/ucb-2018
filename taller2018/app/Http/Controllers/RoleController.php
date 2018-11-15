@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
-class ReservaController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +13,9 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
-        $pq2 = DB::table('usuarios')
-            ->select('*')
-            ->orderBy('id_usuarios')
-            ->get();
-        $pq1 = DB::table('precios_alquiler')
-            ->select('*')
-            ->orderBy('id_precios_alquiler')
-            ->get();
-       $date = '==';
-       $reservas=\App\Reserva::paginate(10);
-       $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
-       return view('reserva.index',compact('reservas','pq2','pq1','date'));
+      return 'holapi';
+      // $multas = Role::all ();
+      // return view ('tipo_multas.index', compact ('multas'));
     }
 
     /**
@@ -38,18 +26,6 @@ class ReservaController extends Controller
     public function create()
     {
         //
-        $pq2 = DB::table('usuarios')
-        ->select('*')
-        ->orderBy('id_usuarios')
-        ->get();
-         $pq1 = DB::table('precios_alquiler')
-        ->select('*')
-        ->orderBy('id_precios_alquiler')
-        ->get();
-         $date = '==';
-        $reservas=\App\Reserva::paginate(10);
-        $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
-         return view('reserva.historia',compact('reservas','pq2','pq1','date'));
     }
 
     /**
@@ -61,7 +37,6 @@ class ReservaController extends Controller
     public function store(Request $request)
     {
         //
-
     }
 
     /**
@@ -106,8 +81,6 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
-        $reserva = \App\Reserva::find($id);
-        $reserva->delete();
-        return redirect('reservas')->with('success','Information has been  deleted');
+        //
     }
 }

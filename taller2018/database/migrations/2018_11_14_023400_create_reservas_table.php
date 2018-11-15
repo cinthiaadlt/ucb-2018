@@ -19,8 +19,9 @@ class CreateReservasTable extends Migration
             $table->foreign('id_usuarios')->references('id_usuarios')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('id_precios_alquiler');
             $table->foreign('id_precios_alquiler')->references('id_precios_alquiler')->on('precios_alquiler')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamp('inicio_reserva');
-            $table->timestamp('fin_reserva');
+            $table->date('dia_reserva');
+            $table->time('h_inicio_reserva');
+            $table->time('h_fin_reserva');
             $table->integer('estado_reserva')->nullable();
             $table->integer('estado_espacio')->nullable();
             $table->integer('calificacion_cliente')->nullable();
