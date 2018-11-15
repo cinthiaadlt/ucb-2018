@@ -42,10 +42,10 @@
                                     <select name="zona" id="zona" class="form-control" >
                                         <option value="Miraflores">Miraflores</option>
                                         <option value="Alto Obrajes">Alto Obrajes</option>
-                                        <option value="Obrajes">Obreajes</option>
+                                        <option value="Obrajes">Obrajes</option>
                                         <option value="Sopocachi">Sopocachi</option>
                                         <option value="San Pedro">San Pedro</option>
-                                        <option value="Calacolo">Calacolo</option>
+                                        <option value="Calacoto">Calacoto</option>
                                         <option value="Irpavi">Irpavi</option>
 
                                     </select>

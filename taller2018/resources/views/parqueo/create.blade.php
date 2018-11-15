@@ -53,11 +53,11 @@
                                     <div class="form-row">
                                             <div class="form-group col-md-6">
                                               <label for="Latitud">Latitud:</label>
-                                              <input type="text" class="form-control" name="latitud_x" id="lat" >
+                                              <input type="text" class="form-control" name="latitud_x" id="lat" readonly>
                                             </div>
                                             <div class="form-group col-md-6">
                                               <label for="Longitud">Longitud:</label>
-                                              <input type="text" class="form-control" name="longitud_y" id="lon" >
+                                              <input type="text" class="form-control" name="longitud_y" id="lon" readonly>
                                             </div>
                                           </div>
 

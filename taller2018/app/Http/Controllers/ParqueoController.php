@@ -21,8 +21,8 @@ class ParqueoController extends Controller
             ->orderBy('id_zonas')
             ->get();
         $parqueos=\App\Parqueo::paginate(10);
+        $parqueos = \App\Parqueo::orderBy('id_parqueos')->get();
         return view('parqueo.index',compact('parqueos','pq2'));
-
     }
 
     /**
