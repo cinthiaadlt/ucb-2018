@@ -17,8 +17,8 @@ class CreateReservasTable extends Migration
             $table->increments('id_reservas');
             $table->unsignedInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('id_precios_alquiler');
-            $table->foreign('id_precios_alquiler')->references('id_precios_alquiler')->on('precios_alquiler')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('id_parqueos');
+            $table->foreign('id_parqueos')->references('id_parqueos')->on('parqueos')->onDelete('cascade')->onUpdate('cascade');
             $table->date('dia_reserva');
             $table->time('h_inicio_reserva');
             $table->time('h_fin_reserva');

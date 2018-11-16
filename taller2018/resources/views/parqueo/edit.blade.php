@@ -109,7 +109,22 @@
                                                 <input type="text" class="form-control" name="telefono_contacto_2" value="{{$parqueo->telefono_contacto_2}}">
                                             </div>
                                         </div>
-
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                              <label for="HoraApertura">Hora Apertura:</label>
+                                              <input type="time" class="form-control" name="hora_apertura" value="{{$parqueo->hora_apertura}}" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                              <label for="HoraCierre">Hora Cierre:</label>
+                                              <input type="time" class="form-control" name="hora_cierre" value="{{$parqueo->hora_cierre}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="Tarifa">Tarifa:</label>
+                                                <input type="text" class="form-control" name="tarifa_hora_normal" value="{{$parqueo->tarifa_hora_normal}}">
+                                            </div>
+                                    </div>
                                         <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>

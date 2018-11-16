@@ -53,11 +53,11 @@
                                     <div class="form-row">
                                             <div class="form-group col-md-6">
                                               <label for="Latitud">Latitud:</label>
-                                              <input type="text" class="form-control" name="latitud_x" id="lat" >
+                                              <input type="text" class="form-control" name="latitud_x" id="lat" readonly>
                                             </div>
                                             <div class="form-group col-md-6">
                                               <label for="Longitud">Longitud:</label>
-                                              <input type="text" class="form-control" name="longitud_y" id="lon" >
+                                              <input type="text" class="form-control" name="longitud_y" id="lon" readonly>
                                             </div>
                                           </div>
 
@@ -99,7 +99,22 @@
                                         </div>
                                     </div>
                                     <!-- -->
-
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="HoraApertura">Hora Apertura:</label>
+                                          <input type="time" class="form-control" name="hora_apertura" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="HoraCierre">Hora Cierre:</label>
+                                          <input type="time" class="form-control" name="hora_cierre" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="Tarifa">Tarifa:</label>
+                                            <input type="text" class="form-control" name="tarifa_hora_normal">
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>

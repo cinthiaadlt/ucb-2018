@@ -16,13 +16,13 @@ class ReservaController extends Controller
     public function index()
     {
         //
-        $pq2 = DB::table('usuarios')
+        $pq2 = DB::table('users')
             ->select('*')
-            ->orderBy('id_usuarios')
+            ->orderBy('id')
             ->get();
-        $pq1 = DB::table('precios_alquiler')
+        $pq1 = DB::table('parqueos')
             ->select('*')
-            ->orderBy('id_precios_alquiler')
+            ->orderBy('id_parqueos')
             ->get();
        $date = '==';
        $reservas=\App\Reserva::paginate(10);
@@ -38,13 +38,13 @@ class ReservaController extends Controller
     public function create()
     {
         //
-        $pq2 = DB::table('usuarios')
+        $pq2 = DB::table('users')
         ->select('*')
-        ->orderBy('id_usuarios')
+        ->orderBy('id')
         ->get();
-         $pq1 = DB::table('precios_alquiler')
+         $pq1 = DB::table('parqueos')
         ->select('*')
-        ->orderBy('id_precios_alquiler')
+        ->orderBy('id_parqueos')
         ->get();
          $date = '==';
         $reservas=\App\Reserva::paginate(10);
