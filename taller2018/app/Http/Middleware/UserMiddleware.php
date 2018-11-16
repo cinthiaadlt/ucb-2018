@@ -17,7 +17,7 @@ class UserMiddleware
     {
       $user=auth ()->user ();
       if ($user->getRole () != 2) {
-        return redirect ()->intended ('/');
+        return redirect ()->intended ('/reservas');
       }
       return $next($request);
     }
