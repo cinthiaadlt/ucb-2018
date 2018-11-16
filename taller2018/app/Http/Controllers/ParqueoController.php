@@ -92,6 +92,9 @@ class ParqueoController extends Controller
         $parqueo->foto = $name;
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->hora_apertura = $request->input('hora_apertura');
+        $parqueo->hora_cierre = $request->input('hora_cierre');
+        $parqueo->tarifa_hora_normal = $request->input('tarifa_hora_normal');
         $parqueo->estado_funcionamiento = 'false';
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
@@ -185,6 +188,9 @@ class ParqueoController extends Controller
         $parqueo->cantidad_p = $request->input('cantidad_p');
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->hora_apertura = $request->input('hora_apertura');
+        $parqueo->hora_cierre = $request->input('hora_cierre');
+        $parqueo->tarifa_hora_normal = $request->input('tarifa_hora_normal');
         $parqueo->estado_funcionamiento = $chozni;
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
