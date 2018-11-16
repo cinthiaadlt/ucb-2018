@@ -13,12 +13,24 @@
                 @csrf
 
                 <div class="form-group row">
-                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Completo') }}</label>
+                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
                   <div class="col-md-6">
-                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-                    @if ($errors->has('name'))
+                    <input id="sur_name" type="text" class="form-control{{ $errors->has('sur_name') ? ' is-invalid' : '' }}" name="sur_name" value="{{ old('sur_name') }}" required autofocus>
+                    @if ($errors->has('sur_name'))
                       <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('sur_name') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
+                  <div class="col-md-6">
+                    <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                    @if ($errors->has('last_name'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('last_name') }}</strong>
                       </span>
                     @endif
                   </div>

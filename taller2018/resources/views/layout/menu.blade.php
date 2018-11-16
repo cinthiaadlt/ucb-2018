@@ -40,7 +40,8 @@
             <!-- Navigation -->
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
-            @if (auth::user()->isUserInRole ("OWNER"))
+
+            @if (auth::user ()->isUser ())
             <ul class="navbar-nav">
 
 

@@ -1,13 +1,13 @@
 <?php
 Auth::routes ();
-Route::resource('/','ClienteController')->middleware('auth');
+Route::resource('/','ClienteController', ['middleware'=>['auth', 'user']]);
 Route::resource('vehiculo','VehiculoController')->middleware('auth');
 Route::get('/list','VehiculoController@list');
 Route::get('/roles','RoleController@index');
 Route::resource ('/tipoMultas', 'TipoMultaController')->middleware('auth');
 Route::resource('parqueos','ParqueoController')->middleware('auth');
-//Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');
-//Route::post('/parqueos/edit', 'ParqueoController@postParqueoEdit');
+Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');
+Route::post('/parqueos/create', 'ParqueoController@create');
 Route::resource('reservas','ReservaController')->middleware('auth');
 Route::resource('usuarios', 'UsuarioController')->middleware('auth');
 Route::resource('zona','ZonaController')->middleware('auth');
