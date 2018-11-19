@@ -16,16 +16,16 @@ class RolesTableSeeder extends Seeder
         // Poner php artisan migrate:fresh --seed para hacer la migración del seed
         //  php artisan db:seed --class=RolesTableSeeder
       [
-        'nombre_rol' => 'Administrador',
-        'descripcion_rol' => 'Administra',
+        'nombre_role' => 'Administrador',
+        'descripcion_role' => 'Administra',
       ],
       [
-        'nombre_rol' => 'Usuario',
-        'descripcion_rol' => 'Usuario',
+        'nombre_role' => 'Usuario',
+        'descripcion_role' => 'Usuario',
       ],
       [
-        'nombre_rol' => 'Owner',
-        'descripcion_rol' => 'Owner',
+        'nombre_role' => 'Owner',
+        'descripcion_role' => 'Owner',
       ]
     ]);
     }

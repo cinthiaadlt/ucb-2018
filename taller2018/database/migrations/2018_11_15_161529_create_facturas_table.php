@@ -25,7 +25,7 @@ class CreateFacturasTable extends Migration
             $table->decimal('importe_total_parqueo', 10, 7);
             $table->decimal('comision_importe', 10, 7);
             $table->unsignedInteger('id_empresa');
-            $table->foreign('id_empresa')->references('id_empresa')->on('datos_empresa');
+            $table->foreign('id_empresa')->references('id')->on('datos_empresa');
             $table->string('estado_factura', '100');
             $table->timestamps();
         });

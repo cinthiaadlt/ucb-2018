@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMultasTable extends Migration
+class CreateDatosEmpresaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMultasTable extends Migration
      */
     public function up()
     {
-        Schema::create('multas', function (Blueprint $table) {
+        Schema::create('datos_empresa', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('fecha_multa');
-            $table->string('estado_multa', '250');
-            $table->unsignedInteger('id_tipo_multa');
-            $table->foreign('id_tipo_multa')->references('id_tipo_multa')->on('tipo_multas');
+            $table->string ('nombre', '45');
+            $table->string ('nit', '45');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateMultasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('multas');
+        Schema::dropIfExists('datos_empresa');
     }
 }
