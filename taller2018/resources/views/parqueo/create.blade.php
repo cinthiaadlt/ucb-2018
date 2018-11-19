@@ -117,14 +117,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Lun</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mar</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mie</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Jue</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Vie</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Sab</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Dom</label>
+                                            <label for="DiaFuncion">Dias Funcionamiento Parqueo:</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Lunes">&nbsp;Lun</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Martes">&nbsp;Mar</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Miercoles">&nbsp;Mie</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Jueves">&nbsp;Jue</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Viernes">&nbsp;Vie</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Sabado">&nbsp;Sab</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Domingo">&nbsp;Dom</label>
                                         </div>
                                     </div>
                                     <div class="row">

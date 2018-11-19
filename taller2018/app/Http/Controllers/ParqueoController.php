@@ -6,6 +6,7 @@ use App\Parqueo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class ParqueoController extends Controller
 {
@@ -100,10 +101,38 @@ class ParqueoController extends Controller
         $parqueo->cat_validacion = $request->input('cat_validacion');
         $parqueo->save();
 
-        //Vehiculo::create($request->all());
+        //algoritmo para determinar el estado de los dias con los checkbox
+        $array = array('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo');
+        $estado = array();
+        $myCheckboxes = $request->input('dia');
+                for($i = 0; $i <= 6; $i++){
+                    $aux = 0;
+                    foreach($myCheckboxes as $value){
+                    if($value == $array[$i]){
+                        //echo $value.'original'."<br>";
+                        array_push($estado, true);
+                        $aux=1;
+                        break;
+                    }
+                }
+                if($aux == 0){
+                    //echo $array[$i].'fake'."<br>";
+                    array_push($estado, false);
+                }
+            }
+            //dd($estado);
 
-        //Session::flash('message','Zona creada correctamente');
-
+        //insert de los dias al sistema
+        for($i = 1; $i <= 7; $i++){
+            DB::table('precios_alquiler')->insert(
+                array(
+                    'id_parqueos' => $parqueo->id_parqueos,
+                    'id_dias' => $i,
+                    'estado' => $estado[$i-1]
+                )
+            );
+        }  
+        
         return redirect('parqueos')->with('success', 'Parqueo Anadido');
     }
 

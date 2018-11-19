@@ -17,7 +17,9 @@ class CreatePrecioAlquiler extends Migration
             $table->increments('id_precios_alquiler');
             $table->unsignedInteger('id_parqueos');
             $table->foreign('id_parqueos')->references('id_parqueos')->on('parqueos');
-            $table->string('dia', 45);
+            $table->unsignedInteger('id_dias');
+            $table->foreign('id_dias')->references('id_dias')->on('dias');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }
