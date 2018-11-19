@@ -7,8 +7,8 @@ $factory->define(\App\Parqueo::class, function (Faker $faker) {
     return [
         'id_zonas' => $faker->randomElement($id_zona),
         'direccion' =>$faker -> address,
-        'latitud_x' => $faker -> latitude,
-        'longitud_y' =>$faker-> longitude,
+        'latitud_x'=>$faker->randomElement(['-16.510529','-16.518038','-16.520116','-16.524169','-16.511414','-16.526329','-16.517071','-16.520548','-16.506291','-16.530054']),
+        'longitud_y'=>$faker->randomElement(['-68.118325','-68.118025','-68.112381','-68.116158','-68.122252','-68.111266','-68.113347','68.114463','-68.121244','-68.100198']),
         'cantidad_p' => $faker -> randomDigit,
         'foto' =>$faker->randomElement(['1542250356parqueo1.jpg','1542250434parqueo2.jpg','1542250532parqueo3.jpg','1542250609parqueo5.jpg']),
         'telefono_contacto_1' =>$faker -> phoneNumber,
