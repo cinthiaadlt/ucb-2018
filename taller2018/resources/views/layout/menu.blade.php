@@ -40,7 +40,8 @@
             <!-- Navigation -->
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
-            @if (auth::user()->isOwner())
+
+            @if (auth::user ()->isUser ())
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
@@ -81,12 +82,6 @@
                         <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
                     </a>
                 </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="{{ url('usuarios') }}">
-                        <i class="ni ni-circle-08 text-grey"></i> Usuarios
-                    </a>
-                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('list') }}">
