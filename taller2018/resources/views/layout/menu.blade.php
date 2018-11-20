@@ -146,7 +146,7 @@
             @endif
             @if (auth::user()->hasRole ('Admin') && auth::user ()->myActualRole () != 1)
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('zona') }}">
+                <a class="nav-link" href="{{ url('roles') }}">
                     <i class="ni ni-circle-08 text-pink"></i>Modo Administrador
                 </a>
             </li>
@@ -162,7 +162,7 @@
 
             @if (auth::user()->hasRole ('Owner') && auth::user ()->myActualRole () != 3)
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('zona') }}">
+                <a class="nav-link" href="{{ url('/') }}">
                     <i class="ni ni-circle-08 text-pink"></i>Modo Host
                 </a>
             </li>
