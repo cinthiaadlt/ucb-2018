@@ -12,13 +12,7 @@ class DenunciaController extends Controller
      */
     public function index()
     {
-        $p2 = DB::table('denuncias')
-            ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
-            ->join('usuarios','usuarios.id_usuarios','=','denuncias.id_usuarios')
-            ->orderBy('id_denuncias','desc')
-            ->paginate(5);
-        //$p1 = Parqueo::find($id);
-        return view('denuncia.index',compact('p2'));
+       //
     }
     /**
      * Show the form for creating a new resource.
@@ -84,7 +78,7 @@ class DenunciaController extends Controller
 
         //Session::flash('message','Zona creada correctamente');
 
-        return redirect()->action('DenunciaController@index')->with('success','La denuncia fue añadida');
+        return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue añadida');
 
 
 
@@ -97,7 +91,13 @@ class DenunciaController extends Controller
      */
     public function show($id)
     {
-        //
+        $p2 = DB::table('denuncias')
+            ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
+            ->join('usuarios','usuarios.id_usuarios','=','denuncias.id_usuarios')
+            ->orderBy('id_denuncias','desc')
+            ->paginate(5);
+        //$p1 = Parqueo::find($id);
+        return view('denuncia.index',compact('p2','id'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -143,7 +143,7 @@ class DenunciaController extends Controller
         $denuncia->num_strikes = $request->input('num_strikes');
         $denuncia->cat_tipo_denuncia = $request->input('cat_tipo_denuncia');
         $denuncia->save();
-        return redirect()->action('DenunciaController@index')->with('success','La denuncia fue revisada');
+        return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue revisada');
         //return redirect('parqueos');
     }
     /**
