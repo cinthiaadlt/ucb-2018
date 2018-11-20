@@ -29,8 +29,8 @@ class CreateParqueos extends Migration
             //$table->boolean('verificar')->default(false);
 
             $table->string('telefono_contacto_2', 45)->nullable();
-            //$table->string('estado_funcionamiento');  consultar para utilizar mas de solo dos estados_funcionamiento
-            $table->boolean('estado_funcionamiento');
+            $table->string('estado_funcionamiento');  consultar para utilizar mas de solo dos estados_funcionamiento
+            //$table->boolean('estado_funcionamiento');
             $table->unsignedInteger('cat_estado_parqueo')->nullable();
             $table->unsignedInteger('cat_validacion')->nullable();
 
