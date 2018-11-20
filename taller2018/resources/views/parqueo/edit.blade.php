@@ -128,13 +128,17 @@
                                         <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Lun</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mar</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mie</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Jue</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Vie</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Sab</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Dom</label>
+                                                    @foreach($validado as $val)
+                                                        @foreach($dias as $dia)
+                                                            @if($val->id_dias == $dia->id_dias)
+                                                                @if($val->estado == true)
+                                                                    <label class="checkbox-inline"><input type="checkbox" value="" checked>&nbsp;{{substr($dia->nombre, 0, 3)}}</label>
+                                                                @else 
+                                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;{{substr($dia->nombre, 0, 3)}}</label>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
                                                 </div>
                                             </div>
                                     <div class="row">
