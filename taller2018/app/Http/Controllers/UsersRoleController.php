@@ -15,13 +15,29 @@ class UsersRoleController extends Controller
       return view ('users.index', compact ('users'));
     }
 
-    public function MakeMeUser () {
+    public function makeMeUser () {
       $myId = Auth::id ();
       $t_users_role = new UsersRole;
       $t_users_role->id_user = $myId;
       $t_users_role->id_role = '2';
       $t_users_role-> save ();
       return redirect()->route('/', [$param]);
+    }
+
+    public function makeItAdmin ($id) {
+      $t_users_role = new UsersRole;
+      $t_users_role->id_user = $id;
+      $t_users_role->id_role = '1';
+      $t_users_role-> save ();
+      return view ('users.index', compact ('users'));
+    }
+
+    public function makeItOwner ($id) {
+      $t_users_role = new UsersRole;
+      $t_users_role->id_user = $id;
+      $t_users_role->id_role = '3';
+      $t_users_role-> save ();
+      return view ('users.index', compact ('users'));
     }
 
     public function createAdmin () {

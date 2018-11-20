@@ -25,8 +25,14 @@
                     <tr>
                       <td>{{$user->email}}</td>
                       <td>{{$user->sur_name}}</td>
-                      <td><a class="btn btn-primary btn-xs" href="{{action('UsersRoleController@edit', $user->id)}}" >
-                        Admin</a></td>
+                      <td>
+                        @if (!$user->hasRole ("Owner"))
+                          <a class="btn btn-primary btn-xs" href="#" >Owner</a>
+                        @endif
+                        @if (!$user->hasRole ("Admin"))
+                          <a class="btn btn-primary btn-xs" href="#" >Admin</a>
+                        @endif
+                      </td>
                     </tr>
                   @endforeach
                 @else

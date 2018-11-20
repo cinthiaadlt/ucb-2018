@@ -60,6 +60,19 @@
                         <i class="ni ni-circle-08 text-black"></i> Reservas
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('roles') }}">
+                        <i class="ni ni-circle-08 text-black"></i> Roles
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('users') }}">
+                        <i class="ni ni-circle-08 text-black"></i> Usuarios
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
