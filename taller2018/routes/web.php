@@ -4,11 +4,13 @@ Auth::routes ();
 // Rutas de Admin:
 Route::resource ('/tipoMultas', 'TipoMultaController')->middleware('auth');
 Route::resource('/roles','RoleController', ['middleware'=>['auth', 'admin']]);
+Route::resource('/users','UsersRoleController', ['middleware'=>['auth', 'admin']]);
 
 
 // Rutas de User;
 Route::resource('/','ClienteController', ['middleware'=>['auth', 'user']]);
 Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
+Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
 //Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');
 //Route::post('/parqueos/edit', 'ParqueoController@postParqueoEdit');
 

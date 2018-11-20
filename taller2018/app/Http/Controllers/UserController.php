@@ -8,16 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index1 () {
-      Auth::user ()->setMyRoleToAdmin ();
-    }
-
-    public function index2 () {
-      Auth::user ()->setMyRoleToUser ();
-    }
-
-    public function index3 () {
-      Auth::user ()->setMyRoleToOwner ();
+    public function index () {
+      // Auth::user ()->setMyRoleToAdmin ();
     }
 
     public function create() {
