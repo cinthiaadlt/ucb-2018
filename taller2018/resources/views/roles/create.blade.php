@@ -38,15 +38,15 @@
 
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label class="form-control-label" for="nombre_rol">Nombre</label>
-                  <input type="text" name="nombre_rol" id="nombre_rol" class="form-control form-control-alternative" >
+                  <label class="form-control-label" for="nombre_role">Nombre</label>
+                  <input type="text" name="nombre_rol" id="nombre_role" class="form-control form-control-alternative" >
                 </div>
               </div>
 
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label class="form-control-label" for="descripcion_rol">Descripción</label>
-                  <input type="text" name="descripcion_rol" id="descripcion_rol" class="form-control form-control-alternative" >
+                  <label class="form-control-label" for="descripcion_role">Descripción</label>
+                  <input type="text" name="descripcion_rol" id="descripcion_role" class="form-control form-control-alternative" >
                 </div>
               </div>
               <input class="submit btn btn-danger" type="submit" value="Registrar">

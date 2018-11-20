@@ -27,8 +27,8 @@
                 @if($roles->count())
                   @foreach($roles as $role)
                     <tr>
-                      <td>{{$role->nombre_rol}}</td>
-                      <td>{{$role->descripcion_rol}}</td>
+                      <td>{{$role->nombre_role}}</td>
+                      <td>{{$role->descripcion_role}}</td>
                       <td><a class="btn btn-primary btn-xs" href="{{action('RoleController@edit', $role->id_roles)}}" >
                         <i class="ni ni-fat-add"></i></a></td>
                     </tr>

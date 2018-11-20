@@ -15,14 +15,14 @@ class RedirectMiddleware
      */
     public function handle($request, Closure $next)
     {
-      $user=auth ()->user ();
-      if ($user->isAdmin ()) {
-        return redirect ()->intended ('/');
-      } else if ($user->isAdmin ()) {
-        return redirect ()->intended ('/');
-      } else {
-        return redirect ()->intended ('/');
-      }
+      // $user=auth ()->user ();
+      // if ($user->isAdmin ()) {
+      //   return redirect ()->intended ('/');
+      // } else if ($user->isAdmin ()) {
+      //   return redirect ()->intended ('/');
+      // } else {
+      //   return redirect ()->intended ('/');
+      // }
         return $next($request);
     }
 }

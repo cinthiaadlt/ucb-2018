@@ -44,8 +44,38 @@ class User extends Authenticatable
       return $this->role_id;
     }
 
+    private function hasRoles () {
+      return $this->roles;
+    }
+
+    public function hasRole ($role) {
+      $roles = $this->hasRoles ();
+      foreach ($roles as $possibilities) {
+        if ($role == $possibilities->nombre_role) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    public function myActualRole () {
+      return session ()->get ('role');
+    }
+
+    public function setMyRoleToAdmin () {
+      session()->put('role', '1');
+    }
+
+    public function setMyRoleToUser () {
+      session()->put('role', '2');
+    }
+
+    public function setMyRoleToOwner () {
+      session()->put('role', '3');
+    }
+
     public function roles () {
-      return $this->belongsToMany ('App\Role');
+      return $this->belongsToMany('App\Role', 'users_role', 'id_user', 'id_role');
     }
 
     public function isAdmin () {

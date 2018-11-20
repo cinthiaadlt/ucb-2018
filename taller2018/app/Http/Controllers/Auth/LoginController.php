@@ -34,6 +34,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+      // public function setMyRole (Request $request) {
+      session()->put('role', '2');
+      // }
         $this->middleware('guest')->except('logout');
     }
 }

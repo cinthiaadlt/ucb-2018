@@ -35,20 +35,22 @@
           <div class="card-body">
             <form method="POST" action="{{ route('roles.update', $role->id_roles) }}" role="form" class="panel-body" style="padding-bottom:30px;">
               {{ csrf_field() }}
+              
               <input name="_method" type="hidden" value="PATCH">
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label class="form-control-label" for="nombre_rol">Nombre</label>
-                  <input type="text" name="nombre_rol" id="nombre_rol" class="form-control form-control-alternative" value = "{{ $role->nombre_rol}}">
+                  <label class="form-control-label" for="nombre_role">Nombre</label>
+                  <input type="text" name="nombre_role" id="nombre_role" class="form-control form-control-alternative" value = "{{ $role->nombre_role}}">
                 </div>
               </div>
 
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label class="form-control-label" for="descripcion_rol">Descripción</label>
-                  <input type="text" name="descripcion_rol" id="descripcion_rol" class="form-control form-control-alternative" value = "{{ $role->descripcion_rol}}">
+                  <label class="form-control-label" for="descripcion_role">Descripción</label>
+                  <input type="text" name="descripcion_role" id="descripcion_role" class="form-control form-control-alternative" value = "{{ $role->descripcion_role}}">
                 </div>
               </div>
+
               <input class="submit btn btn-danger" type="submit" value="Submit">
             </form>
           </div>

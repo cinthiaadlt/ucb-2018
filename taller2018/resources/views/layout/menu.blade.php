@@ -41,8 +41,8 @@
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
 
-            @if (auth::user ()->isUser ())
             <ul class="navbar-nav">
+            @if (auth::user ()->myActualRole () == 1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
                         <i class="ni ni-circle-08 text-green"></i> Zonas
@@ -71,12 +71,10 @@
                         @csrf
                     </form>
                 </li>
-            </ul>
 
             <!-- AQUI PONER EL MENU DEL USUARIO -->
-            @elseif (auth::user()->isUser ())
+            @elseif (auth::user()->myActualRole () == 2)
 
-            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('vehiculo') }}">
                         <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
@@ -112,11 +110,10 @@
                         @csrf
                     </form>
                 </li>
-            </ul>
+
 
             <!-- AQUI PONER EL MENU DEL OWNER -->
             @else
-            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('vehiculo') }}">
                         <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
@@ -153,9 +150,32 @@
                     </form>
                 </li>
 
-            </ul>
+            @endif
+            @if (auth::user()->hasRole ('Admin') && auth::user ()->myActualRole () != 1)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('zona') }}">
+                    <i class="ni ni-circle-08 text-pink"></i>Modo Administrador
+                </a>
+            </li>
             @endif
 
+            @if (auth::user()->hasRole ('User') && auth::user ()->myActualRole () != 2)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('zona') }}">
+                    <i class="ni ni-circle-08 text-pink"></i>Modo Usuario
+                </a>
+            </li>
+            @endif
+
+            @if (auth::user()->hasRole ('Owner') && auth::user ()->myActualRole () != 3)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('zona') }}">
+                    <i class="ni ni-circle-08 text-pink"></i>Modo Host
+                </a>
+            </li>
+            @endif
+
+            </ul>
 
             <!-- Divider -->
             <hr class="my-3">
