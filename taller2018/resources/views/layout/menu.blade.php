@@ -78,26 +78,25 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('vehiculo') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
+                    <a class="nav-link" href="/">
+                        <i class="ni ni-square-pin"></i> Buscar Parqueos
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('list') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Vehiculos
+                        <i class="ni ni-bus-front-12"></i> Vehiculos Registrados
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('zona') }}">
-                        <i class="ni ni-circle-08 text-green"></i> Zonas
+                    <a class="nav-link" href="">
+                        <i class="ni ni-favourite-28"></i> Parqueos Favoritos
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('parqueos') }}">
-                        <i class="ni ni-circle-08 text-blue"></i> Parqueos
+                    <a class="nav-link" href="">
+                        <i class="ni ni-settings"></i> Editar Perfil
                     </a>
                 </li>
 
@@ -105,7 +104,7 @@
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                               <i class="ni ni-circle-08 text-red"></i> Cerrar Sesión
+                               <i class="ni ni-button-power text-red"></i> Cerrar Sesión
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
