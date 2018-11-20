@@ -9,23 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller {
     public function index() {
-      // session()->put('role', '2');
-      return session ()->get('role');
-      // return session ()->get ('role');
-      // return Auth::user ()->hasRole ("User");
-      // echo session()->get('role');
-      // $user = User::find(1);
-      // $roles = $user->roles;
-      // foreach ($user->roles as $role) {
-      //     echo $role;
-          // return view ('roles.index', compact ('roles'));
-      // }
-
-      // $user = Auth::user ();
-      // foreach ($user->roles as $role) {
-      //   echo $role->nombre_role;
-      // }
-
         $roles = Role::all ();
         return view ('roles.index', compact ('roles'));
     }

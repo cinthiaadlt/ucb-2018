@@ -10,7 +10,7 @@ Route::resource('parqueos','ParqueoController')->middleware('auth');
 //Route::post('/parqueos/edit', 'ParqueoController@postParqueoEdit');
 Route::resource('reservas','ReservaController')->middleware('auth');
 Route::resource('usuarios', 'UsuarioController')->middleware('auth');
-Route::resource('zona','ZonaController')->middleware('auth');
+Route::resource('zona','ZonaController',['middleware' => ['auth', 'owner']]);
 Route::resource('denuncia','DenunciaController')->middleware('auth');
 Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
 Route::resource('validacion','ValidacionController')->middleware('auth');
