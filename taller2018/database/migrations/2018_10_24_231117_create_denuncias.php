@@ -17,8 +17,8 @@ class CreateDenuncias extends Migration
             $table->increments('id_denuncias');
             $table->unsignedInteger('id_parqueos');
             $table->foreign('id_parqueos')->references('id_parqueos')->on('parqueos')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('id_usuarios');
+            $table->foreign('id_usuarios')->references('id_usuarios')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcion_adicional','250');
             $table->integer('cat_nivel_gravedad');
             $table->string('estado_denuncia','10');
