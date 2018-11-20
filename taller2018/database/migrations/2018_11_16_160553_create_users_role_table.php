@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHorarioFuncionamiento extends Migration
+class CreateUsersRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateHorarioFuncionamiento extends Migration
      */
     public function up()
     {
-        Schema::create('horarios_funcionamiento', function (Blueprint $table) {
-            $table->increments('id_hs_funcionamiento');
-            $table->time('hora_apertura');
-            $table->time('hora_cierre');
-            $table->string('dia', 45);
+        Schema::create('users_role', function (Blueprint $table) {
+            $table->increments('id');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateHorarioFuncionamiento extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('horario_funcionamiento');
+        Schema::dropIfExists('users_role');
     }
 }

@@ -83,17 +83,6 @@ class ValidacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->input('estado_funcionamiento') == 'Aprobar')
-        {
-            $chozni = 1;
-        }else{
-            if($request->input('estado_funcionamiento') == 'Denegar')
-            {
-                $chozni = 2;
-            }else{
-                $chozni = 3;
-            }
-        }
         $parqueo= \App\Parqueo::find($id);
         $parqueo->id_zonas = $request->input('id_zonas');
         $parqueo->direccion = $request->input('direccion');
@@ -102,7 +91,7 @@ class ValidacionController extends Controller
         $parqueo->cantidad_p = $request->input('cantidad_p');
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
-        $parqueo->estado_funcionamiento = $chozni;
+        $parqueo->estado_funcionamiento = $request->input('estado_funcionamiento');
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
         $parqueo->save();

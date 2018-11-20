@@ -40,16 +40,10 @@
             <!-- Navigation -->
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
-            @if (auth::user()->isOwner ())
+
+              <!--  @if (auth::user()->isOwner ()) -->
+            @if (auth::user ()->isUser ())
             <ul class="navbar-nav">
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('list') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Vehiculos
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
                         <i class="ni ni-circle-08 text-green"></i> Zonas
@@ -62,6 +56,11 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('reservas') }}">
+                        <i class="ni ni-circle-08 text-black"></i> Reservas
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -84,12 +83,6 @@
                         <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
                     </a>
                 </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="{{ url('usuarios') }}">
-                        <i class="ni ni-circle-08 text-grey"></i> Usuarios
-                    </a>
-                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('list') }}">

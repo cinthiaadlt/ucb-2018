@@ -63,7 +63,8 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\RoleMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'owner' => \App\Http\Middleware\OwnerMiddleware::class,
-        'user' => \App\Http\Middleware\UserMiddleware::class
+        'user' => \App\Http\Middleware\UserMiddleware::class,
+        'redirect' => \App\Http\Middleware\RedirectMiddleware::class
     ];
 
     /**

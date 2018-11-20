@@ -87,7 +87,7 @@
                                         <div class="row">
                                                 <div class="form-group col-md-4">
                                                         <label for="Imagen">Imagen:</label>
-                                                  <input type="file" accept="image/*" name="filename">    
+                                                  <input type="file" accept="image/*" name="filename">
                                                </div>
                                         </div>
 
@@ -99,17 +99,32 @@
                                         </div>
                                     </div>
                                     <!-- -->
-
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="HoraApertura">Hora Apertura:</label>
+                                          <input type="time" class="form-control" name="hora_apertura" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="HoraCierre">Hora Cierre:</label>
+                                          <input type="time" class="form-control" name="hora_cierre" required>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Lun</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mar</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mie</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Jue</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Vie</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Sab</label>
-                                            <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Dom</label>
+                                            <label for="Tarifa">Tarifa:</label>
+                                            <input type="text" class="form-control" name="tarifa_hora_normal">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="DiaFuncion">Dias Funcionamiento Parqueo:</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Lunes">&nbsp;Lun</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Martes">&nbsp;Mar</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Miercoles">&nbsp;Mie</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Jueves">&nbsp;Jue</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Viernes">&nbsp;Vie</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Sabado">&nbsp;Sab</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="dia[]" value="Domingo">&nbsp;Dom</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -117,7 +132,7 @@
                                             <label for="Nacionalidad">Estado Funcionamiento:</label>
                                             <input type="text" value="Inactivo" class="form-control" name="estado_funcionamiento" readonly>
                                         </div>
-                                    </div> 
+                                    </div>
                                 <div class="row">
                                   <div class="col-md-4"></div>
                                   <div class="form-group col-md-4" style="margin-top:60px">

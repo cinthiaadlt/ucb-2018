@@ -26,7 +26,6 @@
                                 <th>Direccion</th>
                                 <th>Capacidad</th>
                                 <th>Imagen Parqueo</th>
-                                <th>Imagen Visita</th>
                                 <th>Contacto</th>
                                 <th>Estado</th>
                                 <th colspan="2">Action</th>
@@ -39,7 +38,6 @@
                                 <td>{{$parqueo['direccion']}}</td>
                                 <td>{{$parqueo['cantidad_p']}}</td>
                                 <td>{{$parqueo['foto']}}</td>
-                                <td></td>
                                 <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
 
                                 <td>

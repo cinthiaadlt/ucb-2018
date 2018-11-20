@@ -26,7 +26,8 @@
                                 <th>Zona</th>
                                 <th>Direccion</th>
                                 <th>Capacidad</th>
-                                <th>Imagen</th>
+                                <th>H. Apertura</th>
+                                <th>H. Cierre</th>
                                 <th>Contacto</th>
                                 <th>Estado</th>
                                 <th colspan="2">Action</th>
@@ -41,9 +42,10 @@
                                     @endforeach</td>
                                 <td>{{$parqueo['direccion']}}</td>
                                 <td>{{$parqueo['cantidad_p']}}</td>
-                                <td>{{$parqueo['foto']}}</td>
+                                <td>{{$parqueo['hora_apertura']}}</td>
+                                <td>{{$parqueo['hora_cierre']}}</td>
                                 <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
-                                <td>@if($parqueo['estado_funcionamiento'] == '0') Invalido @endif</td>
+                                <td>@if($parqueo['estado_funcionamiento'] == '0') Inactivo @else Activo @endif</td>
 
                                 <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
                                 <td>

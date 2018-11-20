@@ -6,6 +6,7 @@ use App\Parqueo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class ParqueoController extends Controller
 {
@@ -21,8 +22,8 @@ class ParqueoController extends Controller
             ->orderBy('id_zonas')
             ->get();
         $parqueos=\App\Parqueo::paginate(10);
+        $parqueos = \App\Parqueo::orderBy('id_parqueos')->get();
         return view('parqueo.index',compact('parqueos','pq2'));
-
     }
 
     /**
@@ -92,15 +93,46 @@ class ParqueoController extends Controller
         $parqueo->foto = $name;
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->hora_apertura = $request->input('hora_apertura');
+        $parqueo->hora_cierre = $request->input('hora_cierre');
+        $parqueo->tarifa_hora_normal = $request->input('tarifa_hora_normal');
         $parqueo->estado_funcionamiento = 'false';
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
         $parqueo->save();
 
-        //Vehiculo::create($request->all());
+        //algoritmo para determinar el estado de los dias con los checkbox
+        $array = array('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo');
+        $estado = array();
+        $myCheckboxes = $request->input('dia');
+                for($i = 0; $i <= 6; $i++){
+                    $aux = 0;
+                    foreach($myCheckboxes as $value){
+                    if($value == $array[$i]){
+                        //echo $value.'original'."<br>";
+                        array_push($estado, true);
+                        $aux=1;
+                        break;
+                    }
+                }
+                if($aux == 0){
+                    //echo $array[$i].'fake'."<br>";
+                    array_push($estado, false);
+                }
+            }
+            //dd($estado);
 
-        //Session::flash('message','Zona creada correctamente');
-
+        //insert de los dias al sistema
+        for($i = 1; $i <= 7; $i++){
+            DB::table('precios_alquiler')->insert(
+                array(
+                    'id_parqueos' => $parqueo->id_parqueos,
+                    'id_dias' => $i,
+                    'estado' => $estado[$i-1]
+                )
+            );
+        }  
+        
         return redirect('parqueos')->with('success', 'Parqueo Anadido');
     }
 
@@ -185,6 +217,9 @@ class ParqueoController extends Controller
         $parqueo->cantidad_p = $request->input('cantidad_p');
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
+        $parqueo->hora_apertura = $request->input('hora_apertura');
+        $parqueo->hora_cierre = $request->input('hora_cierre');
+        $parqueo->tarifa_hora_normal = $request->input('tarifa_hora_normal');
         $parqueo->estado_funcionamiento = $chozni;
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class UserMiddleware
+class RedirectMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,13 @@ class UserMiddleware
     public function handle($request, Closure $next)
     {
       $user=auth ()->user ();
-      if ($user->getRole () != 2) {
-        // return redirect ()->intended ('/reservas');
+      if ($user->isAdmin ()) {
+        return redirect ()->intended ('/');
+      } else if ($user->isAdmin ()) {
+        return redirect ()->intended ('/');
+      } else {
+        return redirect ()->intended ('/');
       }
-      return $next($request);
+        return $next($request);
     }
 }
