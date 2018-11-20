@@ -16,8 +16,8 @@ class CreateZonas extends Migration
         Schema::create('zonas', function (Blueprint $table) {
             $table->increments('id_zonas');
             $table->string('zona', 45);
-            $table->string('calle', 45);
-            $table->string('ciudad', 45);
+            //$table->string('calle', 45);
+            //$table->string('ciudad', 45);
             $table->timestamps();
         });
     }

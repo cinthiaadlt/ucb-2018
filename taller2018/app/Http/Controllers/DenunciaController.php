@@ -12,13 +12,7 @@ class DenunciaController extends Controller
      */
     public function index()
     {
-        $p2 = DB::table('denuncias')
-            ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
-            ->join('usuarios','usuarios.id_usuarios','=','denuncias.id_usuarios')
-            ->orderBy('id_denuncias','desc')
-            ->paginate(5);
-        //$p1 = Parqueo::find($id);
-        return view('denuncia.index',compact('p2'));
+       //
     }
     /**
      * Show the form for creating a new resource.
@@ -49,14 +43,23 @@ class DenunciaController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->input('cat_tipo_denuncia') == '1'||$request->input('cat_tipo_denuncia') == '7'||$request->input('cat_tipo_denuncia') == '5')
+        {
+            $chozni = 1;
+        }else{
+            if($request->input('cat_tipo_denuncia') == '6'||$request->input('cat_tipo_denuncia') == '4')
+            {
+                $chozni = 2;
+            }else{
+                $chozni = 3;
+            }
+        }
 
         $this->validate($request,[
             'id_parqueos'=>'required',
             'id_usuarios'=>'required',
             'descripcion_adicional'=>'required',
-            'cat_nivel_gravedad'=>'required',
             'estado_denuncia'=>'required',
-            'num_strikes'=>'required',
             'cat_tipo_denuncia'=>'required',
 
         ]);
@@ -65,9 +68,9 @@ class DenunciaController extends Controller
         $denuncia->id_parqueos = $request->input('id_parqueos');
         $denuncia->id_usuarios = $request->input('id_usuarios');
         $denuncia->descripcion_adicional = $request->input('descripcion_adicional');
-        $denuncia->cat_nivel_gravedad = $request->input('cat_nivel_gravedad');
+        $denuncia->cat_nivel_gravedad = $chozni;
         $denuncia->estado_denuncia = $request->input('estado_denuncia');
-        $denuncia->num_strikes = $request->input('num_strikes');
+        $denuncia->num_strikes = "1";
         $denuncia->cat_tipo_denuncia = $request->input('cat_tipo_denuncia');
         $denuncia->save();
 
@@ -75,7 +78,7 @@ class DenunciaController extends Controller
 
         //Session::flash('message','Zona creada correctamente');
 
-        return redirect()->action('DenunciaController@index')->with('success','La denuncia fue añadida');
+        return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue añadida');
 
 
 
@@ -88,7 +91,13 @@ class DenunciaController extends Controller
      */
     public function show($id)
     {
-        //
+        $p2 = DB::table('denuncias')
+            ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
+            ->join('usuarios','usuarios.id_usuarios','=','denuncias.id_usuarios')
+            ->orderBy('id_denuncias','desc')
+            ->paginate(5);
+        //$p1 = Parqueo::find($id);
+        return view('denuncia.index',compact('p2','id'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -134,7 +143,7 @@ class DenunciaController extends Controller
         $denuncia->num_strikes = $request->input('num_strikes');
         $denuncia->cat_tipo_denuncia = $request->input('cat_tipo_denuncia');
         $denuncia->save();
-        return redirect()->action('DenunciaController@index')->with('success','La denuncia fue revisada');
+        return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue revisada');
         //return redirect('parqueos');
     }
     /**

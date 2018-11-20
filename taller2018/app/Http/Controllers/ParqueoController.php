@@ -191,7 +191,19 @@ class ParqueoController extends Controller
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
-        return view('parqueo.edit',compact('parqueo','id','pq2','map'));
+
+        $validado = DB::table('precios_alquiler')
+            ->select('*')
+            ->where('id_parqueos', $id)
+            ->orderBy('id_precios_alquiler')
+            ->get();
+
+        $dias = DB::table('dias')
+            ->select('*')
+            ->orderBy('id_dias')
+            ->get();
+
+        return view('parqueo.edit',compact('parqueo','id','pq2','map','validado','dias'));
     }
 
     /**

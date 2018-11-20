@@ -34,21 +34,65 @@
                             </thead>
                             <tbody>
                             @if($p2->count())
-                            @foreach($p2 as $denuncia)
-                            <tr>
-                                <td>{{ $denuncia->cat_tipo_denuncia}}</td>
-                                <td>{{ $denuncia->cat_nivel_gravedad}}</td>
-                                <td></td>
-                                <td>{{ $denuncia->descripcion_adicional}}</td>
-                                <td>{{ $denuncia->estado_denuncia}}</td>
+                                @foreach($p2 as $denuncia)
+                                @if($denuncia->id_parqueos == $id)
+                                <tr>
+                                    <td>
+                                        @if($denuncia->cat_tipo_denuncia == '1')
+                                            Mal Servicio
+                                            @else
+                                            @if($denuncia->cat_tipo_denuncia == '2')
+                                                Daño Vehiculo
+                                                @else
+                                                @if($denuncia->cat_tipo_denuncia == '3')
+                                                    Daño Parqueo
+                                                    @else
+                                                    @if($denuncia->cat_tipo_denuncia == '4')
+                                                        Parqueo mal estado
+                                                        @else
+                                                        @if($denuncia->cat_tipo_denuncia == '5')
+                                                            Acoso / Lenguaje Ofensivo
+                                                            @else
+                                                            @if($denuncia->cat_tipo_denuncia == '6')
+                                                                Irregularidades de pago
+                                                                @else
+                                                                @if($denuncia->cat_tipo_denuncia == '7')
+                                                                    Otros
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        @endif
+
+                                    </td>
+                                    <td>
+                                        @if($denuncia->cat_nivel_gravedad == '1')
+                                        Bajo
+                                        @else
+                                            @if($denuncia->cat_nivel_gravedad == '2')
+                                            Medio
+                                            @else
+                                                @if($denuncia->cat_nivel_gravedad == '3')
+                                                Alto
+                                                @endif
+                                            @endif
+                                        @endif
+
+                                    </td>
+                                    <td>{{ $denuncia->created_at}}</td>
+                                    <td>{{ $denuncia->descripcion_adicional}}</td>
+                                    <td>{{ $denuncia->estado_denuncia}}</td>
 
 
-                                <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@edit', $denuncia->id_denuncias)}}" onclick="return confirm('¿Desea cambiar el estado de la denuncia a resuelto?')" >
-                                        <i class="ni ni-fat-add"></i></a></td>
+                                    <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@edit', $denuncia->id_denuncias)}}" onclick="return confirm('¿Desea cambiar el estado de la denuncia a resuelto?')" >
+                                            <i class="ni ni-fat-add"></i></a></td>
 
 
-                            </tr>
-                            @endforeach
+                                </tr>
+                                @endif
+                                @endforeach
                             @else
                             <tr>
                                 <td colspan="8">No hay registro !!</td>
