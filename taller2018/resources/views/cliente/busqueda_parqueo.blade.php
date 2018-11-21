@@ -105,6 +105,8 @@
         </div>
 
     </div>
+
+    @routes
     <script type="text/javascript">
 
 
@@ -135,6 +137,7 @@
 
 
         $.each( locations, function( index, value ){
+
             mymap.addMarker({
                 icon : pinImage,
                 scale : 6,
@@ -142,21 +145,27 @@
                 lng: value.longitud_y,
                 title: value.direccion,
                 infoWindow: {
-                    content:' <form action="route(gmaps)" method="post" >'+
-                            'csrf_field() <b>Direccion: </b>'+
+                    content:
+                            '<b>Direccion: </b>'+
                             '<br>'+value.direccion+
                             '<br><b>Espacios del parqueo:</b>'+
                             '<br>'+value.cantidad_p+
                             '<br><b>Foto de referencia:</b><br>' +
                             '<br><img width="200" height="100" src="./images/'+value.foto+'"><br>'+
-                            '<br><button type="submit" class="btn btn-info btn-sm">Mas Informacion</button><br> </form>',
-
+                            '<br><button type="submit" onclick="prueba('+value.id_parqueos+')" class="btn btn-info btn-sm">Reservar</button>'
 
                 }
 
             });
         });
 
+        function prueba($id){
+            //Funcion para poder redireccionear a traves del boton dentro del Infowindow del mapa
+
+            var prueba_r= "{{ route('vehiculo.store') }}";
+            console.log($id);
+            document.location.href=prueba_r;
+        }
 
         $(document).ready(function(){
             prettyPrint();
@@ -174,17 +183,6 @@
             });
         });
         });
-
-        function MostrarReservas($dato){
-            var direccion = document.getElementById("numeroserie").value;
-            var cantidad = document.getElementById("referencia").value;
-            var hora_apertura = document.getElementById("peso").value;
-            var hora_cierre = document.getElementById("numeroserie").value;
-            var tarifa = document.getElementById("referencia").value;
-            var peso = document.getElementById("peso").value;
-
-
-        }
 
 
     </script>
