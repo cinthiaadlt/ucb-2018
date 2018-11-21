@@ -161,6 +161,7 @@
 
         function prueba($id){
             //Funcion para poder redireccionear a traves del boton dentro del Infowindow del mapa
+
             var prueba_r= "{{ route('vehiculo.store') }}";
             console.log($id);
             document.location.href=prueba_r;
