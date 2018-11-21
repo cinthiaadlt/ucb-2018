@@ -139,7 +139,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('reservas') }}">
+                    <a class="nav-link" href="{{ url('reservasanfitrion') }}">
                         <i class="ni ni-circle-08 text-blue"></i> Reservas
                     </a>
                 </li>

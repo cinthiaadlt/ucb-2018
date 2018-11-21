@@ -235,8 +235,42 @@ class ParqueoController extends Controller
         $parqueo->estado_funcionamiento = $chozni;
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
-        $parqueo->save();
-        return redirect('parqueos');
+        //$parqueo->save();
+
+        $myCheckboxes = $request->input('servi');
+        foreach($myCheckboxes as $value){
+            echo $value . "<br>";
+        }
+
+        for($i = 1; $i <= 7; $i++){
+            foreach($myCheckboxes as $value){
+                $estado = false;
+                if($i == $value){
+                    $estado = true;
+                }
+                DB::table('precios_alquiler')->insert(
+                array(
+                    'id_parqueos' => $id,
+                    'id_dias' => $i,
+                    'estado' => $estado
+                )
+            );
+            }
+        }  
+
+        /*DB::table('precios_alquiler')
+            ->where('id_parqueos', $id)
+            ->delete();
+        
+        foreach($myCheckboxes as $value){
+            DB::table('precios_alquiler')->insert(
+                array(
+                    'id_parqueos' => $parqueo->id_parqueos,
+                    'id_dias' => $value
+                )
+            );
+        }*/
+        //return redirect('parqueos');
     }
 
     /**

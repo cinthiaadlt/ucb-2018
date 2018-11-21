@@ -12,6 +12,8 @@ Route::resource('/','ClienteController', ['middleware'=>['auth', 'user']]);
 Route::resource('cliente','ClienteController', ['middleware'=>['auth', 'user']]);
 Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
 Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
+Route::resource('reservas','ReservaController', ['middleware' => ['auth', 'user']]);
+
 //Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');
 //Route::post('/parqueos/edit', 'ParqueoController@postParqueoEdit');
 
@@ -25,7 +27,7 @@ Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
 // Rutas de Owner
 Route::resource('zona','ZonaController',['middleware' => ['auth', 'owner']]);
 Route::resource('parqueos','ParqueoController',['middleware' => ['auth', 'owner']]);
-Route::resource('reservas','ReservaController')->middleware('auth',['middleware' => ['auth', 'owner']]);
+Route::resource('reservasanfitrion','ReservaAnfitrionController')->middleware('auth',['middleware' => ['auth', 'owner']]);
 
 // Dejo dos opciones para que veáis cómo implementar los middlewares para cada URL,
 // Cambia ligeramente entre Route::get y Route::resource.
