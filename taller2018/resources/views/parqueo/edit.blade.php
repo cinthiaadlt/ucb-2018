@@ -46,7 +46,7 @@
                                              </div>
                                     </div>
                                 </div>
-                            <form method="post" action="{{action('ParqueoController@update', $id)}}">
+                            <form method="post" enctype="multipart/form-data" action="{{action('ParqueoController@update', $id)}}">
                                 @csrf
                                 <input name="_method" type="hidden" value="PATCH">
                                 <div class="form-row">
@@ -129,15 +129,17 @@
                                                 <div class="form-group col-md-12">
                                                     <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
                                                     @foreach($validado as $val)
+                                                    <label class="checkbox-inline">
                                                         @foreach($dias as $dia)
                                                             @if($val->id_dias == $dia->id_dias)
                                                                 @if($val->estado == true)
-                                                                    <label class="checkbox-inline"><input type="checkbox" value="" checked>&nbsp;{{substr($dia->nombre, 0, 3)}}</label>
+                                                                    <input type="checkbox" name="servi[]" value="{{$val->id_dias}}" checked>&nbsp;{{substr($dia->nombre, 0, 3)}}
                                                                 @else 
-                                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;{{substr($dia->nombre, 0, 3)}}</label>
+                                                                    <input type="checkbox" name="servi[]" value="{{$val->id_dias}}">&nbsp;{{substr($dia->nombre, 0, 3)}}
                                                                 @endif
                                                             @endif
                                                         @endforeach
+                                                    </label>
                                                     @endforeach
                                                 </div>
                                             </div>

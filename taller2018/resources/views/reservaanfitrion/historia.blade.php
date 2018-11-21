@@ -32,7 +32,7 @@
                             </thead>
                             <tbody>
                             <?php date_default_timezone_set('America/La_Paz');?>
-                            @foreach($reservas as $reserva)
+                            @foreach($reservasanfitrion as $reserva)
                             @if($reserva['dia_reserva'] < date("Y-m-d"))
                             <tr>
                                 <td>@foreach($pq2 as $p)
@@ -49,7 +49,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{action('ReservaController@index')}}" class="btn btn-primary">Reservas Hoy</a>
+                        <a href="{{action('ReservaAnfitrionController@index')}}" class="btn btn-primary">Reservas Hoy</a>
                     </div>
                 </div>
             </div>
