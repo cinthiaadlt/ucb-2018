@@ -24,6 +24,8 @@
             height: 500px;
         }
     </style>
+    <link href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
 </head>
 
 <body>

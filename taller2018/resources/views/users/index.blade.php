@@ -7,30 +7,32 @@
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              <h3 class="mb-0">Listado de Roles</h3>
-            </div>
-            <div class="pull-right">
-              <div class="btn-group">
-                <a href="{{ route('roles.create') }}" class="btn btn-info" >Añadir Role</a>
-              </div>
+              <h3 class="mb-0">Listado de Usuarios</h3>
             </div>
 
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                 <tr>
+                  <th>E-mail</th>
                   <th>Nombre</th>
-                  <th>Descripción</th>
+                  <th>Enrole</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if($roles->count())
-                  @foreach($roles as $role)
+                @if($users->count())
+                  @foreach($users as $user)
                     <tr>
-                      <td>{{$role->nombre_role}}</td>
-                      <td>{{$role->descripcion_role}}</td>
-                      <td><a class="btn btn-primary btn-xs" href="{{action('RoleController@edit', $role->id_roles)}}" >
-                        <i class="ni ni-fat-add"></i></a></td>
+                      <td>{{$user->email}}</td>
+                      <td>{{$user->sur_name}}</td>
+                      <td>
+                        @if (!$user->hasRole ("Owner"))
+                          <a class="btn btn-primary btn-xs" href="#" >Owner</a>
+                        @endif
+                        @if (!$user->hasRole ("Admin"))
+                          <a class="btn btn-primary btn-xs" href="#" >Admin</a>
+                        @endif
+                      </td>
                     </tr>
                   @endforeach
                 @else

@@ -15,10 +15,12 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-      $user=auth ()->user ();
-      if ($user->getRole () != 2) {
-        // return redirect ()->intended ('/reservas');
+      $user = auth ()->user ();
+      if ($user->hasRole ('User')) {
+        $user->setMyRoleToUser ();
+        return $next($request);
+      } else {
+          return redirect ()->intended ('/');
       }
-      return $next($request);
     }
 }

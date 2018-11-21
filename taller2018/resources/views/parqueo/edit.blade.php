@@ -46,7 +46,7 @@
                                              </div>
                                     </div>
                                 </div>
-                            <form method="post" action="{{action('ParqueoController@update', $id)}}">
+                            <form method="post" enctype="multipart/form-data" action="{{action('ParqueoController@update', $id)}}">
                                 @csrf
                                 <input name="_method" type="hidden" value="PATCH">
                                 <div class="form-row">
@@ -128,13 +128,19 @@
                                         <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label for="Nacionalidad">Dias Funcionamiento Parqueo:</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Lun</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mar</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Mie</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Jue</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Vie</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Sab</label>
-                                                    <label class="checkbox-inline"><input type="checkbox" value="">&nbsp;Dom</label>
+                                                    @foreach($validado as $val)
+                                                    <label class="checkbox-inline">
+                                                        @foreach($dias as $dia)
+                                                            @if($val->id_dias == $dia->id_dias)
+                                                                @if($val->estado == true)
+                                                                    <input type="checkbox" name="servi[]" value="{{$val->id_dias}}" checked>&nbsp;{{substr($dia->nombre, 0, 3)}}
+                                                                @else 
+                                                                    <input type="checkbox" name="servi[]" value="{{$val->id_dias}}">&nbsp;{{substr($dia->nombre, 0, 3)}}
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    </label>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                     <div class="row">

@@ -50,17 +50,11 @@
                                     </select>
                                 </div>
                             </div>
-
+                            <!--
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-zona">Calle</label>
                                     <input type="text" name="calle" class="form-control form-control-alternative" id="calle" value ="{{$zona->calle}}" >
-                                    <!-- <div class="valid-tooltip">
-                                        ¡Correcto!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        Porfavor ingrese una direccion de parqueo.
-                                    </div> -->
                                 </div>
                             </div>
 
@@ -78,7 +72,7 @@
 
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <input class="submit btn btn-danger" type="submit" value="Submit">
                         </form>

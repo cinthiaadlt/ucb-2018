@@ -32,7 +32,7 @@
                             </thead>
                             <tbody>
 
-                            @foreach($reservas as $reserva)
+                            @foreach($reservasanfitrion as $reserva)
                             @if($reserva['dia_reserva'] == date("Y-m-d"))
                             <tr>
                                 <td>@foreach($pq2 as $p)
@@ -44,7 +44,7 @@
                                 <td>{{$reserva['h_inicio_reserva']}}</td>
                                 <td>{{$reserva['h_fin_reserva']}}</td>
                                 <td>
-                                    <form action="{{action('ReservaController@destroy', $reserva['id_reservas'])}}" method="post">
+                                    <form action="{{action('ReservaAnfitrionController@destroy', $reserva['id_reservas'])}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Delete</button>
@@ -55,7 +55,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{action('ReservaController@create')}}" class="btn btn-primary">Reservas Pasadas</a>
+                        <a href="{{action('ReservaAnfitrionController@create')}}" class="btn btn-primary">Reservas Pasadas</a>
                     </div>
                 </div>
             </div>

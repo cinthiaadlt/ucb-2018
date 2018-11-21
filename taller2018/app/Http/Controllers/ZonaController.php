@@ -37,16 +37,11 @@ class ZonaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'zona'=>'required',
-            'calle'=>'required',
-            'ciudad'=>'required',
-
+            'zona'=>'required'
         ]);
 
         $zona = new Zona();
         $zona->zona = $request->input('zona');
-        $zona->calle = $request->input('calle');
-        $zona->ciudad = $request->input('ciudad');
         $zona->save();
 
 
@@ -92,9 +87,7 @@ class ZonaController extends Controller
     public function update(Request $request, Zona $zona)
     {
         $request->validate([
-            'zona'=>'required',
-            'calle'=>'required',
-            'ciudad'=>'required',
+            'zona'=>'required'
         ]);
 
         $zona->update($request->all());

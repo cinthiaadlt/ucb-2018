@@ -41,9 +41,8 @@
 
             <!-- AQUI PONER EL MENU DEL ADMINISTRADOR -->
 
-              <!--  @if (auth::user()->isOwner ()) -->
-            @if (auth::user ()->isUser ())
             <ul class="navbar-nav">
+            @if (auth::user ()->myActualRole () == 1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
                         <i class="ni ni-circle-08 text-green"></i> Zonas
@@ -61,6 +60,19 @@
                         <i class="ni ni-circle-08 text-black"></i> Reservas
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('roles') }}">
+                        <i class="ni ni-circle-08 text-black"></i> Roles
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('users') }}">
+                        <i class="ni ni-circle-08 text-black"></i> Usuarios
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -72,33 +84,30 @@
                         @csrf
                     </form>
                 </li>
-            </ul>
 
             <!-- AQUI PONER EL MENU DEL USUARIO -->
-            @elseif (auth::user()->isUser ())
+            @elseif (auth::user()->myActualRole () == 2)
 
-            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('vehiculo') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
+                    <a class="nav-link" href="/">
+                        <i class="ni ni-square-pin"></i> Buscar Parqueos
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('list') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Vehiculos
+                        <i class="ni ni-bus-front-12"></i> Vehiculos Registrados
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('zona') }}">
-                        <i class="ni ni-circle-08 text-green"></i> Zonas
+                    <a class="nav-link" href="">
+                        <i class="ni ni-favourite-28"></i> Parqueos Favoritos
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('parqueos') }}">
-                        <i class="ni ni-circle-08 text-blue"></i> Parqueos
+                    <a class="nav-link" href="">
+                        <i class="ni ni-settings"></i> Editar Perfil
                     </a>
                 </li>
 
@@ -106,30 +115,17 @@
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                               <i class="ni ni-circle-08 text-red"></i> Cerrar Sesión
+                               <i class="ni ni-button-power text-red"></i> Cerrar Sesión
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </li>
-            </ul>
+
 
             <!-- AQUI PONER EL MENU DEL OWNER -->
             @else
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('vehiculo') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Registrar Vehiculo
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('list') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Vehiculos
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
                         <i class="ni ni-circle-08 text-green"></i> Zonas
@@ -139,6 +135,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('parqueos') }}">
                         <i class="ni ni-circle-08 text-blue"></i> Parqueos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('reservasanfitrion') }}">
+                        <i class="ni ni-circle-08 text-blue"></i> Reservas
                     </a>
                 </li>
 
@@ -154,9 +156,32 @@
                     </form>
                 </li>
 
-            </ul>
+            @endif
+            @if (auth::user()->hasRole ('Admin') && auth::user ()->myActualRole () != 1)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('roles') }}">
+                    <i class="ni ni-circle-08 text-pink"></i>Modo Administrador
+                </a>
+            </li>
             @endif
 
+            @if (auth::user()->hasRole ('User') && auth::user ()->myActualRole () != 2)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}">
+                    <i class="ni ni-circle-08 text-pink"></i>Modo Usuario
+                </a>
+            </li>
+            @endif
+
+            @if (auth::user()->hasRole ('Owner') && auth::user ()->myActualRole () != 3)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('zona') }}">
+                    <i class="ni ni-circle-08 text-pink"></i>Modo Host
+                </a>
+            </li>
+            @endif
+
+            </ul>
 
             <!-- Divider -->
             <hr class="my-3">
