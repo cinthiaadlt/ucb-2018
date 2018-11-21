@@ -9,6 +9,7 @@ Route::resource('/users','UsersRoleController', ['middleware'=>['auth', 'admin']
 
 // Rutas de User;
 Route::resource('/','ClienteController', ['middleware'=>['auth', 'user']]);
+Route::resource('cliente','ClienteController', ['middleware'=>['auth', 'user']]);
 Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
 Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
 //Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');

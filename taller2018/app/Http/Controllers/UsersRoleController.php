@@ -21,7 +21,7 @@ class UsersRoleController extends Controller
       $t_users_role->id_user = $myId;
       $t_users_role->id_role = '2';
       $t_users_role-> save ();
-      return redirect()->route('/', [$param]);
+      return redirect()->action('VehiculoController@index');
     }
 
     public function makeItAdmin ($id) {
