@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class); Por defecto ejemplo
 
         // Se necesita llenar usuarios, roles, users_roles, dias especificos
-        //$this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
 
         $this->call(RolesTableSeeder::class);
 
-        //$this->call(Users_RolesTableSeeder::class);
+        $this->call(Users_RolesTableSeeder::class);
 
         $this->call(DiasTableSeeder::class);
 
         $this->call(ZonasTableSeeder::class);
-        
+
         //Se crean las zonas, parqueos con la clase Factory
         //factory(Zona::class,7)->create();
         factory(Parqueo::class, 3)->create();
