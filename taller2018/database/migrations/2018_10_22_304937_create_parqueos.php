@@ -15,6 +15,8 @@ class CreateParqueos extends Migration
     {
         Schema::create('parqueos', function (Blueprint $table) {
             $table->increments('id_parqueos');
+            $table->unsignedInteger('id_users');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('id_zonas');
             $table->foreign('id_zonas')->references('id_zonas')->on('zonas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('direccion', 100);

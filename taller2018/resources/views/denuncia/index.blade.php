@@ -8,7 +8,12 @@
                 <div class="card shadow">
 
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Listado Denuncias Paqueo:</h3>
+                        <h3 class="mb-0">Listado Denuncias Paqueo:
+
+                                {{ $id }}
+
+
+                        </h3>
 
                     </div>
 
@@ -86,7 +91,7 @@
                                     <td>{{ $denuncia->estado_denuncia}}</td>
 
 
-                                    <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@edit', $denuncia->id_denuncias)}}" onclick="return confirm('¿Desea cambiar el estado de la denuncia a resuelto?')" >
+                                    <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@edit', $denuncia->id_denuncias)}}" onclick="return confirm('¿Desea cambiar el estado de la denuncia?')" >
                                             <i class="ni ni-fat-add"></i></a></td>
 
 

@@ -28,28 +28,36 @@
                                 <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
+                                <th colspan="2">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php date_default_timezone_set('America/La_Paz');?>
-                            @foreach($reservasanfitrion as $reserva)
-                            @if($reserva->dia_reserva < date("Y-m-d"))
+                            @foreach($reservas as $reserva)
+                            @if($reserva['dia_reserva'] < date("Y-m-d"))
                             <tr>
                                 <td>@foreach($pq2 as $p)
-                                    @if($p->id == $reserva->id_user){{ $p->sur_name }}&nbsp;{{ $p->last_name }}@endif
+                                    @if($p->id_usuarios == $reserva['id_usuarios']){{ $p->primer_nombre }}&nbsp;{{ $p->primer_apellido }}@endif
                                     @endforeach</td>
-                                <td>{{$reserva->dia_reserva}}</td>
+                                <td>{{$reserva['dia_reserva']}}</td>
                                 <td>@foreach($pq1 as $p1)
-                                    @if($p1->id_parqueos == $reserva->id_parqueos){{ number_format((float)$p1->tarifa_hora_normal, 2, '.', '') }}Bs @endif
+                                    @if($p1->id_precios_alquiler == $reserva['id_precios_alquiler']){{ number_format((float)$p1->tarifa_hora_normal, 2, '.', '') }}Bs @endif
                                     @endforeach</td>
-                                <td>{{$reserva->h_inicio_reserva}}</td>
-                                <td>{{$reserva->h_fin_reserva}}</td>
+                                <td>{{$reserva['h_inicio_reserva']}}</td>
+                                <td>{{$reserva['h_fin_reserva']}}</td>
+                                <td>
+                                    <form action="{{action('ReservaController@destroy', $reserva['id_reservas'])}}" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endif
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{action('ReservaAnfitrionController@index')}}" class="btn btn-primary">Reservas Hoy</a>
+                        <a href="{{action('ReservaController@index')}}" class="btn btn-primary">Reservas Hoy</a>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ReservaAnfitrionController extends Controller
 {
@@ -20,11 +21,15 @@ class ReservaAnfitrionController extends Controller
             ->get();
         $pq1 = DB::table('parqueos')
             ->select('*')
+            ->where('id_users', Auth::id())
             ->orderBy('id_parqueos')
             ->get();
+
        $date = '==';
        $reservasanfitrion = DB::table('reservas')
                                 ->select('*')
+                                ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
+                                ->where('parqueos.id_users', Auth::id())
                                 ->orderBy('h_inicio_reserva')
                                 ->get();
        return view('reservaanfitrion.index',compact('reservasanfitrion','pq2','pq1','date'));
@@ -45,12 +50,15 @@ class ReservaAnfitrionController extends Controller
          $pq1 = DB::table('parqueos')
         ->select('*')
         ->orderBy('id_parqueos')
+        ->where('id_users', Auth::id())
         ->get();
          $date = '==';
          $reservasanfitrion = DB::table('reservas')
-         ->select('*')
-         ->orderBy('h_inicio_reserva')
-         ->get();
+                                ->select('*')
+                                ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
+                                ->where('parqueos.id_users', Auth::id())
+                                ->orderBy('h_inicio_reserva')
+                                ->get();
          return view('reservaanfitrion.historia',compact('reservasanfitrion','pq2','pq1','date'));
     }
 
