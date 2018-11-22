@@ -4,7 +4,9 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Parqueo::class, function (Faker $faker) {
     $id_zona = App\Zona::pluck('id_zonas')->toArray();
+    $id_usuarios = App\User::pluck('id')->toArray();
     return [
+        'id_users' => $faker->randomElement($id_usuarios),
         'id_zonas' => $faker->randomElement($id_zona),
         'direccion' =>$faker -> address,
         'latitud_x'=>$faker->randomElement(['-16.510529','-16.518038','-16.520116','-16.524169','-16.511414','-16.526329','-16.517071','-16.520548','-16.506291','-16.530054']),

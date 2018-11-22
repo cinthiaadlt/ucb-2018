@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+
 
 class ParqueoController extends Controller
 {
@@ -28,11 +30,9 @@ class ParqueoController extends Controller
             ->get();
 
         $parqueos=\App\Parqueo::paginate(10);
-        $parqueos = \App\Parqueo::orderBy('id_parqueos')->get();
+        $parqueos = \App\Parqueo::where('id_users',Auth::id())->orderBy('id_parqueos')->get();
 
-       /* foreach($parqueos as $parqueo){
-        
-        }   */
+  
         return view('parqueo.index',compact('parqueos','pq2','dias'));
     }
 
@@ -95,6 +95,7 @@ class ParqueoController extends Controller
             $file->move(public_path().'/images/', $name);
          }
         $parqueo= new \App\Parqueo;
+        $parqueo->id_users = Auth::id();
         $parqueo->id_zonas = $request->input('id_zonas');
         $parqueo->direccion = $request->input('direccion');
         $parqueo->latitud_x = $request->input('latitud_x');
@@ -232,6 +233,7 @@ class ParqueoController extends Controller
             $chozni = 1;
          }
         $parqueo= \App\Parqueo::find($id);
+        $parqueo->id_users = Auth::id();
         $parqueo->id_zonas = $request->input('id_zonas');
         $parqueo->direccion = $request->input('direccion');
         $parqueo->latitud_x = $request->input('latitud_x');
