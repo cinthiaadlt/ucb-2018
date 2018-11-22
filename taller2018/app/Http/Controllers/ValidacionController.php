@@ -15,13 +15,14 @@ class ValidacionController extends Controller
      */
     public function index()
     {
+        $locations = DB::table('parqueos')->get();
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
         $parqueos=\App\Parqueo::paginate(10);
         //$parqueos = \App\Parqueo::where('id_users',Auth::id())->orderBy('id_parqueos')->get();
-        return view('validacion.index',compact('parqueos','pq2'));
+        return view('validacion.index',compact('parqueos','pq2','locations'));
 
     }
 
