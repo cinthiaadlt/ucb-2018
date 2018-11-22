@@ -24,15 +24,18 @@ class ReservaAnfitrionController extends Controller
             ->where('id_users', Auth::id())
             ->orderBy('id_parqueos')
             ->get();
+        $pq3 = DB::table('zonas')
+            ->select('*')
+            ->orderBy('id_zonas')
+            ->get();
 
-       $date = '==';
        $reservasanfitrion = DB::table('reservas')
                                 ->select('*')
                                 ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
                                 ->where('parqueos.id_users', Auth::id())
                                 ->orderBy('h_inicio_reserva')
                                 ->get();
-       return view('reservaanfitrion.index',compact('reservasanfitrion','pq2','pq1','date'));
+       return view('reservaanfitrion.index',compact('reservasanfitrion','pq2','pq1','pq3'));
     }
 
     /**
@@ -52,14 +55,17 @@ class ReservaAnfitrionController extends Controller
         ->orderBy('id_parqueos')
         ->where('id_users', Auth::id())
         ->get();
-         $date = '==';
+        $pq3 = DB::table('zonas')
+            ->select('*')
+            ->orderBy('id_zonas')
+            ->get();
          $reservasanfitrion = DB::table('reservas')
                                 ->select('*')
                                 ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
                                 ->where('parqueos.id_users', Auth::id())
                                 ->orderBy('h_inicio_reserva')
                                 ->get();
-         return view('reservaanfitrion.historia',compact('reservasanfitrion','pq2','pq1','date'));
+         return view('reservaanfitrion.historia',compact('reservasanfitrion','pq2','pq1','pq3'));
     }
 
     /**
