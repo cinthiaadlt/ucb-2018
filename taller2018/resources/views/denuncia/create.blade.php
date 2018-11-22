@@ -61,10 +61,9 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label for="input-denuncia">Tipo Denuncia:</label>
 
+                            <div class="form-group col-md-4">
+                                <label for="input-denuncia">Tipo Denuncia:</label>
                                     <select name="cat_tipo_denuncia" id="cat_tipo_denuncia" class="form-control" >
                                         <option value="1" >Mal Servicio</option>
                                         <option value="2">Daños Vehiculo</option>
@@ -74,8 +73,8 @@
                                         <option value="6">Irregularidades de pago</option>
                                         <option value="7">Otros</option>
                                     </select>
-                                </div>
                             </div>
+
 
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -84,13 +83,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-denuncia">Estado Denuncia</label>
-                                    <input type="text" value="INICIAL" class="form-control" name="estado_denuncia" readonly>
+                            <!--estado inicial al realizar la denuncia modo oculto-->
 
-                                </div>
-                            </div>
+                                <input type="text" value="INICIAL" class="form-control" name="estado_denuncia" readonly hidden>
+
 
                             <input class="submit btn btn-danger" type="submit" value="Submit">
                         </form>

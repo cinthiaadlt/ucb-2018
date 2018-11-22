@@ -62,6 +62,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('validacion') }}">
+                        <i class="ni ni-circle-08 text-blue"></i> validacion
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('roles') }}">
                         <i class="ni ni-circle-08 text-black"></i> Roles
                     </a>
@@ -102,6 +108,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="ni ni-favourite-28"></i> Parqueos Favoritos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ action('DenunciaController@create') }}">
+                        <i class="ni ni-circle-08 text-blue"></i>realizar denuncia
                     </a>
                 </li>
 

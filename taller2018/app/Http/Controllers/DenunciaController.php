@@ -78,8 +78,8 @@ class DenunciaController extends Controller
 
         //Session::flash('message','Zona creada correctamente');
 
-        return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue añadida');
-
+       // return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue añadida');
+        return redirect()->action('ClienteController@index')->with('success','La denuncia fue añadida');
 
 
     }
