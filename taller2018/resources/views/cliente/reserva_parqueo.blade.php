@@ -38,14 +38,12 @@
                             {{ csrf_field() }}
                                 <!-- DATOS DEL PARQUEO SELECCIONADO EN EL MAPA-->
                                 <h6 class="heading-small text-muted mb-4">Datos Parqueo</h6>
-                                dd({{$vh->id_parqueos}});
-
                                 <div class="pl-lg-4">
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" disabled="true" name="id_parqueos" id="id_parqueos" class="form-control form-control-alternative" value="{{$vh->id_parqueos}}" >
+                                                <input type="text" hidden="true" name="id_parqueos" id="id_parqueos" class="form-control form-control-alternative" required value="{{$vh->id_parqueos}}">
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +95,7 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label class="form-control-label" for="input-username">Foto de referencia</label>
-                                            <img width="400" height="200" src="./images/{{$vh->foto}}">
+                                            <img width="400" height="200" src="../../../images/{{$vh->foto}}">
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <hr class="my-4" />
                                 <input class="btn btn-success" type="submit" value="Reservar parqueo">
                             </form>
                         </div>
