@@ -161,7 +161,7 @@
         });
 
         function prueba($id){
-            var prueba_r= "{{action('ReservaController@edit',1)}}";
+            var prueba_r= "{{route('reservas.edit',1)}}";
             console.log($id);
             document.location.href=prueba_r;
         }

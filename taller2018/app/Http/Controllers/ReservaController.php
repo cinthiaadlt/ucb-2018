@@ -61,9 +61,11 @@ class ReservaController extends Controller
             'hora_inicio'=>'required',
             'hora_fin'=>'required'
         ]);
+        //dd($request->input('id_parqueos'));
+        //$request->input('id_parqueos');
         $v = new Reserva();
         $v->id_user= $cliente;
-        $v->id_parqueos= $request->input('id_parqueos');
+        $v->id_parqueos= 2;
         $v->dia_reserva = $fecha;
         $v->h_inicio_reserva = $request->input('hora_inicio');
         $v->h_fin_reserva=$request->input('hora_fin');
