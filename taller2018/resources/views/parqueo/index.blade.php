@@ -25,16 +25,15 @@
                             <tr>
                                 <th>Zona</th>
                                 <th>Direccion</th>
-                                <th>Capacidad</th>
-                                <th>H. Apertura</th>
-                                <th>H. Cierre</th>
+                                <th>Cap.</th>
+                                <th>Horarios</th>
+                                <th>Dias</th>
                                 <th>Contacto</th>
                                 <th>Estado</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             @foreach($parqueos as $parqueo)
                             <tr>
                                 <td>@foreach($pq2 as $p)
@@ -42,8 +41,25 @@
                                     @endforeach</td>
                                 <td>{{$parqueo['direccion']}}</td>
                                 <td>{{$parqueo['cantidad_p']}}</td>
-                                <td>{{$parqueo['hora_apertura']}}</td>
-                                <td>{{$parqueo['hora_cierre']}}</td>
+                                <td><option>{{$parqueo['hora_apertura']}}</option>
+                                    <option>{{$parqueo['hora_cierre']}}</option></td>
+                                <?php 
+                                $validado = DB::table('precios_alquiler')
+                                    ->select('id_dias')
+                                    ->where('id_parqueos', $parqueo['id_parqueos'])
+                                    ->where('estado', true)
+                                    ->orderBy('id_precios_alquiler')
+                                    ->get();
+                                ?>
+                                <td>
+                                    @foreach($validado as $val)
+                                            @foreach($dias as $dia)
+                                                @if($val->id_dias == $dia->id_dias)
+                                                    <option>{{$dia->nombre}}</option>
+                                                @endif
+                                        @endforeach
+                                    @endforeach
+                                </td>
                                 <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
                                 <td>@if($parqueo['estado_funcionamiento'] == '0') Inactivo @else Activo @endif</td>
 

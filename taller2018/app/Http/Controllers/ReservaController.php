@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Parqueo;
+use App\Reserva;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -15,19 +18,9 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
-        $pq2 = DB::table('users')
-            ->select('*')
-            ->orderBy('id')
-            ->get();
-        $pq1 = DB::table('parqueos')
-            ->select('*')
-            ->orderBy('id_parqueos')
-            ->get();
-       $date = '==';
-       $reservas=\App\Reserva::paginate(10);
-       $reservas = \App\Reserva::orderBy('h_inicio_reserva')->get();
-       return view('reserva.index',compact('reservas','pq2','pq1','date'));
+
+        $locations = DB::table('parqueos')->get();
+        return view('cliente.busqueda_parqueo',compact('locations'));
     }
 
     /**
@@ -60,7 +53,26 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $cliente = auth()->user()->id;
+        date_default_timezone_set('America/La_Paz');
+        $fecha=date("Y-m-d");
+        $this->validate($request,[
+            'hora_inicio'=>'required',
+            'hora_fin'=>'required'
+        ]);
+        $v = new Reserva();
+        $v->id_user= $cliente;
+        $v->id_parqueos= $request->input('id_parqueos');
+        $v->dia_reserva = $fecha;
+        $v->h_inicio_reserva = $request->input('hora_inicio');
+        $v->h_fin_reserva=$request->input('hora_fin');
+        $v->estado_reserva = 1;
+        $v->estado_espacio = 1;
+        $v->save();
+
+
+        return redirect('reservas')->with('success','Reserva Exitosa');
 
     }
 
@@ -83,10 +95,21 @@ class ReservaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vh = Parqueo::find($id);
+        return view('cliente.reserva_parqueo',compact('vh'));
+
     }
 
     /**
+     *
+     *
+     *
+     * $vh = DB::table('parqueos')
+    ->select('*')
+    ->where('id_parqueos',$id)
+    ->orderBy('id_parqueos')
+    ->get();
+     *
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

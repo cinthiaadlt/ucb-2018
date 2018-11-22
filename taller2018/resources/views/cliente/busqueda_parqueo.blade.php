@@ -20,6 +20,7 @@
                 <div class="col-md-12">
                     <div class="card-header border-0">
                         <h3 class="mb-0">Parqueos Disponibles</h3>
+
                     </div>
                 </div>
 
@@ -160,9 +161,7 @@
         });
 
         function prueba($id){
-            //Funcion para poder redireccionear a traves del boton dentro del Infowindow del mapa
-
-            var prueba_r= "{{ route('vehiculo.store') }}";
+            var prueba_r= "{{action('ReservaController@edit',1)}}";
             console.log($id);
             document.location.href=prueba_r;
         }
