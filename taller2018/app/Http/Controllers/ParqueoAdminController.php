@@ -27,7 +27,7 @@ class ParqueoAdminController extends Controller
             ->get();
 
         $parqueos=\App\Parqueo::paginate(10);
-        $parqueos = \App\Parqueo::where('id_users',Auth::id())->orderBy('id_parqueos')->get();
+        //$parqueos = \App\Parqueo::where('id_users',Auth::id())->orderBy('id_parqueos')->get();
 
 
         return view('parqueo_admin.index',compact('parqueos','pq2','dias'));

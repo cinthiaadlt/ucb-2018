@@ -18,8 +18,8 @@
 
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col">
-                <div class="card shadow">
+            <div class="col-xl-12 order-xl-1">
+                <div class="card bg-secondary shadow">
 
                     <div class="card-header border-0">
                         <h3 class="mb-0">Validar Parqueos</h3>
@@ -34,7 +34,7 @@
                         @endif
 
                         <div class="form-group col-md-8" >
-                            <div class="card-header border-1" id="mymap">
+                            <div aling="center" id="mymap">
                             </div>
                         </div>
 

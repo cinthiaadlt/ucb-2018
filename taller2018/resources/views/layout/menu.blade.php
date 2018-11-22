@@ -45,19 +45,19 @@
             @if (auth::user ()->myActualRole () == 1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('zona') }}">
-                        <i class="ni ni-circle-08 text-green"></i> Zonas
+                        <i class="ni ni-world"></i> Zonas
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('parqueo_admin') }}">
-                        <i class="ni ni-circle-08 text-blue"></i> Parqueos
+                        <i class="ni ni-pin-3"></i> Parqueos
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('reservas') }}">
-                        <i class="ni ni-circle-08 text-black"></i> Reservas
+                        <i class="ni ni-single-02"></i> Reservas
                     </a>
                 </li>
 
@@ -83,7 +83,7 @@
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                               <i class="ni ni-circle-08 text-red"></i> Cerrar Sesión
+                               <i class="ni ni-button-power text-red"></i> Cerrar Sesión
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
