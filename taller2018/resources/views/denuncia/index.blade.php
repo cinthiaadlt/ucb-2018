@@ -33,7 +33,7 @@
                                     <div class="page-header">
 
                                             Buscar segun estado denuncia
-                                            {{ Form::open(['route' => 'denuncias', 'method' => 'GET', 'class' => 'form-inline pull-right ']) }}
+
                                                 <div class="form-group">
                                                     {{ Form::text('estado_denuncia', null, ['class' => 'form-control', 'placeholder' => 'Estado Denuncia']) }}
                                                 </div>
@@ -42,7 +42,7 @@
 
                                                     </button>
                                                 </div>
-                                            {{ Form::close() }}
+                                            <!--{{ Form::close() }}-->
 
                                     </div>
                                 </div>
@@ -140,3 +140,7 @@
 
 
 @endsection
+
+
+
+

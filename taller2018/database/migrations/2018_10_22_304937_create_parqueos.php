@@ -36,6 +36,9 @@ class CreateParqueos extends Migration
             $table->boolean('estado_funcionamiento');
             $table->unsignedInteger('cat_estado_parqueo')->nullable();
             $table->unsignedInteger('cat_validacion')->nullable();
+            $table->string('foto_validacion', 250)->nullable();
+            $table->string('observaciones_validacion', 500)->nullable();
+
 
             $table->rememberToken();
             $table->timestamps();

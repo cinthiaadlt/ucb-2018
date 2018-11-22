@@ -28,31 +28,22 @@
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Validar Parqueos:</h3>
+                                <h3 class="mb-0">Validar Parqueo:
+                                    {{$id}}
+                                </h3>
                             </div>
                         </div>
                     </div>
                     <hr>
                     <div class="card-body">
 
-                        <form method="post" action="{{action('ValidacionController@update', $id)}}">
+                        <form method="post" enctype="multipart/form-data" action="{{action('ValidacionController@update', $id)}}">
                             @csrf
                             <input name="_method" type="hidden" value="PATCH">
-                            <div class="form-group hidden">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="Latitud" hidden>Latitud:</label>
-                                    <input type="text" class="form-control" name="latitud_x" value="{{$parqueo->latitud_x}}" id="lat" readonly hidden>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Longitud" hidden>Longitud:</label>
-                                    <input type="text" class="form-control" name="longitud_y" value="{{$parqueo->longitud_y}}" id="lon" readonly hidden>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="PrimerNombre" hidden>Zonas:</label>
+                                    <input type="text" class="form-control" name="latitud_x" value="{{$parqueo->latitud_x}}" id="lat" readonly hidden>
+
+                                    <input type="text" class="form-control" name="longitud_y" value="{{$parqueo->longitud_y}}" id="lon" readonly hidden>
 
                                     <select name="id_zonas" id="id_zonas" class="form-control" readonly hidden>
                                         @foreach($pq2 as $p)
@@ -62,34 +53,38 @@
                                         <option value ="{{$p->id_zonas}}">{{ $p->zona }}</option>@endif
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="Direccion" hidden>Direccion:</label>
-                                    <input type="text" class="form-control" name="direccion" value="{{$parqueo->direccion}}" readonly hidden>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="Cantidad" hidden>Cantidad Vehiculos:</label>
-                                    <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}" readonly hidden>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="Contacto" hidden>Contacto 1:</label>
-                                    <input type="text" class="form-control" name="telefono_contacto_1" value="{{$parqueo->telefono_contacto_1}}" readonly hidden>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="Contacto" hidden>Contacto 2:</label>
-                                    <input type="text" class="form-control" name="telefono_contacto_2" value="{{$parqueo->telefono_contacto_2}}" readonly hidden>
-                                </div>
-                            </div>
 
-                            </div>
+
+                                    <input type="text" class="form-control" name="direccion" value="{{$parqueo->direccion}}" readonly hidden>
+
+
+                                    <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}" readonly hidden>
+
+
+                                    <input type="text" class="form-control" name="telefono_contacto_1" value="{{$parqueo->telefono_contacto_1}}" readonly hidden>
+
+                                    <input type="text" class="form-control" name="telefono_contacto_2" value="{{$parqueo->telefono_contacto_2}}" readonly hidden>
+
+                                    <input type="time" class="form-control" name="hora_apertura" value="{{$parqueo->hora_apertura}}" required readonly hidden>
+
+                                    <input type="time" class="form-control" name="hora_cierre" value="{{$parqueo->hora_cierre}}" required readonly hidden>
+
+                                    <input type="text" class="form-control" name="tarifa_hora_normal" value="{{$parqueo->tarifa_hora_normal}}" readonly hidden>
+
+
+                                    @foreach($validado as $val)
+
+                                        @foreach($dias as $dia)
+                                        @if($val->id_dias == $dia->id_dias)
+                                        @if($val->estado == true)
+                                        <input type="checkbox" name="servi[]" value="{{$val->id_dias}}" checked readonly hidden>
+                                        @else
+                                        <input type="checkbox" name="servi[]" value="{{$val->id_dias}}" readonly hidden>
+                                        @endif
+                                        @endif
+                                        @endforeach
+                                    </label>
+                                    @endforeach
 
                             <div class="row">
                                 <div class="form-group col-md-4">
@@ -100,8 +95,8 @@
 
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="Observacion">Observaciones:</label>
-                                    <input type="text" class="form-control" name="observacion" value="" >
+                                    <label class="form-control-label" for="input-parqueo">Observaciones:</label>
+                                    <input type="text" class="form-control form-control-alternative" name="observaciones_validacion" id="observaciones_validacion" value ="{{$parqueo->observaciones_validacion}}">
                                 </div>
                             </div>
 
@@ -119,8 +114,10 @@
                             <div class="row">
                                 <div class="col-md-4"></div>
                                 <div class="form-group col-md-4" style="margin-top:60px">
-                                    <button type="submit" class="btn btn-success">Validar</button>
+                                    <button type="submit" class="btn btn-success">Editar Validacion</button>
+                                    <a href="{{action('ValidacionController@index')}}" class="btn btn-primary">Volver</a>
                                 </div>
+
                             </div>
                         </form>
 
@@ -131,3 +128,7 @@
     </div>
 </div>
 @endsection
+
+
+
+
