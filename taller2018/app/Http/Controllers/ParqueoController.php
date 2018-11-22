@@ -21,9 +21,19 @@ class ParqueoController extends Controller
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
+
+        $dias = DB::table('dias')
+            ->select('*')
+            ->orderBy('id_dias')
+            ->get();
+
         $parqueos=\App\Parqueo::paginate(10);
         $parqueos = \App\Parqueo::orderBy('id_parqueos')->get();
-        return view('parqueo.index',compact('parqueos','pq2'));
+
+       /* foreach($parqueos as $parqueo){
+        
+        }   */
+        return view('parqueo.index',compact('parqueos','pq2','dias'));
     }
 
     /**
