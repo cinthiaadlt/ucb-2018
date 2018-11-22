@@ -13,10 +13,19 @@
         <script type="text/javascript"src="https://hpneo.github.io/gmaps/styles.css"></script>
         <link href='https://hpneo.github.io/gmaps/prettify/prettify.css' rel='stylesheet' type='text/css' />
 
+
+
+
         <div class="container-fluid mt--7">
             <div class="card shadow">
-            <div class="row">
 
+                @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <p>{{ \Session::get('success') }}</p>
+                </div>
+                @endif
+
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card-header border-0">
                         <h3 class="mb-0">Parqueos Disponibles</h3>

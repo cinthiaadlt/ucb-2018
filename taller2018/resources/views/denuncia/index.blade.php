@@ -1,6 +1,8 @@
 @extends('layout.principal')
 
 @section('content')
+
+
 <div id="content">
     <div class="container-fluid mt--7">
         <div class="row">
@@ -24,6 +26,28 @@
                             <p>{{ \Session::get('success') }}</p>
                         </div><br />
                         @endif
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="page-header">
+
+                                            Buscar segun estado denuncia
+
+                                                <div class="form-group">
+                                                    {{ Form::text('estado_denuncia', null, ['class' => 'form-control', 'placeholder' => 'Estado Denuncia']) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary btn-xs">
+
+                                                    </button>
+                                                </div>
+                                            <!--{{ Form::close() }}-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -116,3 +140,7 @@
 
 
 @endsection
+
+
+
+
