@@ -235,19 +235,23 @@ class ParqueoController extends Controller
         $parqueo->estado_funcionamiento = $chozni;
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
-        //$parqueo->save();
+        $parqueo->save();
 
         $myCheckboxes = $request->input('servi');
-        foreach($myCheckboxes as $value){
-            echo $value . "<br>";
-        }
+        
+        DB::table('precios_alquiler')
+        ->where('id_parqueos', $id)
+        ->delete();
 
-        for($i = 1; $i <= 7; $i++){
-            foreach($myCheckboxes as $value){
-                $estado = false;
-                if($i == $value){
-                    $estado = true;
-                }
+         echo count($myCheckboxes);
+        for($i = 1, $aux = 0; $i <= 7; $i++){
+               $estado = false;
+               if(count($myCheckboxes) > $aux){
+                     if($i == $myCheckboxes[$aux]){
+                        $estado = true;
+                        $aux++;
+                     }
+               }
                 DB::table('precios_alquiler')->insert(
                 array(
                     'id_parqueos' => $id,
@@ -255,22 +259,9 @@ class ParqueoController extends Controller
                     'estado' => $estado
                 )
             );
-            }
-        }  
-
-        /*DB::table('precios_alquiler')
-            ->where('id_parqueos', $id)
-            ->delete();
+        }
         
-        foreach($myCheckboxes as $value){
-            DB::table('precios_alquiler')->insert(
-                array(
-                    'id_parqueos' => $parqueo->id_parqueos,
-                    'id_dias' => $value
-                )
-            );
-        }*/
-        //return redirect('parqueos');
+        return redirect('parqueos');
     }
 
     /**
