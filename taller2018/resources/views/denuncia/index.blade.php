@@ -34,15 +34,7 @@
 
                                             Buscar segun estado denuncia
 
-                                                <div class="form-group">
-                                                    {{ Form::text('estado_denuncia', null, ['class' => 'form-control', 'placeholder' => 'Estado Denuncia']) }}
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-xs">
-
-                                                    </button>
-                                                </div>
-                                            <!--{{ Form::close() }}-->
+                                                
 
                                     </div>
                                 </div>
