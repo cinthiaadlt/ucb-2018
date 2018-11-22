@@ -52,9 +52,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-denuncia">Usuario</label>
-                                    <select name="id_usuarios" id="id_usuarios" class="form-control">
+                                    <select name="id" id="id" class="form-control">
                                         @foreach($d2 as $den2)
-                                        <option value ="{{$den2->id_usuarios}}">{{ $den2->nombre_usuario}}</option>
+                                        <option value ="{{$den2->id}}">{{ $den2->sur_name}}</option>
                                         @endforeach
 
                                     </select>

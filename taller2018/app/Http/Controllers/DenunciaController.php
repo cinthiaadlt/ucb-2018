@@ -26,9 +26,9 @@ class DenunciaController extends Controller
             ->select('*')
             ->orderBy('id_parqueos')
             ->get();
-        $d2 = DB::table('usuarios')
+        $d2 = DB::table('users')
             ->select('*')
-            ->orderBy('id_usuarios')
+            ->orderBy('id')
             ->get();
 
         return view('denuncia.create',compact('d1','d2'));
@@ -57,7 +57,7 @@ class DenunciaController extends Controller
 
         $this->validate($request,[
             'id_parqueos'=>'required',
-            'id_usuarios'=>'required',
+            'id'=>'required',
             'descripcion_adicional'=>'required',
             'estado_denuncia'=>'required',
             'cat_tipo_denuncia'=>'required',
@@ -66,7 +66,7 @@ class DenunciaController extends Controller
 
         $denuncia = new Denuncia();
         $denuncia->id_parqueos = $request->input('id_parqueos');
-        $denuncia->id_usuarios = $request->input('id_usuarios');
+        $denuncia->id = $request->input('id');
         $denuncia->descripcion_adicional = $request->input('descripcion_adicional');
         $denuncia->cat_nivel_gravedad = $chozni;
         $denuncia->estado_denuncia = $request->input('estado_denuncia');
@@ -93,7 +93,7 @@ class DenunciaController extends Controller
     {
         $p2 = DB::table('denuncias')
             ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
-            ->join('usuarios','usuarios.id_usuarios','=','denuncias.id_usuarios')
+            ->join('users','users.id','=','denuncias.id')
             ->orderBy('id_denuncias','desc')
             ->paginate(5);
         //$p1 = Parqueo::find($id);
@@ -112,9 +112,9 @@ class DenunciaController extends Controller
             ->select('*')
             ->orderBy('id_parqueos')
             ->get();
-        $d2 = DB::table('usuarios')
+        $d2 = DB::table('users')
             ->select('*')
-            ->orderBy('id_usuarios')
+            ->orderBy('id')
             ->get();
 
         return view('denuncia.edit',compact('denuncia','id','d1','d2'));
@@ -136,7 +136,7 @@ class DenunciaController extends Controller
     {
         $denuncia= \App\Denuncia::find($id);
         $denuncia->id_parqueos = $request->input('id_parqueos');
-        $denuncia->id_usuarios = $request->input('id_usuarios');
+        $denuncia->id = $request->input('id');
         $denuncia->descripcion_adicional = $request->input('descripcion_adicional');
         $denuncia->cat_nivel_gravedad = $request->input('cat_nivel_gravedad');
         $denuncia->estado_denuncia = $request->input('estado_denuncia');
