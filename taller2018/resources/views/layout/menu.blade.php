@@ -50,7 +50,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('parqueos') }}">
+                    <a class="nav-link" href="{{ url('parqueo_admin') }}">
                         <i class="ni ni-circle-08 text-blue"></i> Parqueos
                     </a>
                 </li>

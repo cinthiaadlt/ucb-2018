@@ -5,6 +5,7 @@ Auth::routes ();
 Route::resource ('/tipoMultas', 'TipoMultaController')->middleware('auth');
 Route::resource('/roles','RoleController', ['middleware'=>['auth', 'admin']]);
 Route::resource('/users','UsersRoleController', ['middleware'=>['auth', 'admin']]);
+Route::resource('parqueo_admin','ParqueoAdminController',['middleware' => ['auth', 'admin']]);
 
 
 // Rutas de User;

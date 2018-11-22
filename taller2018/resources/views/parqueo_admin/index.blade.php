@@ -43,7 +43,7 @@
                                 <td>{{$parqueo['cantidad_p']}}</td>
                                 <td><option>{{$parqueo['hora_apertura']}}</option>
                                     <option>{{$parqueo['hora_cierre']}}</option></td>
-                                <?php 
+                                <?php
                                 $validado = DB::table('precios_alquiler')
                                     ->select('id_dias')
                                     ->where('id_parqueos', $parqueo['id_parqueos'])
@@ -53,25 +53,25 @@
                                 ?>
                                 <td>
                                     @foreach($validado as $val)
-                                            @foreach($dias as $dia)
-                                                @if($val->id_dias == $dia->id_dias)
-                                                    <option>{{$dia->nombre}}</option>
-                                                @endif
-                                        @endforeach
+                                    @foreach($dias as $dia)
+                                    @if($val->id_dias == $dia->id_dias)
+                                    <option>{{$dia->nombre}}</option>
+                                    @endif
+                                    @endforeach
                                     @endforeach
                                 </td>
                                 <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
                                 <td>@if($parqueo['estado_funcionamiento'] == '0') Inactivo @else Activo @endif</td>
 
-                                <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
+                                <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Delete</button>
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Eliminar</button>
                                     </form>
                                 </td>
-
+                                <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@show', $parqueo->id_parqueos)}}" >Denuncias</a></td>
                             </tr>
                             @endforeach
                             </tbody>
