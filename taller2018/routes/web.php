@@ -19,6 +19,7 @@ Route::resource('reservas','ReservaController', ['middleware' => ['auth', 'user'
 
 // no estoy seguro:
 Route::resource('denuncia','DenunciaController')->middleware('auth'); // ??????
+Route::get('/', 'DenunciaController@show')->name('denuncias');
 Route::get('/list','VehiculoController@list');
 Route::resource('validacion','ValidacionController')->middleware('auth');
 Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index'])->middleware('auth');//Ruta de prueba no eliminar

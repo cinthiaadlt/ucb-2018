@@ -16,4 +16,17 @@ class Denuncia extends Model
         'num_strikes',
         'cat_tipo_denuncia'
     ];
+
+
+    //Query Scope
+
+    /*public function scopeEstado($query, $estado_denuncia)
+    {
+        if($estado_denuncia)
+        {
+            return $query->where('estado_denuncia','LIKE',"%$estado_denuncia%");
+        }
+    }*/
+
+
 }
