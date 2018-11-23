@@ -130,7 +130,7 @@
                             </tbody>
                         </table>
                         {{ $p2->links() }}<br><br>
-                        <a href="{{action('ParqueoController@index')}}" class="btn btn-primary">Volver</a>
+                        <a href="{{action('ParqueoAdminController@index')}}" class="btn btn-primary">Volver</a>
                     </div>
                 </div>
             </div>
