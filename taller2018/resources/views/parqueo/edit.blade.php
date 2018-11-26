@@ -77,13 +77,13 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                       <label for="Direccion">Direccion:</label>
-                                      <input type="text" class="form-control" name="direccion" value="{{$parqueo->direccion}}">
+                                      <input type="text" class="form-control" name="direccion" value="{{$parqueo->direccion}}" required>
                                     </div>
                                   </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Cantidad">Cantidad Vehiculos:</label>
-                                            <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}">
+                                            <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}" required>
                                         </div>
                                     </div>
 
@@ -99,7 +99,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Contacto">Contacto 1:</label>
-                                            <input type="text" class="form-control" name="telefono_contacto_1" value="{{$parqueo->telefono_contacto_1}}">
+                                            <input type="text" class="form-control" name="telefono_contacto_1" value="{{$parqueo->telefono_contacto_1}}" required>
                                         </div>
                                     </div>
 
@@ -122,7 +122,7 @@
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="Tarifa">Tarifa:</label>
-                                                <input type="text" class="form-control" name="tarifa_hora_normal" value="{{$parqueo->tarifa_hora_normal}}">
+                                                <input type="text" class="form-control" name="tarifa_hora_normal" value="{{$parqueo->tarifa_hora_normal}}" required>
                                             </div>
                                     </div>
                                         <div class="row">

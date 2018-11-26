@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ZonasTableSeeder::class);
 
         //Se crean las zonas, parqueos con la clase Factory
-        factory(Zona::class,7)->create();
-        factory(Parqueo::class, 3)->create();
+        //factory(Zona::class,7)->create();
+        //factory(Parqueo::class, 3)->create();
 
     }
 }
