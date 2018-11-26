@@ -18,7 +18,7 @@ class CreateTipoMultasTable extends Migration
             $table->string('nombre_tipo_multa');
             $table->string('descripcion_multa');
             $table->decimal('tarifa_multa');
-            $table->integer('cat_grado_multa');
+            $table->integer('cat_grado_multa')->nullable();
             $table->timestamps();
         });
     }
