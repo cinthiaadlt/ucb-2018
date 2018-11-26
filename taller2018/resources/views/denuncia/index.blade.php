@@ -2,6 +2,9 @@
 
 @section('content')
 
+<meta name="_token" content="{{ csrf_token() }}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 <div id="content">
     <div class="container-fluid mt--7">
@@ -27,18 +30,30 @@
                         </div><br />
                         @endif
 
+
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="page-header">
-
-                                            Buscar segun estado denuncia
-
-                                                
-
+                                        Buscar segun estado denuncia
+                                        {{ Form::open(['route' => 'estado_denuncia', 'method' => 'GET', 'class' => 'form-inline pull-right ']) }}
+                                        <div class="form-group">
+                                            {{ Form::text('estado_denuncia', null, ['class' => 'form-control', 'placeholder' => 'Estado Denuncia']) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary bt">
+                                            </button>
+                                        </div>
+                                        {{ Form::close() }}
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-controller" id="search" name="search"></input>
+
                         </div>
 
                         <table class="table align-items-center table-flush">
@@ -130,6 +145,39 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    $('#search').on('keyup',function(){
+
+        $value=$(this).val();
+
+        $.ajax({
+
+            type : 'get',
+
+            url : '{{URL::to('search')}}',
+
+            data:{'search':$value},
+
+            success:function(data){
+
+                $('tbody').html(data);
+
+            }
+
+        });
+
+
+
+    })
+
+</script>
+
+<script type="text/javascript">
+
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+
+</script>
 
 @endsection
 

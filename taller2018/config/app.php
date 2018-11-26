@@ -161,7 +161,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //Collective\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -213,7 +213,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Gmaps' => GeneaLabs\Phpgmaps\Facades\PhpgmapsFacade::class,
 
-       // 'Form' => Collective\Html\FormFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
 
     ],
 

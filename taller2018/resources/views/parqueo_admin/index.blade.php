@@ -71,7 +71,7 @@
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Eliminar</button>
                                     </form>
                                 </td>
-                                <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@show', $parqueo->id_parqueos)}}" >Denuncias</a></td>
+                                <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@listdenuncia', $parqueo->id_parqueos)}}" >Denuncias</a></td>
                             </tr>
                             @endforeach
                             </tbody>

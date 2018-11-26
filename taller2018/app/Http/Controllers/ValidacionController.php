@@ -15,7 +15,9 @@ class ValidacionController extends Controller
      */
     public function index()
     {
-        $locations = DB::table('parqueos')->get();
+        $locations = DB::table('parqueos')
+            ->where('estado_funcionamiento', 'LIKE', 'false')
+            ->get();
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
@@ -148,7 +150,7 @@ class ValidacionController extends Controller
             );
         }
 
-        return redirect('parqueos');
+        return redirect('validacion');
 
     }
 
