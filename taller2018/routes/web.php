@@ -7,7 +7,7 @@ Route::resource('/roles','RoleController', ['middleware'=>['auth', 'admin']]);
 Route::resource('/users','UsersRoleController', ['middleware'=>['auth', 'admin']]);
 Route::resource('parqueo_admin','ParqueoAdminController',['middleware' => ['auth', 'admin']]);
 Route::resource('denuncia','DenunciaController')->middleware('auth');
-//Route::get('/', 'DenunciaController@show')->name('denuncias');
+Route::get('/', 'DenunciaController@show')->name('denuncias');
 Route::resource('validacion','ValidacionController')->middleware('auth');
 
 
@@ -17,12 +17,14 @@ Route::resource('cliente','ClienteController', ['middleware'=>['auth', 'user']])
 Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
 Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
 Route::resource('reservas','ReservaController', ['middleware' => ['auth', 'user']]);
-
+Route::get('/lista_reservas','ReservaController@lista_estado');//nueva
+Route::get('mostrar_reserva','ReservaController@edit');//nueva
 //Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');
 //Route::post('/parqueos/edit', 'ParqueoController@postParqueoEdit');
 
 // no estoy seguro:
 Route::get('/list','VehiculoController@list');
+//Route::get('//{id}','DenunciaController@listdenuncia')->name('estado_denuncia');
 Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index'])->middleware('auth');//Ruta de prueba no eliminar
 Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
 

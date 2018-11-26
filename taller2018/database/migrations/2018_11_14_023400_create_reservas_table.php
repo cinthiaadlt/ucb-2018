@@ -22,6 +22,7 @@ class CreateReservasTable extends Migration
             $table->date('dia_reserva');
             $table->time('h_inicio_reserva');
             $table->time('h_fin_reserva');
+            $table->decimal('total_reserva', 10, 7)->nullable();
             $table->integer('estado_reserva')->nullable();
             $table->integer('estado_espacio')->nullable();
             $table->integer('calificacion_cliente')->nullable();

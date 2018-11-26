@@ -118,9 +118,30 @@ class ReservaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        $cliente = auth()->user()->id;
+        date_default_timezone_set('America/La_Paz');
+        $fecha=date("Y-m-d");
+        $this->validate($request,[
+            'hora_inicio'=>'required',
+            'hora_fin'=>'required'
+        ]);
+        //dd($request->input('id_parqueos'));
+         $request->input('id_parqueos');
+        $v = new Reserva();
+        $v->id_user= $cliente;
+        $v->id_parqueos= 1;
+        $v->dia_reserva = $fecha;
+        $v->h_inicio_reserva = $request->input('hora_inicio');
+        $v->h_fin_reserva=$request->input('hora_fin');
+        $v->estado_reserva = 1;
+        $v->estado_espacio = 1;
+        $v->save();
+
+
+        return redirect('reservas')->with('success','Reserva Exitosa');
+
     }
 
     /**
@@ -134,5 +155,24 @@ class ReservaController extends Controller
         $reserva = \App\Reserva::find($id);
         $reserva->delete();
         return redirect('reservas')->with('success','Information has been  deleted');
+    }
+
+    public function lista_estado(){
+
+
+        $l = DB::table('reservas')
+            ->join('users','users.id','=','reservas.id_user')
+            ->join('parqueos','parqueos.id_parqueos','=','reservas.id_parqueos')
+            ->orderBy('id_reservas','desc')
+            ->paginate(5);
+
+        return view('cliente.lista_reservas', compact('l'));
+
+
+    }
+
+    public function facturar($id){
+
+        return view('');
     }
 }
