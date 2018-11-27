@@ -16,7 +16,8 @@ Route::resource('cliente','ClienteController', ['middleware'=>['auth', 'user']])
 Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
 Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
 Route::resource('reservas','ReservaController', ['middleware' => ['auth', 'user']]);
-
+Route::get('/lista_reservas','ReservaController@lista_estado');//nueva
+Route::get('mostrar_reserva','ReservaController@edit');//nueva
 //Route::get('/parqueos/edit', 'ParqueoController@getParqueoEdit');
 //Route::post('/parqueos/edit', 'ParqueoController@postParqueoEdit');
 

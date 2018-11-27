@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon;
 
 class ParqueoController extends Controller
 {
@@ -76,6 +76,7 @@ class ParqueoController extends Controller
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
+        
         return view('parqueo.create',compact('pq2','map'));
     }
 
@@ -142,7 +143,7 @@ class ParqueoController extends Controller
                     'estado' => $estado[$i-1]
                 )
             );
-        }  
+        }
         
         return redirect('parqueos')->with('success', 'Parqueo Anadido');
     }
@@ -226,6 +227,7 @@ class ParqueoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $gg=0;
         if($request->input('estado_funcionamiento') == 'Inactivo')
          {
             $chozni = 0;
@@ -255,7 +257,6 @@ class ParqueoController extends Controller
         ->where('id_parqueos', $id)
         ->delete();
 
-         echo count($myCheckboxes);
         for($i = 1, $aux = 0; $i <= 7; $i++){
                $estado = false;
                if(count($myCheckboxes) > $aux){
@@ -272,8 +273,52 @@ class ParqueoController extends Controller
                 )
             );
         }
+
+        //verificar si hay reservas activas
+        $verificar = DB::table('precios_alquiler')
+                        ->select('*')
+                        ->where('id_parqueos', $id)
+                        ->get();
+
+        $reservasanfitrion = DB::table('reservas')
+                        ->select('*')
+                        ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
+                        ->where('parqueos.id_users', Auth::id())
+                        ->where('parqueos.id_parqueos', $id)
+                        ->orderBy('h_inicio_reserva')
+                        ->get();
+        date_default_timezone_set('America/La_Paz');
+        $mytime = Carbon\Carbon::now();
+        //echo $mytime->toDateString();
+        //echo $verificar;
+        $hoje = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+        $chozni = array('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo');
+        foreach($verificar as $veri){
+            if($veri->estado == false){
+                //echo 0 ."dia". $veri->id_dias;
+                for($i =0 ; $i < count($reservasanfitrion); $i++){
+                    if($mytime->toDateString() < $reservasanfitrion[$i]->dia_reserva){
+                        //echo date('D', strtotime($reservasanfitrion[$i]->dia_reserva));
+                        if(date('D', strtotime($reservasanfitrion[$i]->dia_reserva)) == $hoje[$veri->id_dias-1]){
+                            echo '<script type="text/javascript">
+                            alert("Existe una reserva activa el dia '.$chozni[$veri->id_dias-1].' eliminela e intente de nuevo");
+                            </script>';
+                            $gg=1;
+                            DB::table('precios_alquiler')
+                                ->where('id_parqueos', $id)
+                                ->where('id_dias', $veri->id_dias)
+                                ->update(['estado'=>true]);
+                        }
+                    }
+                }
+            }
+        }
         
-        return redirect('parqueos');
+        if($gg==0){
+            return redirect('parqueos');
+        }else{
+            return $this->edit($id);
+        }
     }
 
     /**
