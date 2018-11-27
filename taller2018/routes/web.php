@@ -6,8 +6,7 @@ Route::resource ('/tipoMultas', 'TipoMultaController')->middleware('auth');
 Route::resource('/roles','RoleController', ['middleware'=>['auth', 'admin']]);
 Route::resource('/users','UsersRoleController', ['middleware'=>['auth', 'admin']]);
 Route::resource('parqueo_admin','ParqueoAdminController',['middleware' => ['auth', 'admin']]);
-Route::resource('denuncia','DenunciaController')->middleware('auth');
-Route::get('/', 'DenunciaController@show')->name('denuncias');
+Route::resource('denuncia','DenunciaController',['middleware' => ['auth', 'admin', 'user']]);
 Route::resource('validacion','ValidacionController')->middleware('auth');
 
 
@@ -23,7 +22,7 @@ Route::resource('reservas','ReservaController', ['middleware' => ['auth', 'user'
 
 // no estoy seguro:
 Route::get('/list','VehiculoController@list');
-//Route::get('//{id}','DenunciaController@listdenuncia')->name('estado_denuncia');
+
 Route::get('/gmaps', ['as ' => 'gmaps', 'uses' => 'GmapsController@index'])->middleware('auth');//Ruta de prueba no eliminar
 Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
 

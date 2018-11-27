@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Denuncia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class DenunciaController extends Controller
 {
     /**
@@ -57,7 +58,6 @@ class DenunciaController extends Controller
 
         $this->validate($request,[
             'id_parqueos'=>'required',
-            'id'=>'required',
             'descripcion_adicional'=>'required',
             'estado_denuncia'=>'required',
             'cat_tipo_denuncia'=>'required',
@@ -66,7 +66,7 @@ class DenunciaController extends Controller
 
         $denuncia = new Denuncia();
         $denuncia->id_parqueos = $request->input('id_parqueos');
-        $denuncia->id = $request->input('id');
+        $denuncia->id = Auth::id();
         $denuncia->descripcion_adicional = $request->input('descripcion_adicional');
         $denuncia->cat_nivel_gravedad = $chozni;
         $denuncia->estado_denuncia = $request->input('estado_denuncia');
