@@ -99,8 +99,8 @@ class ReservaController extends Controller
     {
         $vh = Parqueo::find($id);
         return view('cliente.reserva_parqueo',compact('vh'));
-
     }
+
 
     /**
      *

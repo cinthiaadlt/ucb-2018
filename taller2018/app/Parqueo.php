@@ -15,6 +15,7 @@ class Parqueo extends Model
         'latitud_x',
         'longitud_y',
         'cantidad_p',
+        'cantidad_actual',
         'foto',
         'telefono_contacto_1',
         'telefono_contacto_2',

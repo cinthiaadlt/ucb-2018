@@ -104,32 +104,30 @@
                                 <h6 class="heading-small text-muted mb-4">Datos para la Reserva</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <?php date_default_timezone_set('America/La_Paz');?>
-                                                <label class="form-control-label" for="input-address" name="dia_reserva">Fecha: <?php echo date("d-m-Y")?></label>
-
+                                                <label for="dia_reserva">Fecha Reserva:</label>
+                                                <input type="date" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}" class="form-control" name="dia_reserva" required>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="HoraApertura">Inicio de Reserva:</label>
-                                                <input type="time" class="form-control" name="hora_inicio" required>
+                                                <input type="time" class="form-control" value="{{date("H:00", strtotime(date("H:00")) + 60*60)}}" name="hora_inicio" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="HoraCierre">Fin de Reserva:</label>
-                                                <input type="time" class="form-control" name="hora_fin" required>
+                                                <input type="time" class="form-control" value="{{date("H:00", strtotime(date("H:00")) + 60*120)}}" name="hora_fin" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="my-4" />
                                 <input class="btn btn-success" type="submit" value="Reservar parqueo">
-                                <a class="btn btn-success" href="{{ route('test.route', 2) }}" method="GET">Prueba Factura</a>
+                                <a class="btn btn-success" href="{{ route('test.route', $vh->id_parqueos) }}" method="GET">Prueba Factura</a>
                             </form>
                         </div>
                     </div>
