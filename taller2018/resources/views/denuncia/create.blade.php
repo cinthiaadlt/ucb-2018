@@ -49,19 +49,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-denuncia">Usuario</label>
-                                    <select name="id" id="id" class="form-control">
-                                        @foreach($d2 as $den2)
-                                        <option value ="{{$den2->id}}">{{ $den2->sur_name}}</option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                            </div>
-
-
                             <div class="form-group col-md-4">
                                 <label for="input-denuncia">Tipo Denuncia:</label>
                                     <select name="cat_tipo_denuncia" id="cat_tipo_denuncia" class="form-control" >
