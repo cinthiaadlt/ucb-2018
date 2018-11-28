@@ -123,6 +123,15 @@ class ReservaAnfitrionController extends Controller
     {
         //
         $reserva = \App\Reserva::find($id);
+        //volver a subir el numero
+        $parqueo = DB::table('parqueos')
+                    ->select('*')
+                    ->where('id_parqueos', $reserva->id_parqueos)
+                    ->get();
+        DB::table('parqueos')
+            ->where('id_parqueos', $reserva->id_parqueos)
+            ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual+1]);
+        
         $reserva->delete();
         return redirect('reservasanfitrion')->with('success','Information has been  deleted');
     }

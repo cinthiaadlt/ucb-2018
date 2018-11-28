@@ -114,6 +114,14 @@
                                 <!-- DATOS PARA LA RESERVA -->
                                 <h6 class="heading-small text-muted mb-4">Datos para la Reserva</h6>
                                 <div class="pl-lg-4">
+                                        <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-username">Espacios Disponibles</label>
+                                                        <input type="text" disabled="true" name="hora_apertura" id="hora_apertura" class="form-control form-control-alternative" value="{{$vh->cantidad_actual}}" >
+                                                    </div>
+                                                </div>
+                                            </div>
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="form-group">

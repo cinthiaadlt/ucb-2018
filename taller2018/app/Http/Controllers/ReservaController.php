@@ -116,9 +116,21 @@ class ReservaController extends Controller
             }
         }
 
+        //condicional para ver si ya no hay espacios disponibles
+        if($parqueo[0]->cantidad_actual == 0){
+            echo '<script type="text/javascript">
+                            alert("El parqueo se encuentra lleno.");
+                            </script>';
+                $gg=1;
+        }
+
         //condicional para ver si es success o fail
         if($gg==0){
             $v->save();
+            //actualizar cantidad espacios disponibles parqueo
+            DB::table('parqueos')
+            ->where('id_parqueos', $v->id_parqueos)
+            ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual-1]);
             return redirect('reservas')->with('success','Reserva Exitosa');
         }else{
             return $this->edit($v->id_parqueos);
