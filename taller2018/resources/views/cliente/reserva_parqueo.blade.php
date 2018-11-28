@@ -90,6 +90,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <label class="form-control-label" for="input-username">Dias Funcionamiento:</label>
+                                    <div class="row">
+                                            
+                                            @foreach($dias as $di)
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <input type="text" disabled="true" name="hora_apertura" id="hora_apertura" class="form-control form-control-alternative" value="{{$di->nombre}}" >
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
 
                                     <div class="row">
                                         <div class="col-lg-6">

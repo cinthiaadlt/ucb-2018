@@ -145,7 +145,14 @@ class ReservaController extends Controller
     public function edit($id)
     {
         $vh = Parqueo::find($id);
-        return view('cliente.reserva_parqueo',compact('vh'));
+        $dias = DB::table('precios_alquiler')
+                        ->select('dias.nombre')
+                        ->join('dias', 'dias.id_dias', '=', 'precios_alquiler.id_dias')
+                        ->where('id_parqueos', $id)
+                        ->where('estado', true)
+                        ->get();
+
+        return view('cliente.reserva_parqueo',compact('vh', 'dias'));
 
     }
 
