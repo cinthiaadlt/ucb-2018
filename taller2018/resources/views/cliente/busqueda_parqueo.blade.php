@@ -170,8 +170,9 @@
         });
 
         function prueba($id){
-            var prueba_r= "{{route('reservas.edit',1)}}";
-            console.log($id);
+            var id = $id;
+            var prueba_r= '{{ route('reservas.edit', ":id") }}';
+            prueba_r = prueba_r.replace(':id', $id);
             document.location.href=prueba_r;
         }
 

@@ -102,6 +102,20 @@ class ReservaController extends Controller
 
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createReserva($id)
+    {
+        //
+        echo "entroooooooooooo";
+
+        //return view('factura.index',compact('usuario','reserva','parqueo'));
+    }
+
     /**
      *
      *
