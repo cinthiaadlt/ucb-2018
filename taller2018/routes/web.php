@@ -13,6 +13,11 @@ Route::resource('validacion','ValidacionController')->middleware('auth');
 
 // Rutas de User;
 Route::resource('/','ClienteController', ['middleware'=>['auth', 'user']]);
+Route::resource('factura','FacturaController', ['middleware'=>['auth', 'user']]);
+Route::get('/reservas/facturacion/{id}',[
+    'uses' => 'FacturaController@showFactura', 
+    'as' => 'test.route'
+], ['middleware'=>['auth', 'user']]);
 Route::resource('cliente','ClienteController', ['middleware'=>['auth', 'user']]);
 Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
 Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
