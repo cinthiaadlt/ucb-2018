@@ -52,14 +52,17 @@
           </form>
         </div>
       </div>
+      <!--
       <div class="row mt-3">
         <div class="col-6">
           <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('¿Olvidó la contraseña?') }}</a>
         </div>
+
         <div class="col-6 text-right">
           <a href="{{ url('register') }}"class="text-light"><small>Crear una cuenta</small></a>
         </div>
       </div>
+    -->
     </div>
   </div>
   </div>
