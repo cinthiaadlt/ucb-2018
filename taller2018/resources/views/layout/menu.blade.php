@@ -67,7 +67,7 @@
                         <i class="ni ni-circle-08 text-black"></i> Roles
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
