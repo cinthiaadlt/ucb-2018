@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon;
 
 class ReservaController extends Controller
 {
@@ -53,7 +54,7 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-
+        $gg=0;
         $cliente = auth()->user()->id;
         date_default_timezone_set('America/La_Paz');
         $fecha=date("Y-m-d");
@@ -65,17 +66,44 @@ class ReservaController extends Controller
         //$request->input('id_parqueos');
         $v = new Reserva();
         $v->id_user= $cliente;
-        $v->id_parqueos= 1;
-        $v->dia_reserva = $fecha;
+        $v->id_parqueos= $request->input('id_parqueos');
+        $v->dia_reserva = $request->input('dia_reserva');
         $v->h_inicio_reserva = $request->input('hora_inicio');
         $v->h_fin_reserva=$request->input('hora_fin');
-        $v->estado_reserva = 1;
-        $v->estado_espacio = 1;
-        $v->save();
+        //
+        $parqueo = DB::table('parqueos')
+                    ->select('*')
+                    ->where('id_parqueos', $v->id_parqueos)
+                    ->get();
 
+        //ifs que determinan la validez de las horas dadas
+        if(strtotime($v->h_inicio_reserva) < strtotime($parqueo[0]->hora_apertura)){
+            echo '<script type="text/javascript">
+                            alert("El parqueo abre a las: '.$parqueo[0]->hora_apertura.' cambie la hora de inicio de reserva e intente de nuevo");
+                            </script>';
+            $gg=1;
+        }
+        if(strtotime($v->h_fin_reserva) > strtotime($parqueo[0]->hora_cierre)){
+            echo '<script type="text/javascript">
+                            alert("El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo");
+                            </script>';
+            $gg=1;
+        }
+        date_default_timezone_set('America/La_Paz');
+        if($v->dia_reserva == date("Y-m-d") && strtotime($v->h_inicio_reserva) < strtotime(date("H:i"))){
+            echo '<script type="text/javascript">
+                            alert("Ya son mas de las: '.$v->h_inicio_reserva.' cambie la hora de inicio de reserva e intente de nuevo");
+                            </script>';
+            $gg=1;
+        }
 
-        return redirect('reservas')->with('success','Reserva Exitosa');
-
+        //condicional para ver si es success o fail
+        if($gg==0){
+            $v->save();
+            return redirect('reservas')->with('success','Reserva Exitosa');
+        }else{
+            return $this->edit($v->id_parqueos);
+        }
     }
 
     /**
@@ -99,6 +127,7 @@ class ReservaController extends Controller
     {
         $vh = Parqueo::find($id);
         return view('cliente.reserva_parqueo',compact('vh'));
+
     }
 
 
@@ -139,7 +168,7 @@ class ReservaController extends Controller
         $v->estado_espacio = 1;
         $v->save();
 
-
+        
         return redirect('reservas')->with('success','Reserva Exitosa');
 
     }

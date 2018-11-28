@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
 
         // Se necesita llenar usuarios, roles, users_roles, dias especificos
-        $this->call(UsersTableSeeder::class);
+        //$this->call(UsersTableSeeder::class);
 
         $this->call(RolesTableSeeder::class);
 
-        $this->call(Users_RolesTableSeeder::class);
+        //$this->call(Users_RolesTableSeeder::class);
 
         $this->call(DiasTableSeeder::class);
 
