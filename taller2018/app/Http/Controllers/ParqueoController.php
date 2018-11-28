@@ -102,7 +102,6 @@ class ParqueoController extends Controller
         $parqueo->latitud_x = $request->input('latitud_x');
         $parqueo->longitud_y = $request->input('longitud_y');
         $parqueo->cantidad_p = $request->input('cantidad_p');
-        $parqueo->cantidad_actual = $request->input('cantidad_p');
         $parqueo->foto = $name;
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
@@ -242,7 +241,6 @@ class ParqueoController extends Controller
         $parqueo->latitud_x = $request->input('latitud_x');
         $parqueo->longitud_y = $request->input('longitud_y');
         $parqueo->cantidad_p = $request->input('cantidad_p');
-        $parqueo->cantidad_actual = $request->input('cantidad_p');
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
         $parqueo->hora_apertura = $request->input('hora_apertura');

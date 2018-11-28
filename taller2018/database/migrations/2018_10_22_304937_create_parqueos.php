@@ -23,7 +23,6 @@ class CreateParqueos extends Migration
             $table->decimal('latitud_x', 20, 10);
             $table->decimal('longitud_y', 20, 10);
             $table->integer('cantidad_p');
-            $table->integer('cantidad_actual');
             $table->string('foto', 250);
             $table->string('telefono_contacto_1', 45);
             //$table->string('codigo_pais');
