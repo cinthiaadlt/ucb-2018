@@ -97,6 +97,25 @@ class ReservaController extends Controller
             $gg=1;
         }
 
+        //algoritmo para determinar la validez de los dias habiles del parqueo
+        $dias_habiles = DB::table('precios_alquiler')
+                        ->select('*')
+                        ->where('id_parqueos', $v->id_parqueos)
+                        ->where('estado', false)
+                        ->get();
+
+        $hoje = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+        //echo date('D', strtotime($v->dia_reserva));
+        foreach($dias_habiles as $dias){
+            //echo $dias->id_dias;
+            if($hoje[$dias->id_dias-1] == date('D', strtotime($v->dia_reserva))){
+                echo '<script type="text/javascript">
+                            alert("El parqueo no funciona el dia '.$v->dia_reserva.' cambie la fecha de reserva e intente de nuevo");
+                            </script>';
+                $gg=1;
+            }
+        }
+
         //condicional para ver si es success o fail
         if($gg==0){
             $v->save();
