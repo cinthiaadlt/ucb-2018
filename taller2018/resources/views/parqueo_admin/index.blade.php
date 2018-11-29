@@ -30,7 +30,7 @@
                                 <th>Dias</th>
                                 <th>Contacto</th>
                                 <th>Estado</th>
-                                <th colspan="2">Action</th>
+                                <th colspan="3">Action</th>
                             </tr>
                             </thead>
                             <tbody>

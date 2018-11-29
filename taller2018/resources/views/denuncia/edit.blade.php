@@ -41,62 +41,62 @@
                             <!--usuario que realizo la denuncia en modo oculto-->
 
                                 <input type="text" name="id" class="form-control form-control-alternative" id="id" value ="{{$denuncia->id}}" readonly hidden>
-<div class="row">
-                            <div class="form-group col-md-4">
-                                <label class="form-control-label" for="input-denuncia">Tipo Denuncia:</label>
-                                <select name="cat_tipo_denuncia" id="cat_tipo_denuncia" class="form-control" readonly>
-                                    <option value="{{$denuncia->cat_tipo_denuncia}}" selected>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-control-label" for="input-denuncia">Tipo Denuncia:</label>
+                                    <select name="cat_tipo_denuncia" id="cat_tipo_denuncia" class="form-control" readonly>
+                                        <option value="{{$denuncia->cat_tipo_denuncia}}" selected>
 
-                                            @if($denuncia->cat_tipo_denuncia == '1')
-                                                Mal Servicio
-                                            @else
-                                                @if($denuncia->cat_tipo_denuncia == '2')
-                                                    Daño Vehiculo
+                                                @if($denuncia->cat_tipo_denuncia == '1')
+                                                    Mal Servicio
                                                 @else
-                                                    @if($denuncia->cat_tipo_denuncia == '3')
-                                                        Daño Parqueo
+                                                    @if($denuncia->cat_tipo_denuncia == '2')
+                                                        Daño Vehiculo
                                                     @else
-                                                        @if($denuncia->cat_tipo_denuncia == '4')
-                                                            Parqueo mal estado
+                                                        @if($denuncia->cat_tipo_denuncia == '3')
+                                                            Daño Parqueo
                                                         @else
-                                                            @if($denuncia->cat_tipo_denuncia == '5')
-                                                                Acoso / Lenguaje Ofensivo
+                                                            @if($denuncia->cat_tipo_denuncia == '4')
+                                                                Parqueo mal estado
                                                             @else
-                                                                @if($denuncia->cat_tipo_denuncia == '6')
-                                                                    Irregularidades de pago
+                                                                @if($denuncia->cat_tipo_denuncia == '5')
+                                                                    Acoso / Lenguaje Ofensivo
                                                                 @else
-                                                                    @if($denuncia->cat_tipo_denuncia == '7')
-                                                                        Otros
+                                                                    @if($denuncia->cat_tipo_denuncia == '6')
+                                                                        Irregularidades de pago
+                                                                    @else
+                                                                        @if($denuncia->cat_tipo_denuncia == '7')
+                                                                            Otros
+                                                                        @endif
                                                                     @endif
                                                                 @endif
                                                             @endif
                                                         @endif
                                                     @endif
                                                 @endif
-                                            @endif
-                                    </option>
-                                </select>
-                            </div>
+                                        </option>
+                                    </select>
+                                </div>
 
-                            <div class="form-group col-md-4">
-                                <label class="form-control-label" for="input-denuncia">Nivel Gravedad:</label>
-                                <select name="cat_nivel_gravedad" id="cat_nivel_gravedad" class="form-control" readonly >
-                                    <option value="{{$denuncia->cat_nivel_gravedad}}" >
-                                        @if($denuncia->cat_nivel_gravedad == '1')
-                                            Bajo
-                                        @else
-                                            @if($denuncia->cat_nivel_gravedad == '2')
-                                                Medio
+                                <div class="form-group col-md-6">
+                                    <label class="form-control-label" for="input-denuncia">Nivel Gravedad:</label>
+                                    <select name="cat_nivel_gravedad" id="cat_nivel_gravedad" class="form-control" readonly >
+                                        <option value="{{$denuncia->cat_nivel_gravedad}}" >
+                                            @if($denuncia->cat_nivel_gravedad == '1')
+                                                Bajo
                                             @else
-                                                @if($denuncia->cat_nivel_gravedad == '3')
-                                                    Alto
+                                                @if($denuncia->cat_nivel_gravedad == '2')
+                                                    Medio
+                                                @else
+                                                    @if($denuncia->cat_nivel_gravedad == '3')
+                                                        Alto
+                                                    @endif
                                                 @endif
                                             @endif
-                                        @endif
-                                    </option>
-                                </select>
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
-</div>
                             <div class="row">
 
                             <div class="col-md-12">

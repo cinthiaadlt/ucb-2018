@@ -87,7 +87,13 @@ class ValidacionController extends Controller
             ->orderBy('id_dias')
             ->get();
 
-        return view('validacion.edit',compact('parqueo','id','pq2','validado','dias'));
+        $d2 = DB::table('users')
+            ->select('*')
+            ->where('id', $id)
+            ->orderBy('id')
+            ->get();
+
+        return view('validacion.edit',compact('parqueo','id','pq2','validado','dias','d2'));
     }
 
     /**

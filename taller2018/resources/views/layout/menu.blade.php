@@ -63,7 +63,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('validacion') }}">
-                        <i class="ni ni-circle-08 text-blue"></i> validacion
+                        <i class="ni ni-key-25"></i> validacion
                     </a>
                 </li>
 
@@ -113,7 +113,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ action('DenunciaController@create') }}">
-                        <i class="ni ni-circle-08 text-blue"></i>realizar denuncia
+                        <i class="ni ni-collection"></i>realizar denuncia
                     </a>
                 </li>
 

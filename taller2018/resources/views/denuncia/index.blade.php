@@ -15,8 +15,9 @@
                     <div class="card-header border-0">
                         <h3 class="mb-0">Listado Denuncias Paqueo:
 
-                                {{ $id }}
-
+                            @foreach($d2 as $d)
+                            {{$d->sur_name}}
+                            @endforeach
 
                         </h3>
 
@@ -35,7 +36,7 @@
                             <tr>
                                 <th>Tipo Denuncia</th>
                                 <th>Nivel Gravedad</th>
-                                <th>Fecha</th>
+                                <!-- <th>Fecha</th> -->
                                 <th>Descripcion Denuncia</th>
                                 <th>Estado</th>
                                 <th>Aciones</th>
@@ -91,13 +92,12 @@
                                         @endif
 
                                     </td>
-                                    <td>{{ $denuncia->created_at}}</td>
+                                    <!-- <td>{{ $denuncia->created_at}}</td> -->
                                     <td>{{ $denuncia->descripcion_adicional}}</td>
                                     <td>{{ $denuncia->estado_denuncia}}</td>
 
 
-                                    <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@edit', $denuncia->id_denuncias)}}" onclick="return confirm('¿Desea cambiar el estado de la denuncia?')" >
-                                            <i class="ni ni-fat-add"></i></a></td>
+                                    <td><a class="btn btn-primary btn-xs" href="{{action('DenunciaController@edit', $denuncia->id_denuncias)}}" onclick="return confirm('¿Desea cambiar el estado de la denuncia?')" >Editar</a></td>
 
 
                                 </tr>

@@ -35,47 +35,49 @@
                         <form method="POST" action="{{ route('denuncia.store') }}" role="form" class="panel-body" style="padding-bottom:30px;">
 
                             {{ csrf_field() }}
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-denuncia">Parqueo</label>
+                                            <select name="id_parqueos" id="id_parqueos" class="form-control">
+                                                @foreach($d1 as $den1)
+                                                <option value ="{{$den1->id_parqueos}}">{{ $den1->sur_name}}</option>
+                                                @endforeach
 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-denuncia">Parqueo</label>
-                                    <select name="id_parqueos" id="id_parqueos" class="form-control">
-                                        @foreach($d1 as $den1)
-                                        <option value ="{{$den1->id_parqueos}}">{{ $den1->foto}}</option>
-                                        @endforeach
+                                            </select>
 
-                                    </select>
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group col-lg-6">
+                                        <label for="input-denuncia">Tipo Denuncia:</label>
+                                            <select name="cat_tipo_denuncia" id="cat_tipo_denuncia" class="form-control" >
+                                                <option value="1" >Mal Servicio</option>
+                                                <option value="2">Daños Vehiculo</option>
+                                                <option value="3">Daño Parqueo</option>
+                                                <option value="4">Parqueo mal estado</option>
+                                                <option value="5">Acoso/Lenguaje Ofencivo</option>
+                                                <option value="6">Irregularidades de pago</option>
+                                                <option value="7">Otros</option>
+                                            </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="input-denuncia">Tipo Denuncia:</label>
-                                    <select name="cat_tipo_denuncia" id="cat_tipo_denuncia" class="form-control" >
-                                        <option value="1" >Mal Servicio</option>
-                                        <option value="2">Daños Vehiculo</option>
-                                        <option value="3">Daño Parqueo</option>
-                                        <option value="4">Parqueo mal estado</option>
-                                        <option value="5">Acoso/Lenguaje Ofencivo</option>
-                                        <option value="6">Irregularidades de pago</option>
-                                        <option value="7">Otros</option>
-                                    </select>
-                            </div>
-
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-denuncia">Descripcion Denuncia</label>
-                                    <input type="text" name="descripcion_adicional" class="form-control form-control-alternative" id="descripcion_adicional" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-denuncia">Descripcion Denuncia</label>
+                                            <input type="text" name="descripcion_adicional" class="form-control form-control-alternative" id="descripcion_adicional" >
+                                        </div>
+                                    </div>
                                 </div>
+                                <!--estado inicial al realizar la denuncia modo oculto-->
+
+                                    <input type="text" value="INICIAL" class="form-control" name="estado_denuncia" readonly hidden>
+
+
+                                <input class="submit btn btn-danger" type="submit" value="Submit">
                             </div>
-
-                            <!--estado inicial al realizar la denuncia modo oculto-->
-
-                                <input type="text" value="INICIAL" class="form-control" name="estado_denuncia" readonly hidden>
-
-
-                            <input class="submit btn btn-danger" type="submit" value="Submit">
                         </form>
                     </div>
 
