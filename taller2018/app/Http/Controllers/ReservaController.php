@@ -169,22 +169,6 @@ class ReservaController extends Controller
     }
 
 
-    /**
-     *
-     *
-     *
-     * $vh = DB::table('parqueos')
-    ->select('*')
-    ->where('id_parqueos',$id)
-    ->orderBy('id_parqueos')
-    ->get();
-     *
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request,$id)
     {
         $cliente = auth()->user()->id;
@@ -240,6 +224,6 @@ class ReservaController extends Controller
 
     public function facturar($id){
 
-        return view('');
+        return view('cliente.lista_reservas');
     }
 }

@@ -104,8 +104,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ action('DenunciaController@create') }}">
-                        <i class="ni ni-ruler-pencil"></i>realizar denuncia
+                    <a class="nav-link" href="{{ url('lista_reservas') }}">
+                        <i class="ni ni-ruler-pencil"></i>Reservas
                     </a>
                 </li>
 

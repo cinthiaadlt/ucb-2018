@@ -14,14 +14,14 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
+                                    <th>Nro</th>
+                                    <th>Dueño Parqueo</th>
                                     <th>Direccion</th>
-                                    <th>Hora de Inicio</th>
-                                    <th>Hora Fin</th>
+                                    <th>Hora Inicio <br> Reserva</th>
+                                    <th>Hora Fin <br> Reserva</th>
                                     <th>Estado</th>
-                                    <th>Facturar</th>
+                                    <th>Finalizar <br> Reserva</th>
+                                    <th>Eliminar <br> Reserva</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -29,14 +29,16 @@
                                     @foreach($l as $reserva)
                                         <tr>
                                             <td>{{$reserva->id_reservas}}</td>
-                                            <td>{{$reserva->sur_name}}</td>
-                                            <td>{{$reserva->last_name}}</td>
+                                            <td>{{$reserva->sur_name}}  {{$reserva->last_name}} </td>
                                             <td>{{$reserva->direccion}}</td>
                                             <td>{{$reserva->h_inicio_reserva}}</td>
                                             <td>{{$reserva->h_fin_reserva}}</td>
                                             <td>{{$reserva->estado_reserva}}</td>
-                                            <td><a class="btn btn-primary btn-xs" href="{{action('ReservaController@facturar', $reserva->id_reservas)}}" >
-                                                    <i class="ni ni-fat-add"></i></a></td>
+
+                                            <td><a class="btn btn-github btn-sm" href="{{action('ReservaController@destroy', $reserva->id_reservas)}}"  >
+                                                    <i class="ni ni-time-alarm"></i></a></td>
+                                            <td><a class="btn btn-danger btn-sm" href="{{action('ReservaController@destroy', $reserva->id_reservas)}}" >
+                                                    <i class="ni ni-fat-delete"></i></a></td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -55,3 +57,4 @@
         </div>
     </div>
 @endsection
+
