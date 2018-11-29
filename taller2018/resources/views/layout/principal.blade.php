@@ -47,12 +47,11 @@
                         <div class="media align-items-center">
                             <span class="avatar avatar rounded-circle">
                               <img alt="Image placeholder" src="../../../assets/img/theme/foto_perfil.jpg" height="50" width="50">
-
                             </span>
+
                         </div>
-                        <div class="media-body ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm  font-weight-bold">{{ auth::user()->name}}</span>
-                        </div>
+                        <span class="mb-0 text-sm  font-weight-bold">{{ auth::user()->sur_name}} {{auth::user()->last_name}}</span>
+
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">

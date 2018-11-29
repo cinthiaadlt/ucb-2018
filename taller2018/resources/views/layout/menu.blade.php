@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
 
-            <img src="../assets/img/brand/logo3.png" align="center" width="100" height="150">
+            <img src="../../../assets/img/brand/logo3.png" align="center" width="100" height="150">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
