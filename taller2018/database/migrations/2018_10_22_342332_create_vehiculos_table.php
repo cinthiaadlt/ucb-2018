@@ -20,7 +20,7 @@ class CreateVehiculosTable extends Migration
             $table->string('color','10');
             $table->string('placa','100');
             $table->string('foto_vehiculo','100')->nullable();
-            $table->unsignedInteger('cat_tipo_vehiculo');
+            $table->string('cat_tipo_vehiculo');
             $table->foreign('id_modelos')->references('id_modelos')->on('modelos');
             $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();

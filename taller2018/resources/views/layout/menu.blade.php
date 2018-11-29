@@ -1,23 +1,15 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
-        <!-- Toggler -->
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
-                aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <!-- Brand -->
-        <a class="navbar-brand pt-0" href="./index.html">
-            <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+
+            <a class="navbar-brand pt-0" href="../index.html">
+                <img src=" ../../../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            </a>
+            <img src="../../../assets/img/brand/logo3.png" align="center" width="100" height="150">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
-                    <div class="col-6 collapse-brand">
-                        <a href="./index.html">
-                            <img src="./assets/img/brand/blue.png">
-                        </a>
-                    </div>
+
                     <div class="col-6 collapse-close">
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
                             <span></span>
@@ -51,31 +43,31 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('parqueo_admin') }}">
-                        <i class="ni ni-pin-3"></i> Parqueos
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('reservas') }}">
-                        <i class="ni ni-single-02"></i> Reservas
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('validacion') }}">
-                        <i class="ni ni-key-25"></i> validacion
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('roles') }}">
-                        <i class="ni ni-circle-08 text-black"></i> Roles
+                        <i class="ni ni-pin-3"></i> Parqueos Registrados
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('users') }}">
                         <i class="ni ni-circle-08 text-black"></i> Usuarios
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('reservas') }}">
+                        <i class="ni ni-single-copy-04"></i> Reservas
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('validacion') }}">
+                        <i class="ni ni-key-25"></i> validacion parqueos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('roles') }}">
+                        <i class="ni ni-circle-08 text-black"></i> Roles
                     </a>
                 </li>
 
@@ -104,7 +96,11 @@
                         <i class="ni ni-bus-front-12"></i> Vehiculos Registrados
                     </a>
                 </li>
-
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ url('reservacliente') }}">
+                            <i class="ni ni-single-02"></i> Reservas
+                        </a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="ni ni-favourite-28"></i> Parqueos Favoritos
@@ -180,7 +176,7 @@
             @if (auth::user()->hasRole ('User') && auth::user ()->myActualRole () != 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}">
-                    <i class="ni ni-circle-08 text-pink"></i>Modo Usuario
+                    <i class="ni ni-circle-08 text-blue"></i>Modo Usuario
                 </a>
             </li>
             @endif
@@ -188,7 +184,7 @@
             @if (auth::user()->hasRole ('Owner') && auth::user ()->myActualRole () != 3)
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('zona') }}">
-                    <i class="ni ni-circle-08 text-pink"></i>Modo Host
+                    <i class="ni ni-circle-08 text-yellow"></i>Modo Host
                 </a>
             </li>
             @endif

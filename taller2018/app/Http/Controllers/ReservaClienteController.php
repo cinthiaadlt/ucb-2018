@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class ReservaAnfitrionController extends Controller
+class ReservaClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,27 +15,21 @@ class ReservaAnfitrionController extends Controller
      */
     public function index()
     {
-        $pq2 = DB::table('users')
-            ->select('*')
-            ->orderBy('id')
-            ->get();
-        $pq1 = DB::table('parqueos')
-            ->select('*')
-            ->where('id_users', Auth::id())
-            ->orderBy('id_parqueos')
-            ->get();
-        $pq3 = DB::table('zonas')
-            ->select('*')
-            ->orderBy('id_zonas')
-            ->get();
-
-       $reservasanfitrion = DB::table('reservas')
+        //
+        $reservascliente = DB::table('reservas')
                                 ->select('*')
-                                ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
-                                ->where('parqueos.id_users', Auth::id())
+                                ->where('id_user', Auth::id())
                                 ->orderBy('h_inicio_reserva')
                                 ->get();
-       return view('reservaanfitrion.index',compact('reservasanfitrion','pq2','pq1','pq3'));
+        $parqueo = DB::table('parqueos')
+                    ->select('*')
+                    ->join('reservas', 'reservas.id_parqueos', '=', 'parqueos.id_parqueos')
+                    ->get();
+        $pq3 = DB::table('zonas')
+                    ->select('*')
+                    ->orderBy('id_zonas')
+                    ->get();
+        return view('reservacliente.index',compact('reservascliente','parqueo','pq1','pq3'));
     }
 
     /**
@@ -46,26 +40,20 @@ class ReservaAnfitrionController extends Controller
     public function create()
     {
         //
-        $pq2 = DB::table('users')
-        ->select('*')
-        ->orderBy('id')
-        ->get();
-         $pq1 = DB::table('parqueos')
-        ->select('*')
-        ->orderBy('id_parqueos')
-        ->where('id_users', Auth::id())
-        ->get();
-        $pq3 = DB::table('zonas')
-            ->select('*')
-            ->orderBy('id_zonas')
-            ->get();
-         $reservasanfitrion = DB::table('reservas')
+        $reservascliente = DB::table('reservas')
                                 ->select('*')
-                                ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
-                                ->where('parqueos.id_users', Auth::id())
+                                ->where('id_user', Auth::id())
                                 ->orderBy('h_inicio_reserva')
                                 ->get();
-         return view('reservaanfitrion.historia',compact('reservasanfitrion','pq2','pq1','pq3'));
+        $parqueo = DB::table('parqueos')
+                    ->select('*')
+                    ->join('reservas', 'reservas.id_parqueos', '=', 'parqueos.id_parqueos')
+                    ->get();
+        $pq3 = DB::table('zonas')
+                    ->select('*')
+                    ->orderBy('id_zonas')
+                    ->get();
+        return view('reservacliente.historia',compact('reservascliente','parqueo','pq1','pq3'));
     }
 
     /**
@@ -122,6 +110,7 @@ class ReservaAnfitrionController extends Controller
     public function destroy($id)
     {
         //
+        //
         $reserva = \App\Reserva::find($id);
         //volver a subir el numero
         $parqueo = DB::table('parqueos')
@@ -133,6 +122,6 @@ class ReservaAnfitrionController extends Controller
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual+1]);
         
         $reserva->delete();
-        return redirect('reservasanfitrion')->with('success','Information has been  deleted');
+        return redirect('reservacliente')->with('success','Information has been  deleted');
     }
 }

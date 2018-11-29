@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon;
 
 class VehiculoController extends Controller
 {
@@ -46,27 +47,33 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->hasfile('filename'));
         $this->validate($request,[
             'id_modelos'=>'required',
-            'id_usuarios'=>'required',
             'color'=>'required',
             'placa'=>'required',
-            'foto_vehiculo' => 'required',
+            'filename' => 'required',
             'cat_tipo_vehiculo'=> 'required'
 
         ]);
 
+        if($request->hasfile('filename'))
+        {
+            $file = $request->file('filename');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+        }
+
+        $cliente = auth()->user()->id;
         $v = new Vehiculo();
         $v->id_modelos = $request->input('id_modelos');
-        $v->id_usuarios= $request->input('id_usuarios');
+        $v->id_users= $cliente;
         $v->color = $request->input('color');
         $v->placa = $request->input('placa');
         $v->cat_tipo_vehiculo=$request->input('cat_tipo_vehiculo');
-        $v->foto_vehiculo = $request->input('foto_vehiculo');
+        $v->foto_vehiculo = $name;
         $v->save();
 
-
-        //Vehiculo::create($request->all());
         return redirect()->action('VehiculoController@list');
 
 
@@ -112,7 +119,7 @@ class VehiculoController extends Controller
     {
         $this->validate($request,[
             'id_modelos'=>'required',
-            'id_usuarios'=>'required',
+            'id_users'=>'required',
             'color'=>'required',
             'placa'=>'required',
             'foto_vehiculo' => 'required',
