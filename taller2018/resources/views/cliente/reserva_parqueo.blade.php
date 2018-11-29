@@ -146,7 +146,6 @@
                                 </div>
                                 <hr class="my-4" />
                                 <input class="btn btn-success" type="submit" value="Reservar parqueo">
-                                <a class="btn btn-success" href="{{ route('test.route', $vh->id_parqueos) }}" method="GET">Prueba Factura</a>
                             </form>
                         </div>
                     </div>

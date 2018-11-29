@@ -96,7 +96,11 @@
                         <i class="ni ni-bus-front-12"></i> Vehiculos Registrados
                     </a>
                 </li>
-
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ url('reservacliente') }}">
+                            <i class="ni ni-single-02"></i> Reservas
+                        </a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="ni ni-favourite-28"></i> Parqueos Favoritos
