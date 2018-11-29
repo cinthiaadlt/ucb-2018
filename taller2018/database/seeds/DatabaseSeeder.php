@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DiasTableSeeder::class);
 
         $this->call(ZonasTableSeeder::class);
+        $this->call(ModelosTableSeeder::class);
 
         //Se crean las zonas, parqueos con la clase Factory
         //factory(Zona::class,7)->create();
