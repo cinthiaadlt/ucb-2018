@@ -48,17 +48,17 @@ class VehiculoController extends Controller
     {
         $this->validate($request,[
             'id_modelos'=>'required',
-            'id_usuarios'=>'required',
+            'id_users'=>'required',
             'color'=>'required',
             'placa'=>'required',
             'foto_vehiculo' => 'required',
             'cat_tipo_vehiculo'=> 'required'
 
         ]);
-
+        $cliente = auth()->user()->id;
         $v = new Vehiculo();
         $v->id_modelos = $request->input('id_modelos');
-        $v->id_usuarios= $request->input('id_usuarios');
+        $v->id_users= $cliente;
         $v->color = $request->input('color');
         $v->placa = $request->input('placa');
         $v->cat_tipo_vehiculo=$request->input('cat_tipo_vehiculo');
@@ -112,7 +112,7 @@ class VehiculoController extends Controller
     {
         $this->validate($request,[
             'id_modelos'=>'required',
-            'id_usuarios'=>'required',
+            'id_users'=>'required',
             'color'=>'required',
             'placa'=>'required',
             'foto_vehiculo' => 'required',

@@ -35,57 +35,49 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('vehiculo.store') }}" role="form" class="form-group" style="padding-bottom:30px;">
                             {{ csrf_field() }}
-                          <div class="col-lg-12">
-                              <div class="form-group">
-                                  <label class="form-control-label" for="input-username">Usuario Propietario</label>
-                                  <select name="id_usuarios" id="id_usuarios" class="form-control">
-                                      <option value="1">option one</option>
-                                      <option value="2">option two</option>
+                          <div class="row">
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="input-username">Modelo</label>
+                                      <select name="id_modelos" id="id_modelos" class="form-control">
+                                          @foreach($vh2 as $v)
+                                              <option value ="{{$v->id_modelos}}">{{ $v->modelo }}</option>
+                                          @endforeach
 
-                                  </select>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="input-username">Color</label>
+                                      <input type="text" name="color" id="color" class="form-control form-control-alternative" >
+                                  </div>
                               </div>
                           </div>
 
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">Placa</label>
+                                        <input type="text" name="placa" id="placa" class="form-control form-control-alternative" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">Tipo Vehiculo</label>
+                                        <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+                            </div>
 
-                          <div class="col-lg-12">
-                              <div class="form-group">
-                                  <label class="form-control-label" for="input-username">Modelo</label>
-                                  <select name="id_modelos" id="id_modelos" class="form-control">
-                                      @foreach($vh2 as $v)
-                                          <option value ="{{$v->id_modelos}}">{{ $v->modelo }}</option>
-                                      @endforeach
 
-                                  </select>
-                              </div>
-                          </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="Imagen">Imagen:</label>
+                                    <input type="file" accept="image/*" name="foto_vehiculo" id="foto_vehiculo">
+                                </div>
+                            </div>
 
-                          <div class="col-lg-12">
-                              <div class="form-group">
-                                  <label class="form-control-label" for="input-username">Color</label>
-                                  <input type="text" name="color" id="color" class="form-control form-control-alternative" >
-                              </div>
-                          </div>
-
-                          <div class="col-lg-12">
-                              <div class="form-group">
-                                  <label class="form-control-label" for="input-username">Placa</label>
-                                  <input type="text" name="placa" id="placa" class="form-control form-control-alternative" >
-                              </div>
-                          </div>
-
-                          <div class="col-lg-12">
-                              <div class="form-group">
-                                  <label class="form-control-label" for="input-username">Foto Vehiculo</label>
-                                  <input type="text" name="foto_vehiculo" id="foto_vehiculo"class="form-control form-control-alternative">
-                              </div>
-                          </div>
-
-                          <div class="col-lg-12">
-                              <div class="form-group">
-                                  <label class="form-control-label" for="input-username">Tipo Vehiculo</label>
-                                  <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" class="form-control form-control-alternative">
-                              </div>
-                          </div>
                           <input class="submit btn btn-danger" type="submit" value="Registrar">
                         </form>
                     </div>
