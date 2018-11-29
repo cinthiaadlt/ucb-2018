@@ -92,7 +92,7 @@ class ParqueoController extends Controller
         if($request->hasfile('filename'))
          {
             $file = $request->file('filename');
-            $name=time().$file->getClientOriginalName();
+            $name=$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
          }
         $parqueo= new \App\Parqueo;
