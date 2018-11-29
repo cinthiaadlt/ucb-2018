@@ -25,6 +25,7 @@ Auth::routes ();
     ], ['middleware'=>['auth', 'user']]);
 
     Route::resource('cliente','ClienteController', ['middleware'=>['auth', 'user']]);
+    Route::resource('reservacliente','ReservaClienteController', ['middleware'=>['auth', 'user']]);
     Route::resource('vehiculo','VehiculoController', ['middleware'=>['auth', 'user']]);
     Route::get('makeMeUser','UsersRoleController@makeMeUser', ['middleware'=>['auth']]);
     Route::resource('reservas','ReservaController', ['middleware' => ['auth', 'user']]);

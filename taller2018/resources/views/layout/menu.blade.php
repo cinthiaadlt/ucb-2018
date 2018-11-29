@@ -61,7 +61,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('validacion') }}">
-                        <i class="ni ni-check-bold"></i> validacion parqueos
+                        <i class="ni ni-key-25"></i> validacion parqueos
                     </a>
                 </li>
 
@@ -96,7 +96,11 @@
                         <i class="ni ni-bus-front-12"></i> Vehiculos Registrados
                     </a>
                 </li>
-
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ url('reservacliente') }}">
+                            <i class="ni ni-single-02"></i> Reservas
+                        </a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="ni ni-favourite-28"></i> Parqueos Favoritos
@@ -104,8 +108,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('lista_reservas') }}">
-                        <i class="ni ni-ruler-pencil"></i>Reservas
+                    <a class="nav-link" href="{{ action('DenunciaController@create') }}">
+                        <i class="ni ni-collection"></i>realizar denuncia
                     </a>
                 </li>
 

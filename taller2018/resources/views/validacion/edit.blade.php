@@ -29,12 +29,14 @@
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <h3 class="mb-0">Validar Parqueo:
-                                    {{$id}}
+                                    @foreach($d2 as $d)
+                                        {{$d->sur_name}}
+                                    @endforeach
                                 </h3>
                             </div>
                         </div>
                     </div>
-                    <hr>
+
                     <div class="card-body">
 
                         <form method="post" enctype="multipart/form-data" action="{{action('ValidacionController@update', $id)}}">
@@ -87,13 +89,6 @@
                                     @endforeach
 
                             <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label for="Imagen">Imagen Validacion:</label>
-                                    <input type="file" accept="image/*" name="filename">
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="form-control-label" for="input-parqueo">Observaciones:</label>
                                     <input type="text" class="form-control form-control-alternative" name="observaciones_validacion" id="observaciones_validacion" value ="{{$parqueo->observaciones_validacion}}">
@@ -101,8 +96,13 @@
                             </div>
 
                             <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label for="Estado">Estado Funcionamiento:</label>
+                                <div class="form-group col-md-6">
+                                    <label class="form-control-label" for="Imagen">Imagen Validacion:</label>
+                                    <input type="file" accept="image/*" name="filename">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label class="form-control-label" for="Estado">Estado Funcionamiento:</label>
 
                                     <select name="estado_funcionamiento" id="estado_funcionamiento" class="form-control" value ="{{$parqueo->estado_funcionamiento}}">
                                         <option value="1">Aprobar</option>

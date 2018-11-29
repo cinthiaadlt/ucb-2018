@@ -24,7 +24,7 @@ class DenunciaController extends Controller
     {
 
         $d1 = DB::table('parqueos')
-            ->select('*')
+            ->join('users','users.id','=','parqueos.id_users')
             ->orderBy('id_parqueos')
             ->get();
         $d2 = DB::table('users')
@@ -99,7 +99,12 @@ class DenunciaController extends Controller
             ->where('estado_denuncia', 'LIKE', "%$estado_denuncia%")
             ->paginate(5);
         //$p1 = Parqueo::find($id);
-        return view('denuncia.index',compact('p2','id'));
+        $d2 = DB::table('users')
+            ->select('*')
+            ->where('id', $id)
+            ->orderBy('id')
+            ->get();
+        return view('denuncia.index',compact('p2','id','d2'));
 
     }
     /**
@@ -160,16 +165,4 @@ class DenunciaController extends Controller
         //
     }
 
-    public function listdenuncia(Request $request, $id)
-    {
-        $estado_denuncia = $request->get('estado_denuncia');
-        $p2 = DB::table('denuncias')
-            ->join('parqueos','parqueos.id_parqueos','=','denuncias.id_parqueos')
-            ->join('users','users.id','=','denuncias.id')
-            ->orderBy('id_denuncias','desc')
-            ->where('estado_denuncia', 'LIKE', "%$estado_denuncia%")
-            ->paginate(5);
-        //$p1 = Parqueo::find($id);
-        return view('denuncia.index',compact('p2','id'));
-    }
 }
