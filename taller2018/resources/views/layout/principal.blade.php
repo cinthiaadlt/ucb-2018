@@ -35,7 +35,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <img src="./assets/img/brand/blue.png" width="90" height="70">
+            <img src=" ../../../assets/img/brand/blue.png" width="90" height="70">
             <a class="h3 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{url('zona')}}"></a>
             <!-- Form -->
 
@@ -46,7 +46,8 @@
 
                         <div class="media align-items-center">
                             <span class="avatar avatar rounded-circle">
-                              <img alt="Image placeholder" src="./assets/img/theme/foto_perfil.jpg" height="50" width="50">
+                              <img alt="Image placeholder" src="../../../assets/img/theme/foto_perfil.jpg" height="50" width="50">
+
                             </span>
                         </div>
                         <div class="media-body ml-2 d-none d-lg-block">
