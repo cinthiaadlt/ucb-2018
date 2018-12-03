@@ -150,7 +150,7 @@ return [
         'name'                  => 'nombre',
         'username'              => 'usuario',
         'email'                 => 'correo electrónico',
-        'first_name'            => 'nombre',
+        'sur_name'            => 'nombre',
         'last_name'             => 'apellido',
         'password'              => 'contraseña',
         'password_confirmation' => 'confirmación de la contraseña',

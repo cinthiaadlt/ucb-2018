@@ -32,7 +32,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required pattern="[a-zA-Z0-9]+" title="Ingresa solo numeros y letras">
                 @if ($errors->has('password'))
                   <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>
