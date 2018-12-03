@@ -89,9 +89,18 @@ class ParqueoController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasfile('filename'))
+        $request->validate([
+            'latitud_x' => 'required',
+            'longitud_y' => 'required',
+            'telefono_contacto_1' => 'required|numeric',
+            'imagen' => 'required|image',
+            'tarifa_hora_normal' => 'required|numeric|between:0, 20.00',
+            'dia' => 'required'
+        ]);
+
+        if($request->hasfile('imagen'))
          {
-            $file = $request->file('filename');
+            $file = $request->file('imagen');
             $name=$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
          }
@@ -299,7 +308,7 @@ class ParqueoController extends Controller
             if($veri->estado == false){
                 //echo 0 ."dia". $veri->id_dias;
                 for($i =0 ; $i < count($reservasanfitrion); $i++){
-                    if($mytime->toDateString() < $reservasanfitrion[$i]->dia_reserva){
+                    if($mytime->toDateString() <= $reservasanfitrion[$i]->dia_reserva){
                         //echo date('D', strtotime($reservasanfitrion[$i]->dia_reserva));
                         if(date('D', strtotime($reservasanfitrion[$i]->dia_reserva)) == $hoje[$veri->id_dias-1]){
                             echo '<script type="text/javascript">

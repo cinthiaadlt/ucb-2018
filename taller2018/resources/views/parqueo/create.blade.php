@@ -74,20 +74,20 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                       <label for="Direccion">Direccion:</label>
-                                      <input type="text" class="form-control" name="direccion" required>
+                                      <input type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" required>
                                     </div>
                                   </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Cantidad">Cantidad Vehiculos:</label>
-                                            <input type="text" class="form-control" name="cantidad_p" required>
+                                            <input type="number" class="form-control" name="cantidad_p" min="1" max="20" value="{{ old('cantidad_p') }}" required>
                                         </div>
                                     </div>
 
                                         <div class="row">
                                                 <div class="form-group col-md-4">
                                                         <label for="Imagen">Imagen:</label>
-                                                  <input type="file" accept="image/*" name="filename">
+                                                  <input type="file" accept="image/*" name="imagen">
                                                </div>
                                         </div>
 
@@ -95,24 +95,24 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Contacto1">Contacto 1:</label>
-                                            <input type="text" class="form-control" name="telefono_contacto_1" required>
+                                            <input type="text" class="form-control" name="telefono_contacto_1" value="{{ old('telefono_contacto_1') }}" required>
                                         </div>
                                     </div>
                                     <!-- -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                           <label for="HoraApertura">Hora Apertura:</label>
-                                          <input type="time" class="form-control" name="hora_apertura" required>
+                                          <input type="time" class="form-control" name="hora_apertura" value="{{ old('hora_apertura') }}" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                           <label for="HoraCierre">Hora Cierre:</label>
-                                          <input type="time" class="form-control" name="hora_cierre" required>
+                                          <input type="time" class="form-control" name="hora_cierre" value="{{ old('hora_cierre') }}" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Tarifa">Tarifa:</label>
-                                            <input type="text" class="form-control" name="tarifa_hora_normal" required>
+                                            <input type="text" class="form-control" name="tarifa_hora_normal" value="{{ old('tarifa_hora_normal') }}" required>
                                         </div>
                                     </div>
                                     <div class="row">
