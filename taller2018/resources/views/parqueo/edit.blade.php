@@ -83,18 +83,17 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="Cantidad">Cantidad Vehiculos:</label>
-                                            <input type="text" class="form-control" name="cantidad_p" value="{{$parqueo->cantidad_p}}" required>
+                                            <input type="number" class="form-control" name="cantidad_p" min="1" max="20" value="{{$parqueo->cantidad_p}}" required>
                                         </div>
                                     </div>
 
-                                <!-- Codigo de pais para uso de herramienta twilio
                                     <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <label for="Contacto">Codigo Pais:</label>
-                                            <input type="text" class="form-control" name="codigo_pais" value="{{$parqueo->codigo_pais}}">
+                                        <div class="form-group col-md-4">
+                                            <label for="Imagen">Imagen:</label>
+                                            <img width="200" height="200" src="../../../images/{{$parqueo->foto}}">
+                                            <input type="file" accept="image/*" name="imagen">
                                         </div>
                                     </div>
-                                -->
 
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -133,9 +132,9 @@
                                                         @foreach($dias as $dia)
                                                             @if($val->id_dias == $dia->id_dias)
                                                                 @if($val->estado == true)
-                                                                    <input type="checkbox" name="servi[]" value="{{$val->id_dias}}" checked>&nbsp;{{substr($dia->nombre, 0, 3)}}
+                                                                    <input type="checkbox" name="dia[]" value="{{$val->id_dias}}" checked>&nbsp;{{substr($dia->nombre, 0, 3)}}
                                                                 @else 
-                                                                    <input type="checkbox" name="servi[]" value="{{$val->id_dias}}">&nbsp;{{substr($dia->nombre, 0, 3)}}
+                                                                    <input type="checkbox" name="dia[]" value="{{$val->id_dias}}">&nbsp;{{substr($dia->nombre, 0, 3)}}
                                                                 @endif
                                                             @endif
                                                         @endforeach

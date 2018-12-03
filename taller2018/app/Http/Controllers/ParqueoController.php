@@ -237,6 +237,16 @@ class ParqueoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'latitud_x' => 'required',
+            'longitud_y' => 'required',
+            'telefono_contacto_1' => 'required|numeric',
+            'telefono_contacto_2' => 'nullable|numeric',
+            'imagen' => 'nullable|image|max:5000',
+            'tarifa_hora_normal' => 'required|numeric|between:0, 20.00',
+            'dia' => 'required'
+        ]);
+
         $gg=0;
         if($request->input('estado_funcionamiento') == 'Inactivo')
          {
@@ -244,6 +254,7 @@ class ParqueoController extends Controller
          }else{
             $chozni = 1;
          }
+
         $parqueo= \App\Parqueo::find($id);
         $parqueo->id_users = Auth::id();
         $parqueo->id_zonas = $request->input('id_zonas');
@@ -252,6 +263,13 @@ class ParqueoController extends Controller
         $parqueo->longitud_y = $request->input('longitud_y');
         $parqueo->cantidad_p = $request->input('cantidad_p');
         $parqueo->cantidad_actual = $request->input('cantidad_p');
+        if($request->hasfile('imagen'))
+        {
+           $file = $request->file('imagen');
+           $name=$file->getClientOriginalName();
+           $file->move(public_path().'/images/', $name);
+           $parqueo->foto = $name;
+        }
         $parqueo->telefono_contacto_1 = $request->input('telefono_contacto_1');
         $parqueo->telefono_contacto_2 = $request->input('telefono_contacto_2');
         $parqueo->hora_apertura = $request->input('hora_apertura');
@@ -262,7 +280,7 @@ class ParqueoController extends Controller
         $parqueo->cat_validacion = $request->input('cat_validacion');
         $parqueo->save();
 
-        $myCheckboxes = $request->input('servi');
+        $myCheckboxes = $request->input('dia');
         
         DB::table('precios_alquiler')
         ->where('id_parqueos', $id)
@@ -324,7 +342,6 @@ class ParqueoController extends Controller
                 }
             }
         }
-        
         if($gg==0){
             return redirect('parqueos');
         }else{
