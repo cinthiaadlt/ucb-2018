@@ -92,8 +92,8 @@ class ParqueoController extends Controller
         $request->validate([
             'latitud_x' => 'required',
             'longitud_y' => 'required',
-            'telefono_contacto_1' => 'required|numeric',
-            'imagen' => 'required|image',
+            'telefono_contacto_1' => 'required|numeric|digits_between:5,10',
+            'imagen' => 'required|image|max:5000',
             'tarifa_hora_normal' => 'required|numeric|between:0, 20.00',
             'dia' => 'required'
         ]);
@@ -154,6 +154,34 @@ class ParqueoController extends Controller
                 )
             );
         }
+
+                //validar que la hora de inicio sea mayor a la de fin
+                if($parqueo->hora_apertura > $parqueo->hora_cierre){
+                    return back()->withErrors("Hora Apertura: $parqueo->hora_apertura mayor a Hora Cierre: $parqueo->hora_cierre");
+                }
+        
+                //parsear el string de horas a tiempo
+                $hora_ap = Carbon\Carbon::parse($parqueo->hora_apertura);
+                $hora_ci = Carbon\Carbon::parse($parqueo->hora_cierre);
+                //echo $hora_ap->diffInHours($hora_ci);
+                //echo $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60;
+        
+                //validar que tengan una hora de diferencia
+                if($hora_ap->diffInHours($hora_ci) == 0 && $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 < 60){
+                    return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
+                }
+        
+                //validar que tengan una hora de diferencia
+                if($hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 != 0){
+                    return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
+                }
+        
+                //validar que tengan una hora de diferencia
+                if($hora_ap->minute != 0 || $hora_ci->minute != 0){
+                    if($hora_ap->minute != 30 || $hora_ci->minute != 30){
+                    return back()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");
+                    }
+                }
         
         return redirect('parqueos')->with('success', 'Parqueo Anadido');
     }
@@ -240,8 +268,8 @@ class ParqueoController extends Controller
         $request->validate([
             'latitud_x' => 'required',
             'longitud_y' => 'required',
-            'telefono_contacto_1' => 'required|numeric',
-            'telefono_contacto_2' => 'nullable|numeric',
+            'telefono_contacto_1' => 'required|numeric|digits_between:5,10',
+            'telefono_contacto_2' => 'nullable|numeric|digits_between:5,10',
             'imagen' => 'nullable|image|max:5000',
             'tarifa_hora_normal' => 'required|numeric|between:0, 20.00',
             'dia' => 'required'
