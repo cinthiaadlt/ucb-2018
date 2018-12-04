@@ -320,6 +320,8 @@ class ParqueoController extends Controller
         $mytime = Carbon\Carbon::now();
         //echo $mytime->toDateString();
         //echo $verificar;
+
+        //verificar si existe alguna reserva activa cuando unboxeamos algun dia
         $hoje = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
         $chozni = array('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo');
         foreach($verificar as $veri){
@@ -329,24 +331,48 @@ class ParqueoController extends Controller
                     if($mytime->toDateString() <= $reservasanfitrion[$i]->dia_reserva){
                         //echo date('D', strtotime($reservasanfitrion[$i]->dia_reserva));
                         if(date('D', strtotime($reservasanfitrion[$i]->dia_reserva)) == $hoje[$veri->id_dias-1]){
-                            echo '<script type="text/javascript">
-                            alert("Existe una reserva activa el dia '.$chozni[$veri->id_dias-1].' eliminela e intente de nuevo");
-                            </script>';
-                            $gg=1;
                             DB::table('precios_alquiler')
                                 ->where('id_parqueos', $id)
                                 ->where('id_dias', $veri->id_dias)
                                 ->update(['estado'=>true]);
+                            
+                            return back()->withErrors('Existe una reserva activa el dia '.$chozni[$veri->id_dias-1].' eliminela e intente de nuevo');
                         }
                     }
                 }
             }
         }
-        if($gg==0){
-            return redirect('parqueos');
-        }else{
-            return $this->edit($id);
+
+        //validar que la hora de inicio sea mayor a la de fin
+        if($parqueo->hora_apertura > $parqueo->hora_cierre){
+            return back()->withErrors("Hora Apertura: $parqueo->hora_apertura mayor a Hora Cierre: $parqueo->hora_cierre");
         }
+
+        //parsear el string de horas a tiempo
+        $hora_ap = Carbon\Carbon::parse($parqueo->hora_apertura);
+        $hora_ci = Carbon\Carbon::parse($parqueo->hora_cierre);
+        //echo $hora_ap->diffInHours($hora_ci);
+        //echo $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60;
+
+        //validar que tengan una hora de diferencia
+        if($hora_ap->diffInHours($hora_ci) == 0 && $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 < 60){
+            return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
+        }
+
+        //validar que tengan una hora de diferencia
+        if($hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 != 0){
+            return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
+        }
+
+        //validar que tengan una hora de diferencia
+        if($hora_ap->minute != 0 || $hora_ci->minute != 0){
+            if($hora_ap->minute != 30 || $hora_ci->minute != 30){
+            return back()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");
+            }
+        }
+
+        //si todo es correcto volver a parqueos
+        return redirect('parqueos');
     }
 
     /**
