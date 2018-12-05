@@ -121,7 +121,6 @@ class ParqueoController extends Controller
         $parqueo->estado_funcionamiento = 'false';
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
-        $parqueo->save();
 
         //algoritmo para determinar el estado de los dias con los checkbox
         $array = array('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo');
@@ -144,20 +143,9 @@ class ParqueoController extends Controller
             }
             //dd($estado);
 
-        //insert de los dias al sistema
-        for($i = 1; $i <= 7; $i++){
-            DB::table('precios_alquiler')->insert(
-                array(
-                    'id_parqueos' => $parqueo->id_parqueos,
-                    'id_dias' => $i,
-                    'estado' => $estado[$i-1]
-                )
-            );
-        }
-
                 //validar que la hora de inicio sea mayor a la de fin
                 if($parqueo->hora_apertura > $parqueo->hora_cierre){
-                    return back()->withErrors("Hora Apertura: $parqueo->hora_apertura mayor a Hora Cierre: $parqueo->hora_cierre");
+                    return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura mayor a Hora Cierre: $parqueo->hora_cierre");
                 }
         
                 //parsear el string de horas a tiempo
@@ -168,21 +156,34 @@ class ParqueoController extends Controller
         
                 //validar que tengan una hora de diferencia
                 if($hora_ap->diffInHours($hora_ci) == 0 && $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 < 60){
-                    return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
+                    return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
                 }
         
                 //validar que tengan una hora de diferencia
                 if($hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 != 0){
-                    return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
+                    return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
                 }
         
                 //validar que tengan una hora de diferencia
                 if($hora_ap->minute != 0 || $hora_ci->minute != 0){
                     if($hora_ap->minute != 30 || $hora_ci->minute != 30){
-                    return back()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");
+                    return back()->withInput()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");
                     }
                 }
-        
+
+        $parqueo->save();
+
+                //insert de los dias al sistema
+                for($i = 1; $i <= 7; $i++){
+                    DB::table('precios_alquiler')->insert(
+                        array(
+                            'id_parqueos' => $parqueo->id_parqueos,
+                            'id_dias' => $i,
+                            'estado' => $estado[$i-1]
+                        )
+                    );
+                }
+
         return redirect('parqueos')->with('success', 'Parqueo Anadido');
     }
 
