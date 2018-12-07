@@ -53,11 +53,11 @@
                                     <div class="form-row">
                                             <div class="form-group col-md-6">
                                               <label for="Latitud">Latitud:</label>
-                                              <input type="text" class="form-control" name="latitud_x" id="lat" readonly>
+                                              <input type="text" class="form-control" value="{{ old('latitud_x')}}" name="latitud_x" id="lat" readonly>
                                             </div>
                                             <div class="form-group col-md-6">
                                               <label for="Longitud">Longitud:</label>
-                                              <input type="text" class="form-control" name="longitud_y" id="lon" readonly>
+                                              <input type="text" class="form-control" value="{{ old('longitud_y')}}" name="longitud_y" id="lon" readonly>
                                             </div>
                                           </div>
 
@@ -66,7 +66,11 @@
                                     <label for="PrimerNombre">Zonas:</label>
                                     <select name="id_zonas" id="id_zonas" class="form-control">
                                             @foreach($pq2 as $p)
-                                            <option value ="{{$p->id_zonas}}">{{ $p->zona }}</option>
+                                            @if(old('id_zonas') == $p->id_zonas)
+                                                <option value ="{{$p->id_zonas}}" selected>{{ $p->zona }}</option>
+                                            @else
+                                                <option value ="{{$p->id_zonas}}">{{ $p->zona }}</option>
+                                            @endif
                                             @endforeach
                                          </select>
                                   </div>

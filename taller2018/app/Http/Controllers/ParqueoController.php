@@ -45,7 +45,11 @@ class ParqueoController extends Controller
     {
            //configuaración
            $config = array();
-           $config['center'] = 'auto';
+           if(old('latitud_x')){
+            $config['center'] = ''. old('latitud_x') . '' . ',' . '' . old('longitud_y') . '';
+           }else{
+            $config['center'] = 'auto';
+           }
            $config['map_width'] = 'auto';
            $config['map_height'] = 400;
            $config['zoom'] = '15';
@@ -64,7 +68,11 @@ class ParqueoController extends Controller
            // Una vez se conozca la posición del usuario
    
            $marker = array();
-           $marker['position'] = 'auto';
+           if(old('latitud_x')){
+            $marker['position'] = ''. old('latitud_x') . '' . ',' . '' . old('longitud_y') . '';
+            }else{
+            $marker['position'] = 'auto';
+            }
            $marker['infowindow_content'] = 'Posicion Actual';
            $marker['draggable'] = true;
            $marker['ondragend'] = 'document.getElementById("lat").value = event.latLng.lat(); document.getElementById("lon").value = event.latLng.lng();';
@@ -143,10 +151,6 @@ class ParqueoController extends Controller
             }
             //dd($estado);
 
-                //validar que la hora de inicio sea mayor a la de fin
-                if($parqueo->hora_apertura > $parqueo->hora_cierre){
-                    return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura mayor a Hora Cierre: $parqueo->hora_cierre");
-                }
         
                 //parsear el string de horas a tiempo
                 $hora_ap = Carbon\Carbon::parse($parqueo->hora_apertura);
@@ -154,6 +158,13 @@ class ParqueoController extends Controller
                 //echo $hora_ap->diffInHours($hora_ci);
                 //echo $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60;
         
+                //validar que la hora de inicio sea mayor a la de fin
+                if($parqueo->hora_apertura > $parqueo->hora_cierre){
+                    if($hora_ci->hour != 0){
+                    return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                    }
+                }
+
                 //validar que tengan una hora de diferencia
                 if($hora_ap->diffInHours($hora_ci) == 0 && $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 < 60){
                     return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
@@ -307,7 +318,6 @@ class ParqueoController extends Controller
         $parqueo->estado_funcionamiento = $chozni;
         $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
-        $parqueo->save();
 
         $myCheckboxes = $request->input('dia');
         
@@ -372,17 +382,18 @@ class ParqueoController extends Controller
             }
         }
 
-        //validar que la hora de inicio sea mayor a la de fin
-        if($parqueo->hora_apertura > $parqueo->hora_cierre){
-            return back()->withErrors("Hora Apertura: $parqueo->hora_apertura mayor a Hora Cierre: $parqueo->hora_cierre");
-        }
-
         //parsear el string de horas a tiempo
         $hora_ap = Carbon\Carbon::parse($parqueo->hora_apertura);
         $hora_ci = Carbon\Carbon::parse($parqueo->hora_cierre);
         //echo $hora_ap->diffInHours($hora_ci);
         //echo $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60;
 
+        //validar que la hora de inicio sea mayor a la de fin
+        if($parqueo->hora_apertura > $parqueo->hora_cierre){
+            if($hora_ci->hour != 0){
+                return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+            }
+        }
         //validar que tengan una hora de diferencia
         if($hora_ap->diffInHours($hora_ci) == 0 && $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 < 60){
             return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
@@ -401,6 +412,7 @@ class ParqueoController extends Controller
         }
 
         //si todo es correcto volver a parqueos
+        $parqueo->save();
         return redirect('parqueos');
     }
 

@@ -78,23 +78,14 @@ class ReservaController extends Controller
 
         //ifs que determinan la validez de las horas dadas
         if(strtotime($v->h_inicio_reserva) < strtotime($parqueo[0]->hora_apertura)){
-            echo '<script type="text/javascript">
-                            alert("El parqueo abre a las: '.$parqueo[0]->hora_apertura.' cambie la hora de inicio de reserva e intente de nuevo");
-                            </script>';
-            $gg=1;
+            return back()->withErrors('El parqueo abre a las: '.$parqueo[0]->hora_apertura.' cambie la hora de inicio de reserva e intente de nuevo');
         }
         if(strtotime($v->h_fin_reserva) > strtotime($parqueo[0]->hora_cierre)){
-            echo '<script type="text/javascript">
-                            alert("El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo");
-                            </script>';
-            $gg=1;
+            return back()->withErrors('El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo');
         }
         date_default_timezone_set('America/La_Paz');
         if($v->dia_reserva == date("Y-m-d") && strtotime($v->h_inicio_reserva) < strtotime(date("H:i"))){
-            echo '<script type="text/javascript">
-                            alert("Ya son mas de las: '.$v->h_inicio_reserva.' cambie la hora de inicio de reserva e intente de nuevo");
-                            </script>';
-            $gg=1;
+            return back()->withErrors("Ya son mas de las: $v->h_inicio_reserva cambie la hora de inicio de reserva e intente de nuevo");
         }
 
         //algoritmo para determinar la validez de los dias habiles del parqueo
@@ -109,32 +100,23 @@ class ReservaController extends Controller
         foreach($dias_habiles as $dias){
             //echo $dias->id_dias;
             if($hoje[$dias->id_dias-1] == date('D', strtotime($v->dia_reserva))){
-                echo '<script type="text/javascript">
-                            alert("El parqueo no funciona el dia '.$v->dia_reserva.' cambie la fecha de reserva e intente de nuevo");
-                            </script>';
-                $gg=1;
+                return back()->withErrors('El parqueo no funciona el dia '.$v->dia_reserva.' cambie la fecha de reserva e intente de nuevo');
             }
         }
 
         //condicional para ver si ya no hay espacios disponibles
         if($parqueo[0]->cantidad_actual == 0){
-            echo '<script type="text/javascript">
-                            alert("El parqueo se encuentra lleno.");
-                            </script>';
-                $gg=1;
+            return back()->withErrors('El parqueo se encuentra lleno.');
         }
 
         //condicional para ver si es success o fail
-        if($gg==0){
-            $v->save();
-            //actualizar cantidad espacios disponibles parqueo
-            DB::table('parqueos')
+        $v->save();
+        //actualizar cantidad espacios disponibles parqueo
+        DB::table('parqueos')
             ->where('id_parqueos', $v->id_parqueos)
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual-1]);
-            return redirect('reservas')->with('success','Reserva Exitosa');
-        }else{
-            return $this->edit($v->id_parqueos);
-        }
+            
+        return redirect('reservas')->with('success','Reserva Exitosa');
     }
 
     /**
