@@ -161,7 +161,11 @@ class ParqueoController extends Controller
                 //validar que la hora de inicio sea mayor a la de fin
                 if($parqueo->hora_apertura > $parqueo->hora_cierre){
                     if($hora_ci->hour != 0){
-                    return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                        return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                    }else{
+                        if($hora_ci->minute == 30){
+                            return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                        }
                     }
                 }
 
@@ -392,6 +396,10 @@ class ParqueoController extends Controller
         if($parqueo->hora_apertura > $parqueo->hora_cierre){
             if($hora_ci->hour != 0){
                 return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+            }else{
+                if($hora_ci->minute == 30){
+                    return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                }
             }
         }
         //validar que tengan una hora de diferencia
@@ -399,12 +407,12 @@ class ParqueoController extends Controller
             return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
         }
 
-        //validar que tengan una hora de diferencia
+        //validar que tengan una hora de diferencia exacta
         if($hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 != 0){
             return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
         }
 
-        //validar que tengan una hora de diferencia
+        //validar que los minutos no sean diferentes a 0 o 30
         if($hora_ap->minute != 0 || $hora_ci->minute != 0){
             if($hora_ap->minute != 30 || $hora_ci->minute != 30){
             return back()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");

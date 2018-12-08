@@ -127,19 +127,19 @@
                                             <div class="form-group">
                                                 <?php date_default_timezone_set('America/La_Paz');?>
                                                 <label for="dia_reserva">Fecha Reserva:</label>
-                                                <input type="date" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}" class="form-control" name="dia_reserva" required>
+                                                <input type="date" @if(old('dia_reserva')) value="{{old('dia_reserva')}}" @else value="{{date("Y-m-d")}}" @endif min="{{date("Y-m-d")}}" class="form-control" name="dia_reserva" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="HoraApertura">Inicio de Reserva:</label>
-                                                <input type="time" class="form-control" value="{{date("H:00", strtotime(date("H:00")) + 60*60)}}" name="hora_inicio" required>
+                                                <input type="time" class="form-control" @if(old('hora_inicio')) value="{{old('hora_inicio')}}" @else value="{{date("H:00", strtotime(date("H:00")) + 60*60)}}" @endif name="hora_inicio" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="HoraCierre">Fin de Reserva:</label>
-                                                <input type="time" class="form-control" value="{{date("H:00", strtotime(date("H:00")) + 60*120)}}" name="hora_fin" required>
+                                            <input type="time" class="form-control"  @if(old('hora_fin')) value="{{old('hora_fin')}}" @else value="{{date("H:00", strtotime(date("H:00")) + 60*120)}}" @endif name="hora_fin" required>
                                             </div>
                                         </div>
                                     </div>

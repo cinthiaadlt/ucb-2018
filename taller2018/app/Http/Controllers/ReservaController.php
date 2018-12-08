@@ -76,16 +76,30 @@ class ReservaController extends Controller
                     ->where('id_parqueos', $v->id_parqueos)
                     ->get();
 
+        $hora_ap = Carbon\Carbon::parse($parqueo[0]->hora_apertura);
+        $hora_ci = Carbon\Carbon::parse($parqueo[0]->hora_cierre);
+        $hora_ap_reser = Carbon\Carbon::parse($v->h_inicio_reserva);
+        $hora_ci_reser = Carbon\Carbon::parse($v->h_fin_reserva);
+
         //ifs que determinan la validez de las horas dadas
         if(strtotime($v->h_inicio_reserva) < strtotime($parqueo[0]->hora_apertura)){
-            return back()->withErrors('El parqueo abre a las: '.$parqueo[0]->hora_apertura.' cambie la hora de inicio de reserva e intente de nuevo');
+            return back()->withInput()->withErrors('El parqueo abre a las: '.$parqueo[0]->hora_apertura.' cambie la hora de inicio de reserva e intente de nuevo');
         }
+
+        //validar si la hora de reserva es mayor a hora cierre (Agregado para validar si la hora cierre del parqueo es las 00:00 NO SE SI SIRVE)
         if(strtotime($v->h_fin_reserva) > strtotime($parqueo[0]->hora_cierre)){
-            return back()->withErrors('El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo');
+            if($hora_ci->hour == 0){
+                if($hora_ap_reser >= $hora_ci_reser){
+                    return back()->withInput()->withErrors('El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo');
+                }
+            }else{
+                return back()->withInput()->withErrors('El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo');
+            }
         }
+
         date_default_timezone_set('America/La_Paz');
         if($v->dia_reserva == date("Y-m-d") && strtotime($v->h_inicio_reserva) < strtotime(date("H:i"))){
-            return back()->withErrors("Ya son mas de las: $v->h_inicio_reserva cambie la hora de inicio de reserva e intente de nuevo");
+            return back()->withInput()->withErrors("Ya son mas de las: $v->h_inicio_reserva cambie la hora de inicio de reserva e intente de nuevo");
         }
 
         //algoritmo para determinar la validez de los dias habiles del parqueo
@@ -100,13 +114,13 @@ class ReservaController extends Controller
         foreach($dias_habiles as $dias){
             //echo $dias->id_dias;
             if($hoje[$dias->id_dias-1] == date('D', strtotime($v->dia_reserva))){
-                return back()->withErrors('El parqueo no funciona el dia '.$v->dia_reserva.' cambie la fecha de reserva e intente de nuevo');
+                return back()->withInput()->withErrors('El parqueo no funciona el dia '.$v->dia_reserva.' cambie la fecha de reserva e intente de nuevo');
             }
         }
 
         //condicional para ver si ya no hay espacios disponibles
         if($parqueo[0]->cantidad_actual == 0){
-            return back()->withErrors('El parqueo se encuentra lleno.');
+            return back()->withInput()->withErrors('El parqueo se encuentra lleno.');
         }
 
         //condicional para ver si es success o fail
