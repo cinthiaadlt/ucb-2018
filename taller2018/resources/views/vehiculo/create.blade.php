@@ -51,7 +51,7 @@
                               <div class="col-lg-6">
                                   <div class="form-group">
                                       <label class="form-control-label" for="input-username">Color</label>
-                                      <input type="text" name="color" id="color" class="form-control form-control-alternative" >
+                                      <input type="text" name="color" id="color" value="{{old('color')}}" class="form-control form-control-alternative" >
                                   </div>
                               </div>
                           </div>
@@ -60,13 +60,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Placa</label>
-                                        <input type="text" name="placa" id="placa" class="form-control form-control-alternative" >
+                                        <input type="text" name="placa" id="placa" value="{{old('placa')}}" class="form-control form-control-alternative" >
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-username">Tipo Vehiculo</label>
-                                        <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" class="form-control form-control-alternative">
+                                        <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" value="{{old('cat_tipo_vehiculo')}}" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="Imagen">Imagen:</label>
-                                    <input type="file" accept="image/*" name="filename" id="filename">
+                                    <input type="file" accept="image/*" name="imagen" id="imagen" value="{{old('filename')}}" >
                                 </div>
                             </div>
 

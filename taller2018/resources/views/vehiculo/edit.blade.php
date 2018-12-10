@@ -76,15 +76,17 @@
                                     </div>
                                 </div>
 
-
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label for="Imagen">Imagen:</label>
+                                        <label for="Imagen">Foto Vehiculo:</label>
+                                        <br>
                                         <img width="200" height="200" src="../../../images/{{$vh->foto_vehiculo}}">
-                                        <input type="file" accept="image/*" name="foto_vehiculo" id="foto_vehiculo" value="{{$vh->foto_vehiculo}}">
+                                        <input type="file" accept="image/*" name="foto_vehiculo">
                                     </div>
                                 </div>
-                                <input class="submit btn btn-danger" type="submit" value="Registrar">
+
+                                <input class="submit btn btn-success" type="submit" value="Actualizar Datos">
+                                <a href="/list" class="btn btn-danger">Cancelar</a>
                             </form>
                         </div>
                     </div>

@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Carbon;
 
 class VehiculoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $vh2 = DB::table('modelos')
@@ -24,11 +21,7 @@ class VehiculoController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function list()
     {
         $usuario= auth()->user()->id;
@@ -42,29 +35,25 @@ class VehiculoController extends Controller
         return view('vehiculo.list', compact('v'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //dd($request->hasfile('filename'));
+
         $this->validate($request,[
             'id_modelos'=>'required',
-            'color'=>'required',
-            'placa'=>'required',
-            'filename' => 'required',
-            'cat_tipo_vehiculo'=> 'required'
+            'color'=>'required|alpha|max:20',
+            'placa'=>'required|regex:/^[0-9]{3,4}[A-Z]{3}$/|unique:vehiculos',
+            'imagen' => 'required|image|max:5000',
+            'cat_tipo_vehiculo'=> 'required|alpha|max:30'
 
         ]);
 
-        if($request->hasfile('filename'))
+
+        if($request->hasfile('imagen'))
         {
-            $file = $request->file('filename');
+            $file = $request->file('imagen');
             $name=$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
+
         }
 
         $cliente = auth()->user()->id;
@@ -82,23 +71,13 @@ class VehiculoController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
 
@@ -111,36 +90,40 @@ class VehiculoController extends Controller
         return view('vehiculo.edit',compact(['vh','vh2']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id_vehiculos)
     {
+        $auto2 = Vehiculo::find($id_vehiculos);
         $this->validate($request,[
             'id_modelos'=>'required',
             'id_users'=>'required',
-            'color'=>'required',
-            'placa'=>'required',
-            'foto_vehiculo' => 'required',
-            'cat_tipo_vehiculo'=> 'required'
+            'color'=>'required|alpha|max:20',
+            'placa'=>'required|regex:/^[0-9]{3,4}[A-Z]{3}$/|unique:vehiculos,placa,'.$auto2->id_vehiculos.',id_vehiculos' ,
+            'foto_vehiculo' => 'nullable|image|max:5000',
+            'cat_tipo_vehiculo'=> 'required|alpha|max:30'
 
         ]);
 
+        $auto=Vehiculo::find($id_vehiculos);
+        $auto->id_modelos = $request->input('id_modelos');
+        $auto->id_users = Auth::id();
+        $auto->color = $request->input('color');
+        $auto->placa = $request->input('placa');
+        if($request->hasfile('foto_vehiculo'))
+        {
 
-        Vehiculo::find($id_vehiculos)->update($request->all());
+            $file = $request->file('foto_vehiculo');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+            $auto->foto_vehiculo = $name;
+
+        }
+        $auto->cat_tipo_vehiculo = $request->input('cat_tipo_vehiculo');
+        $auto->save();
         return redirect()->action('VehiculoController@list');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         Vehiculo::find($id)->delete();
