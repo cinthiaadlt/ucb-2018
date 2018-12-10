@@ -31,8 +31,11 @@ class VehiculoController extends Controller
      */
     public function list()
     {
+        $usuario= auth()->user()->id;
         $v = DB::table('vehiculos')
             ->join('modelos','modelos.id_modelos','=','vehiculos.id_modelos')
+            ->join('users','users.id','=','vehiculos.id_users')
+            ->where('id_users','=',$usuario)
             ->orderBy('id_vehiculos','desc')
             ->paginate(5);
 
