@@ -89,26 +89,26 @@
                                     @endforeach
 
                             <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label class="form-control-label" for="input-parqueo">Observaciones:</label>
-                                    <input type="text" class="form-control form-control-alternative" name="observaciones_validacion" id="observaciones_validacion" value ="{{$parqueo->observaciones_validacion}}">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="col-md-6">
                                     <label class="form-control-label" for="Imagen">Imagen Validacion:</label>
-                                    <input type="file" accept="image/*" name="filename">
+                                    <br>
+                                    <input type="file" accept="image/*" name="filename" required>
                                 </div>
-
-                                <div class="form-group col-md-6">
+                                <div class="col-md-6">
                                     <label class="form-control-label" for="Estado">Estado Funcionamiento:</label>
 
-                                    <select name="estado_funcionamiento" id="estado_funcionamiento" class="form-control" value ="{{$parqueo->estado_funcionamiento}}">
+                                    <select name="estado_funcionamiento" id="estado_funcionamiento" class="form-control" value ="{{$parqueo->estado_funcionamiento}}" required>
                                         <option value="1">Aprobar</option>
                                         <option value="2">Denegar</option>
                                         <option value="3">Observar</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-control-label" for="input-parqueo">Observaciones:</label>
+                                    <input type="text" class="form-control form-control-alternative" name="observaciones_validacion" id="observaciones_validacion" value ="{{$parqueo->observaciones_validacion}}"required>
                                 </div>
                             </div>
                             <div class="row">

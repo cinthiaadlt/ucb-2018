@@ -15,57 +15,44 @@ class ValidacionController extends Controller
      */
     public function index()
     {
-        $locations = DB::table('parqueos')
+        $locationsfalse = DB::table('parqueos')
             ->where('estado_funcionamiento', 'LIKE', 'false')
             ->get();
+
+        $locationstrue = DB::table('parqueos')
+            ->where('estado_funcionamiento', 'LIKE', 'true')
+            ->get();
+
         $pq2 = DB::table('zonas')
             ->select('*')
             ->orderBy('id_zonas')
             ->get();
+
         $parqueos=\App\Parqueo::paginate(10);
-        //$parqueos = \App\Parqueo::where('id_users',Auth::id())->orderBy('id_parqueos')->get();
-        return view('validacion.index',compact('parqueos','pq2','locations'));
+
+        return view('validacion.index',compact('parqueos','pq2','locationsfalse','locationstrue'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Validacion  $validacion
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Validacion $validacion)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Validacion  $validacion
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
 
@@ -96,13 +83,7 @@ class ValidacionController extends Controller
         return view('validacion.edit',compact('parqueo','id','pq2','validado','dias','d2'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Validacion  $validacion
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
 
@@ -160,12 +141,6 @@ class ValidacionController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Validacion  $validacion
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Validacion $validacion)
     {
         //
