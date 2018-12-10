@@ -102,7 +102,7 @@
                         </a>
                     </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ url('parqueos_favoritos') }}">
                         <i class="ni ni-favourite-28"></i> Parqueos Favoritos
                     </a>
                 </li>
