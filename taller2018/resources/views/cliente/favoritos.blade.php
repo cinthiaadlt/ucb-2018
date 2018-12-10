@@ -23,10 +23,10 @@
                             <table class="table align-items-center table-flush">
                                 <thead>
                                 <tr>
-                                    <th>Nro</th>
                                     <th>Dueño Parqueo</th>
                                     <th>Direccion</th>
                                     <th>Horarios</th>
+                                    <th>Precio por hora</th>
                                     <th>Dias <br> Funcionamiento</th>
                                     <th>Reservar</th>
                                     <th>Eliminar</th>
@@ -38,11 +38,12 @@
                                 @foreach($l as $fav)
                                     <tr>
 
-                                        <td>{{$fav->id_parqueos_favoritos}}</td>
+
                                         <td>{{$fav->sur_name}}  {{$fav->last_name}} </td>
                                         <td>{{$fav->direccion}}</td>
                                         <td><option>{{$fav->hora_apertura}}</option>
                                             <option>{{$fav->hora_cierre}}</option></td>
+                                        <td>{{$fav->tarifa_hora_normal}} Bs.</td>
                                         <?php
                                         $validado = DB::table('precios_alquiler')
                                             ->select('id_dias')
@@ -69,7 +70,7 @@
                                             <form action="{{action('ParqueoFavoritoController@destroy',$fav->id_parqueos_favoritos)}}" method="post">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="DELETE">
-                                                <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el parqueo de favoritos?')">Eliminar</button>
+                                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el parqueo de favoritos?')"><i class="ni ni-fat-remove"></i></button>
                                             </form>
                                         </td>
                                     </tr>
