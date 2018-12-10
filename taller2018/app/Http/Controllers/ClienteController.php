@@ -16,7 +16,9 @@ class ClienteController extends Controller
     public function index()
     {
 
-        $locations = DB::table('parqueos')->get();
+        $locations = DB::table('parqueos')
+            ->where('estado_funcionamiento','=',1)
+            ->get();
         return view('cliente.busqueda_parqueo',compact('locations'));
 
     }
