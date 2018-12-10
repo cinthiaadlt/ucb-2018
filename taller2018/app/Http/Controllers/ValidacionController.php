@@ -90,7 +90,7 @@ class ValidacionController extends Controller
         if($request->hasfile('filename'))
         {
             $file = $request->file('filename');
-            $name=time().$file->getClientOriginalName();
+            $name=$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
         }
 
