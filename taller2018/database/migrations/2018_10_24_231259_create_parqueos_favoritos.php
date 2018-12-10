@@ -19,8 +19,7 @@ class CreateParqueosFavoritos extends Migration
             $table->unsignedInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->string('favorito')->nullable();
-
-
+            $table->timestamps();
         });
     }
 
