@@ -156,7 +156,9 @@
                 title: value.direccion,
                 infoWindow: {
                     content:
-                            '<b>Direccion: </b>'+
+                            '<br>' +
+                            '<b>Agregar a Favorito:   </b> <button class="btn btn-icon btn-2 btn-outline-danger btn-sm" type="submit" onclick="favoritos('+value.id_parqueos+')"><span class="btn-inner--icon"><i class="ni ni-favourite-28"></i></span></button>' +
+                            '<br><b>Direccion: </b>'+
                             '<br>'+value.direccion+
                             '<br><b>Espacios del parqueo:</b>'+
                             '<br>'+value.cantidad_p+
@@ -174,6 +176,14 @@
             var prueba_r= '{{ route('reservas.edit', ":id") }}';
             prueba_r = prueba_r.replace(':id', $id);
             document.location.href=prueba_r;
+        }
+
+        function favoritos($id){
+            var id = $id;
+            var prueba_r= '{{ route('parqueos_favoritos.show', ":id") }}';
+            prueba_r = prueba_r.replace(':id', $id);
+            document.location.href=prueba_r;
+
         }
 
         $(document).ready(function(){
