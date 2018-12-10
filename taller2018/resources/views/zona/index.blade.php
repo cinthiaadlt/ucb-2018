@@ -9,7 +9,7 @@
                     <div class="card shadow">
 
                         <div class="card-header border-0">
-                            <h3 class="mb-0">Listado Vehiculos</h3>
+                            <h3 class="mb-0">Zonas Disponibles</h3>
                         </div>
 
                         <div class="table-responsive">
