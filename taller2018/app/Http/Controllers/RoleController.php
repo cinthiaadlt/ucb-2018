@@ -19,8 +19,8 @@ class RoleController extends Controller {
 
     public function store(Request $request) {
       $this->validate($request,[
-        'nombre_role'=>'required',
-        'descripcion_role'=>'required'
+        'nombre_role'=>'required|alpha|max:20',
+        'descripcion_role'=>'required|alpha_spaces|max:250'
       ]);
       $t_role = new Role;
       $t_role->nombre_role = $request->input('nombre_rol');
