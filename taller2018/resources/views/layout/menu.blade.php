@@ -106,13 +106,13 @@
                         <i class="ni ni-favourite-28"></i> Parqueos Favoritos
                     </a>
                 </li>
-
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="{{ action('DenunciaController@create') }}">
                         <i class="ni ni-collection"></i>realizar denuncia
                     </a>
                 </li>
-
+                -->
                 <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="ni ni-settings"></i> Editar Perfil
