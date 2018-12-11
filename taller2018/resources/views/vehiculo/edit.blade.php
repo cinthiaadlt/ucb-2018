@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('vehiculo.update',$vh->id_vehiculos) }}" role="form" class="panel-body" style="padding-bottom:30px;">
+                            <form method="POST" action="{{ route('vehiculo.update',$vh->id_vehiculos) }}" enctype="multipart/form-data" role="form" class="panel-body" style="padding-bottom:30px;">
                                 {{ csrf_field() }}
                                 <input name="_method" type="hidden" value="PATCH">
 
@@ -56,7 +56,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Color</label>
-                                            <input type="text" name="color" id="color" class="form-control form-control-alternative" value="{{$vh->color}}">
+                                            <input type="text" name="color" id="color" class="form-control form-control-alternative" @if(old('color')) value="{{old('color')}}" @else value="{{$vh->color}}" @endif>
                                         </div>
                                     </div>
                                 </div>
@@ -65,13 +65,13 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Placa</label>
-                                            <input type="text" name="placa" id="placa" class="form-control form-control-alternative" value="{{$vh->placa}}">
+                                            <input type="text" name="placa" id="placa" class="form-control form-control-alternative" @if(old('placa')) value="{{old('placa')}}" @else value="{{$vh->placa}}" @endif>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Tipo Vehiculo</label>
-                                            <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" class="form-control form-control-alternative" value="{{$vh->cat_tipo_vehiculo}}">
+                                            <input type="text" name="cat_tipo_vehiculo" id="cat_tipo_vehiculo" class="form-control form-control-alternative" @if(old('cat_tipo_vehiculo')) value="{{old('cat_tipo_vehiculo')}}" @else value="{{$vh->cat_tipo_vehiculo}}" @endif>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                                         <label for="Imagen">Foto Vehiculo:</label>
                                         <br>
                                         <img width="200" height="200" src="../../../images/{{$vh->foto_vehiculo}}">
-                                        <input type="file" accept="image/*" name="foto_vehiculo">
+                                        <input type="file" accept="image/*" name="imagen" id="imagen" value="{{old('filename')}}" >
                                     </div>
                                 </div>
 

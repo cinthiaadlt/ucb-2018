@@ -17,7 +17,7 @@ class CreateVehiculosTable extends Migration
             $table->increments('id_vehiculos');
             $table->unsignedInteger('id_modelos');
             $table->unsignedInteger('id_users');
-            $table->string('color','10');
+            $table->string('color','20');
             $table->string('placa','100');
             $table->string('foto_vehiculo','100')->nullable();
             $table->string('cat_tipo_vehiculo');

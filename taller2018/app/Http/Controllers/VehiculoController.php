@@ -40,11 +40,10 @@ class VehiculoController extends Controller
 
         $this->validate($request,[
             'id_modelos'=>'required',
-            'color'=>'required|alpha|max:20',
-            'placa'=>'required|regex:/^[0-9]{3,4}[A-Z]{3}$/|unique:vehiculos',
+            'color'=>'required|regex:/^[\pL\s\-]+$/u|max:20',
+            'placa'=>'required|alpha_num|unique:vehiculos',
             'imagen' => 'required|image|max:5000',
-            'cat_tipo_vehiculo'=> 'required|alpha|max:30'
-
+            'cat_tipo_vehiculo'=> 'required|regex:/^[\pL\s\-]+$/u|max:30'
         ]);
 
 
@@ -97,26 +96,22 @@ class VehiculoController extends Controller
         $this->validate($request,[
             'id_modelos'=>'required',
             'id_users'=>'required',
-            'color'=>'required|alpha|max:20',
-            'placa'=>'required|regex:/^[0-9]{3,4}[A-Z]{3}$/|unique:vehiculos,placa,'.$auto2->id_vehiculos.',id_vehiculos' ,
-            'foto_vehiculo' => 'nullable|image|max:5000',
-            'cat_tipo_vehiculo'=> 'required|alpha|max:30'
-
+            'color'=>'required|regex:/^[\pL\s\-]+$/u|max:20',
+            'placa'=>'required|alpha_num|unique:vehiculos,placa,'.$auto2->id_vehiculos.',id_vehiculos' ,
+            'imagen' => 'nullable|image|max:5000',
+            'cat_tipo_vehiculo'=> 'required|regex:/^[\pL\s\-]+$/u|max:30'
         ]);
-
         $auto=Vehiculo::find($id_vehiculos);
         $auto->id_modelos = $request->input('id_modelos');
         $auto->id_users = Auth::id();
         $auto->color = $request->input('color');
         $auto->placa = $request->input('placa');
-        if($request->hasfile('foto_vehiculo'))
+        if($request->hasfile('imagen'))
         {
-
-            $file = $request->file('foto_vehiculo');
+            $file = $request->file('imagen');
             $name=$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
             $auto->foto_vehiculo = $name;
-
         }
         $auto->cat_tipo_vehiculo = $request->input('cat_tipo_vehiculo');
         $auto->save();
