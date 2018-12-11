@@ -4,6 +4,8 @@ use App\Denuncia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Providers\AppServiceProvider;
 class DenunciaController extends Controller
 {
     /**
@@ -58,7 +60,7 @@ class DenunciaController extends Controller
 
         $this->validate($request,[
             'id_parqueos'=>'required',
-            'descripcion_adicional'=>'required',
+            'descripcion_adicional'=>'required|alpha_spaces',
             'estado_denuncia'=>'required',
             'cat_tipo_denuncia'=>'required',
 
@@ -74,12 +76,7 @@ class DenunciaController extends Controller
         $denuncia->cat_tipo_denuncia = $request->input('cat_tipo_denuncia');
         $denuncia->save();
 
-        //Vehiculo::create($request->all());
-
-        //Session::flash('message','Zona creada correctamente');
-
-       // return redirect()->action('DenunciaController@show', $denuncia->id_parqueos)->with('success','La denuncia fue añadida');
-        return redirect()->action('ClienteController@index')->with('success','La denuncia fue añadida');
+        return redirect('reservacliente')->with('success','Su denuncia fue enviada');
 
 
     }
@@ -126,12 +123,7 @@ class DenunciaController extends Controller
             ->get();
 
         return view('denuncia.edit',compact('denuncia','id','d1','d2'));
-        //  $parqueo = \App\Parqueo::find($id);
-        //$pq2 = DB::table('zonas')
-        //->select('*')
-        //  ->orderBy('id_zonas')
-        //->get();
-        //return view('parqueo.edit',compact('parqueo','id','pq2'));
+
     }
     /**
      * Update the specified resource in storage.
