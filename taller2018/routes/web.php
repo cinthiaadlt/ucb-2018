@@ -32,11 +32,10 @@ Auth::routes ();
     Route::get('/list','VehiculoController@list', ['middleware' => ['auth', 'user']]);
     Route::get('vehiculo/{vehiculo}/edit','VehiculoController@edit', ['middleware' => ['auth', 'user']]);
     Route::resource('cliente_busqueda','ClienteController')->middleware('auth');
-    Route::get('/lista_reservas','ReservaController@lista_estado', ['middleware' => ['auth', 'user']]);//nueva
-    Route::get('mostrar_reserva','ReservaController@edit', ['middleware' => ['auth', 'user']]);//nueva
-    Route::resource('parqueos_favoritos','ParqueoFavoritoController', ['middleware' => ['auth', 'user']]);//nueva
-    //Route::get('agregar_fav','ParqueoFavoritoController@edit', ['middleware' => ['auth', 'user']]);//nueva
-    //Route::get('parqueos_favoritos/{parqueos_favoritos}','FavoritosController@destroy',['middleware' => ['auth', 'user']]);
+    Route::get('/lista_reservas','ReservaController@lista_estado', ['middleware' => ['auth', 'user']]);
+    Route::get('mostrar_reserva','ReservaController@edit', ['middleware' => ['auth', 'user']]);
+    Route::resource('parqueos_favoritos','ParqueoFavoritoController', ['middleware' => ['auth', 'user']]);
+
 
 
 
