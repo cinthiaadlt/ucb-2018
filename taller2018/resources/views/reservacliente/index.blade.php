@@ -29,29 +29,22 @@
                                 <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
+                                <th>Total a pagar</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($reservascliente as $reserva)
+                            @foreach($prueba as $reserva)
                             @if($reserva->dia_reserva == date("Y-m-d"))
                             <tr>
-                                <td>@foreach($parqueo as $p1)
-                                        @if($p1->id_parqueos == $reserva->id_parqueos){{$p1->telefono_contacto_1}} @endif
-                                        @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                    @if($p1->id_parqueos == $reserva->id_parqueos){{ $p1->direccion }} @endif
-                                    <?php $aux = $p1->id_zonas?>
-                                    @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                        @if($p1->id_parqueos == $reserva->id_parqueos)<?php $aux = $p1->id_zonas?>{{$pq3[$aux-1]->zona}} @endif
-                                        @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                    @if($p1->id_parqueos == $reserva->id_parqueos){{ number_format((float)$p1->tarifa_hora_normal, 2, '.', '') }}Bs @endif
-                                    @endforeach</td>
+                                <td>{{$reserva->telefono_contacto_1}}</td>
+                                <td>{{ $reserva->direccion }}</td>
+                                <td>{{$reserva->zona}}</td>
+                                <td>{{ number_format((float)$reserva->tarifa_hora_normal, 2, '.', '') }}Bs</td>
                                 <td>{{$reserva->h_inicio_reserva}}</td>
                                 <td>{{$reserva->h_fin_reserva}}</td>
+                                <td>{{ number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                                 <td>
                                     <form action="{{action('ReservaClienteController@destroy', $reserva->id_reservas)}}" method="post">
                                         @csrf
@@ -92,32 +85,30 @@
                             </thead>
                             <tbody>
 
-                            @foreach($reservascliente as $reserva)
+                            @foreach($prueba as $reserva)
                             @if($reserva->dia_reserva > date("Y-m-d"))
                             <tr>
                                 <td>{{$reserva->dia_reserva}}</td>
-                                <td>@foreach($parqueo as $p1)
-                                        @if($p1->id_parqueos == $reserva->id_parqueos){{ $p1->telefono_contacto_1 }} @endif
-                                        <?php $aux = $p1->id_zonas?>
-                                        @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                    @if($p1->id_parqueos == $reserva->id_parqueos){{ $p1->direccion }} @endif
-                                    <?php $aux = $p1->id_zonas?>
-                                    @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                        @if($p1->id_parqueos == $reserva->id_parqueos)<?php $aux = $p1->id_zonas?>{{$pq3[$aux-1]->zona}} @endif
-                                        @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                    @if($p1->id_parqueos == $reserva->id_parqueos){{ number_format((float)$p1->tarifa_hora_normal, 2, '.', '') }}Bs @endif
-                                    @endforeach</td>
+                                <td>{{$reserva->telefono_contacto_1}}</td>
+                                <td>{{ $reserva->direccion }}</td>
+                                <td>{{$reserva->zona}}</td>
+                                <td>{{ number_format((float)$reserva->tarifa_hora_normal, 2, '.', '') }}Bs</td>
                                 <td>{{$reserva->h_inicio_reserva}}</td>
                                 <td>{{$reserva->h_fin_reserva}}</td>
+                                <td>{{ number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                                 <td>
                                     <form action="{{action('ReservaClienteController@destroy', $reserva->id_reservas)}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Delete</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Cancelar</button>
+                                        <a class="btn btn-sm btn-facebook" href="{{route('reservacliente.show', $reserva->id_parqueos)}}">Denunciar</a>
                                     </form>
+                                    <form action="{{action('ReservaClienteController@destroy', $reserva->id_reservas)}}" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-sm btn-danger" hidden="true" OnClick="false" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Finalizar</button>
+                                    </form>
+
                                 </td>
                             </tr>
                             @endif

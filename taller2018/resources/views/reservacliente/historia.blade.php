@@ -30,30 +30,22 @@
                                 <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
+                                <th>Total Pagado</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php date_default_timezone_set('America/La_Paz');?>
-                            @foreach($reservascliente as $reserva)
+                            @foreach($prueba as $reserva)
                             @if($reserva->dia_reserva < date("Y-m-d"))
                             <tr>
-                                <td>@foreach($parqueo as $p1)
-                                            @if($p1->id_parqueos == $reserva->id_parqueos){{ $p1->telefono_contacto_1 }} @endif
-                                            <?php $aux = $p1->id_zonas?>
-                                            @endforeach</td>
+                                <td>{{$reserva->telefono_contacto_1}}</td>
                                 <td>{{$reserva->dia_reserva}}</td>
-                                <td>@foreach($parqueo as $p1)
-                                        @if($p1->id_parqueos == $reserva->id_parqueos){{ $p1->direccion }} @endif
-                                        <?php $aux = $p1->id_zonas?>
-                                        @endforeach</td>
-                                    <td>@foreach($parqueo as $p1)
-                                            @if($p1->id_parqueos == $reserva->id_parqueos)<?php $aux = $p1->id_zonas?>{{$pq3[$aux-1]->zona}} @endif
-                                            @endforeach</td>
-                                <td>@foreach($parqueo as $p1)
-                                    @if($p1->id_parqueos == $reserva->id_parqueos){{ number_format((float)$p1->tarifa_hora_normal, 2, '.', '') }}Bs @endif
-                                    @endforeach</td>
+                                <td>{{ $reserva->direccion }}</td>
+                                <td>{{$reserva->zona}}</td>
+                                <td>{{ number_format((float)$reserva->tarifa_hora_normal, 2, '.', '') }}Bs</td>
                                 <td>{{$reserva->h_inicio_reserva}}</td>
                                 <td>{{$reserva->h_fin_reserva}}</td>
+                                <td>{{ number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                             </tr>
                             @endif
                             @endforeach

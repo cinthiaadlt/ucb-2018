@@ -17,21 +17,14 @@ class ReservaClienteController extends Controller
      */
     public function index()
     {
-        //
-        $reservascliente = DB::table('reservas')
-                                ->select('*')
-                                ->where('id_user', Auth::id())
-                                ->orderBy('h_inicio_reserva')
-                                ->get();
-        $parqueo = DB::table('parqueos')
-                    ->select('*')
-                    ->join('reservas', 'reservas.id_parqueos', '=', 'parqueos.id_parqueos')
-                    ->get();
-        $pq3 = DB::table('zonas')
-                    ->select('*')
-                    ->orderBy('id_zonas')
-                    ->get();
-        return view('reservacliente.index',compact('reservascliente','parqueo','pq1','pq3'));
+        $prueba = DB::table('reservas')
+            ->select('*')
+            ->join('parqueos','reservas.id_parqueos','=','parqueos.id_parqueos')
+            ->join('zonas','parqueos.id_zonas','=','zonas.id_zonas')
+            ->where('id_user', Auth::id())
+            ->get();
+
+        return view('reservacliente.index',compact('prueba'));
     }
 
     /**
@@ -41,21 +34,15 @@ class ReservaClienteController extends Controller
      */
     public function create()
     {
-        //
-        $reservascliente = DB::table('reservas')
-                                ->select('*')
-                                ->where('id_user', Auth::id())
-                                ->orderBy('h_inicio_reserva')
-                                ->get();
-        $parqueo = DB::table('parqueos')
-                    ->select('*')
-                    ->join('reservas', 'reservas.id_parqueos', '=', 'parqueos.id_parqueos')
-                    ->get();
-        $pq3 = DB::table('zonas')
-                    ->select('*')
-                    ->orderBy('id_zonas')
-                    ->get();
-        return view('reservacliente.historia',compact('reservascliente','parqueo','pq1','pq3'));
+
+        $prueba = DB::table('reservas')
+            ->select('*')
+            ->join('parqueos','reservas.id_parqueos','=','parqueos.id_parqueos')
+            ->join('zonas','parqueos.id_zonas','=','zonas.id_zonas')
+            ->where('id_user', Auth::id())
+            ->get();
+
+        return view('reservacliente.historia',compact('prueba'));
     }
 
     /**
