@@ -23,12 +23,13 @@
                         <table class="table align-items-center table-flush">
                             <thead>
                             <tr>
-                                <th>Cliente</th>
-                                <th>Parqueo</th>
+                                <th>Nombre del Cliente</th>
+                                <th>Direccion del Parqueo</th>
                                 <th>Zona</th>
                                 <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
+                                <th>Precio Total</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
@@ -52,11 +53,12 @@
                                     @endforeach</td>
                                 <td>{{$reserva->h_inicio_reserva}}</td>
                                 <td>{{$reserva->h_fin_reserva}}</td>
+                                <td>{{number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                                 <td>
                                     <form action="{{action('ReservaAnfitrionController@destroy', $reserva->id_reservas)}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Delete</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Eliminar/button>
                                     </form>
                                 </td>
                             </tr>
@@ -74,12 +76,13 @@
                             <thead>
                             <tr>
                                 <th>Fecha</th>
-                                <th>Cliente</th>
-                                <th>Parqueo</th>
+                                <th>Nombre del Cliente</th>
+                                <th>Direccion del Parqueo</th>
                                 <th>Zona</th>
                                 <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
+                                <th>Precio Total</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
@@ -104,11 +107,12 @@
                                     @endforeach</td>
                                 <td>{{$reserva->h_inicio_reserva}}</td>
                                 <td>{{$reserva->h_fin_reserva}}</td>
+                                <td>{{number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                                 <td>
                                     <form action="{{action('ReservaAnfitrionController@destroy', $reserva->id_reservas)}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Delete</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
