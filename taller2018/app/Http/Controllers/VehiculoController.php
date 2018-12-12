@@ -41,7 +41,7 @@ class VehiculoController extends Controller
         $this->validate($request,[
             'id_modelos'=>'required',
             'color'=>'required|regex:/^[\pL\s\-]+$/u|max:20',
-            'placa'=>'required|alpha_num|unique:vehiculos',
+            'placa'=>'required|regex:/^[0-9]{3,4}[A-Z]{3}$/|unique:vehiculos',
             'imagen' => 'required|image|max:5000',
             'cat_tipo_vehiculo'=> 'required|regex:/^[\pL\s\-]+$/u|max:30'
         ]);
@@ -97,7 +97,7 @@ class VehiculoController extends Controller
             'id_modelos'=>'required',
             'id_users'=>'required',
             'color'=>'required|regex:/^[\pL\s\-]+$/u|max:20',
-            'placa'=>'required|alpha_num|unique:vehiculos,placa,'.$auto2->id_vehiculos.',id_vehiculos' ,
+            'placa'=>'required|regex:/^[0-9]{3,4}[A-Z]{3}$/|unique:vehiculos,placa,'.$auto2->id_vehiculos.',id_vehiculos' ,
             'imagen' => 'nullable|image|max:5000',
             'cat_tipo_vehiculo'=> 'required|regex:/^[\pL\s\-]+$/u|max:30'
         ]);
