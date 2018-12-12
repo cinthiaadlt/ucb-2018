@@ -23,9 +23,8 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th>ID</th>
                                         <th>Zona</th>
-                                        <th>Calle</th>
-                                        <th>Ciudad</th>
                                         <th>Editar</th>
                                         <th>Eliminar</th>
                                     </tr>
@@ -34,17 +33,15 @@
                                 @if($zonas->count())
                                 @foreach($zonas as $zona)
                                 <tr>
+                                    <td>{{$zona['id_zonas']}}</td>
                                     <td>{{$zona['zona']}}</td>
-                                    <td>{{$zona['calle']}}</td>
-                                    <td>{{$zona['ciudad']}}</td>
-
-                                    <td><a class="btn btn-primary btn-xs" href="{{action('ZonaController@edit', $zona->id_zonas)}}" >
+                                    <td><a class="btn btn-sm btn-primary" href="{{action('ZonaController@edit', $zona->id_zonas)}}" >
                                             <i class="ni ni-fat-add"></i></a></td>
                                     <td>
                                         <form action="{{action('ZonaController@destroy', $zona['id_zonas'])}}" method="post">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('¿Quiere borrar la zona?')" >
+                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">
                                                 <i class="ni ni-fat-remove"></i></button>
                                     </td>
                                 </tr>
