@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Validator;
 use Carbon;
 
 class ReservaController extends Controller
@@ -49,8 +50,7 @@ class ReservaController extends Controller
             'hora_inicio'=>'required',
             'hora_fin'=>'required'
         ]);
-        //dd($request->input('id_parqueos'));
-        //$request->input('id_parqueos');
+
         $v = new Reserva();
         $v->id_user= $cliente;
         $v->id_parqueos= $request->input('id_parqueos');
@@ -67,6 +67,18 @@ class ReservaController extends Controller
         $hora_ci = Carbon\Carbon::parse($parqueo[0]->hora_cierre);
         $hora_ap_reser = Carbon\Carbon::parse($v->h_inicio_reserva);
         $hora_ci_reser = Carbon\Carbon::parse($v->h_fin_reserva);
+        $precio_hora=$parqueo[0]->tarifa_hora_normal;
+
+        ///NUEVO, realiza una consulta de las reservas actuales del parqueo que se esta por reservar
+        $id_parq = $v->id_parqueos;
+        $diarev= $v->dia_reserva;
+        $reservas_bd=DB::table('reservas')
+            ->select('id_parqueos','dia_reserva','h_inicio_reserva','h_fin_reserva')
+            ->where('id_parqueos','=',$id_parq)
+            ->where('dia_reserva','=',$diarev)
+            ->get();
+        //dd($reservas_bd);
+
 
         //ifs que determinan la validez de las horas dadas
         if(strtotime($v->h_inicio_reserva) < strtotime($parqueo[0]->hora_apertura)){
@@ -83,6 +95,17 @@ class ReservaController extends Controller
                 return back()->withInput()->withErrors('El parqueo cierra a las: '.$parqueo[0]->hora_cierre.' cambie la hora de fin de reserva e intente de nuevo');
             }
         }
+
+        //Nuevo if para determinar que no se pueda reservar con hora de inicio igual a la hora fin
+        if($request->input('hora_inicio') == $request->input('hora_fin')){
+            return back()->withInput()->withErrors("La hora de inicio no puede ser la misma que la hora de fin de reserva, cambie las horas de reserva e intente de nuevo");
+        }
+
+        if($request->input('hora_inicio')>$request->input('hora_fin')){
+            return back()->withInput()->withErrors("La hora de inicio no puede ser mayor que la hora de fin de reserva intente de nuevo");
+        }
+
+
 
         date_default_timezone_set('America/La_Paz');
         if($v->dia_reserva == date("Y-m-d") && strtotime($v->h_inicio_reserva) < strtotime(date("H:i"))){
@@ -110,7 +133,19 @@ class ReservaController extends Controller
             return back()->withInput()->withErrors('El parqueo se encuentra lleno.');
         }
 
+        /*Este if deberia validar que no se reserve a la misma hora el mismo dia en un parqueo
+         * if(($reservas_bd[0]->h_inicio_reserva == $request->input('hora_inicio')) && ($reservas_bd[0]->h_fin_reserva == $request->input('hora_fin'))){
+            return back()->withInput()->withErrors('El parqueo ya fue reservado el dia: '.$request->input('dia_reserva').' en la hora'.$request->input('hora_inicio').' - '.$request->input('hora_fin') );
+        }*/
+
         //condicional para ver si es success o fail
+
+        $h_entrada=strtotime($v->h_inicio_reserva);
+        $h_salida=strtotime($v->h_fin_reserva);
+        $tiempores=($h_salida-$h_entrada)/60/60; //Se encuentran las horas que estara en el parqueo
+        $precio=$tiempores*$precio_hora;
+        $v->total_reserva=$precio;
+
         $v->save();
         //actualizar cantidad espacios disponibles parqueo
         DB::table('parqueos')
