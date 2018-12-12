@@ -36,10 +36,11 @@
                                 <tbody>
                                 @if($l->count())
                                 @foreach($l as $fav)
+                                    @foreach($due as $pro)
                                     <tr>
 
 
-                                        <td>{{$fav->sur_name}}  {{$fav->last_name}} </td>
+                                        <td>{{$pro->sur_name}}  {{$pro->last_name}} </td>
                                         <td>{{$fav->direccion}}</td>
                                         <td><option>{{$fav->hora_apertura}}</option>
                                             <option>{{$fav->hora_cierre}}</option></td>
@@ -74,6 +75,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                     @endforeach
                                 @endforeach
                                 @else
                                     <tr>
