@@ -74,7 +74,7 @@
                                 </div>
                             </div> -->
 
-                            <input class="submit btn btn-danger" type="submit" value="Submit">
+                            <input class="submit btn btn-success" type="submit" value="Editar">
                         </form>
                     </div>
                 </div>

@@ -63,12 +63,12 @@
                                 <td><option>{{$parqueo['telefono_contacto_1']}}</option><option>{{$parqueo['telefono_contacto_2']}}</option></td>
                                 <td>@if($parqueo['estado_funcionamiento'] == '0') Inactivo @else Activo @endif</td>
 
-                                <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-warning">Edit</a></td>
+                                <td><a href="{{action('ParqueoController@edit', $parqueo['id_parqueos'])}}" class="btn btn-sm btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Delete</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Eliminar</button>
                                     </form>
                                 </td>
 

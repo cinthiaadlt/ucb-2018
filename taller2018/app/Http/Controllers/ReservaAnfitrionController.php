@@ -133,6 +133,6 @@ class ReservaAnfitrionController extends Controller
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual+1]);
         
         $reserva->delete();
-        return redirect('reservasanfitrion')->with('success','Information has been  deleted');
+        return redirect('reservasanfitrion')->with('success','La reserva fue eliminada');
     }
 }
