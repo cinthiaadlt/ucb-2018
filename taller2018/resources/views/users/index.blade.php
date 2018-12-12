@@ -16,7 +16,7 @@
                 <tr>
                   <th>E-mail</th>
                   <th>Nombre</th>
-                  <th>Enrole</th>
+                  <th>Accion</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,11 +27,23 @@
                       <td>{{$user->sur_name}}</td>
                       <td>
                         @if (!$user->hasRole ("Owner"))
-                          <a class="btn btn-primary btn-xs" href="#" >Owner</a>
+                          <input type="button" class="btn btn-sm btn-primary" href="#" disabled="true" value="Propietario" ></input>
+                          @else
+                          <a class="btn btn-sm btn-primary " href="#" disabled="false" >Propietario</a>
                         @endif
+
                         @if (!$user->hasRole ("Admin"))
-                          <a class="btn btn-primary btn-xs" href="#" >Admin</a>
+                        <input type="button" class="btn btn-sm btn-primary" href="#" disabled="true" value="Administrador" ></input>
+                          @else
+                          <a class="btn btn-sm btn-primary " href="#" disabled="false" >Administrador</a>
                         @endif
+
+                        @if (!$user->hasRole ("User"))
+                          <a class="btn btn-sm btn-primary " href="#" disabled="true" >Cliente</a>
+                          @else
+                          <a class="btn btn-sm btn-primary " href="#" disabled="false" >Cliente</a>
+                        @endif
+
                       </td>
                     </tr>
                   @endforeach

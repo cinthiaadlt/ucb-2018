@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\UsersRole;
+use Illuminate\Support\Facades\DB;
 
 class UsersRoleController extends Controller
 {
 
     public function index () {
       $users = User::all ();
+        /*
+         *
+      $users=DB::table('users')
+          ->select('*')
+          ->join('users_role','users_role.id_role','=','users.id')
+          ->groupBy('users.id')
+          ->get();
+      */
       return view ('users.index', compact ('users'));
     }
 
