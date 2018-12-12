@@ -71,7 +71,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Tarifa por hora</label>
-                                                <input type="text" disabled="true" name="tarifa_hora_normal" id="tarifa_hora_normal" class="form-control form-control-alternative" value="{{$vh->tarifa_hora_normal}}" >
+                                                <input type="text" disabled="true" name="tarifa_hora_normal" id="tarifa_hora_normal" class="form-control form-control-alternative" value="{{ number_format((float)$vh->tarifa_hora_normal, 2, '.', '') }}Bs" >
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +127,19 @@
                                             <div class="form-group">
                                                 <?php date_default_timezone_set('America/La_Paz');?>
                                                 <label for="dia_reserva">Fecha Reserva:</label>
-                                                <input type="date" @if(old('dia_reserva')) value="{{old('dia_reserva')}}" @else value="{{date("Y-m-d")}}" @endif min="{{date("Y-m-d")}}" class="form-control" name="dia_reserva" required>
+                                                    <?php
+                                                    $hora = new DateTime("now", new DateTimeZone('America/La_Paz'));
+                                                    $hora_actual=$hora->format('H:i:s');
+                                                            if ($hora_actual > $vh->hora_cierre){
+                                                                $Date1 = date("Y-m-d");;
+                                                                $date = new DateTime($Date1);
+                                                                $date->add(new DateInterval('P1D')); // P1D means a period of 1 day
+                                                                $fh = $date->format('Y-m-d');
+                                                            }else{
+                                                                $fh=date("Y-m-d");
+                                                            }
+                                                    ?>
+                                                <input type="date" @if(old('dia_reserva')) value="{{old('dia_reserva')}}" @else value="{{$fh}}" @endif min="{{$fh}}" class="form-control" name="dia_reserva" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
