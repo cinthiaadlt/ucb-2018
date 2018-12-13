@@ -450,7 +450,7 @@ class ParqueoController extends Controller
                 ->where('id_parqueos','=',$id)
                 ->get();
 
-            //No funciona la eliminacion xq se tendria que hacer con cascade. 
+            //No funciona la eliminacion xq se tendria que hacer con cascade.
             //$parqueo->delete();
             return redirect('parqueos')->with('success','El parqueo fue eliminado');
 
