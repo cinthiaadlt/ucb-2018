@@ -68,7 +68,7 @@
                                     <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la zona?')">Eliminar</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Desea Eliminar el parquep de forma permanente?')">Eliminar</button>
                                     </form>
                                 </td>
 

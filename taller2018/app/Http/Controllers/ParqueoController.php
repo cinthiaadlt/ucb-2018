@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Parqueo;
+use App\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -435,9 +436,32 @@ class ParqueoController extends Controller
      */
     public function destroy($id)
     {
-        $parqueo = \App\Parqueo::find($id);
-        $parqueo->delete();
-        return redirect('parqueos')->with('success','Information has been deleted');
+        $reservas = DB::table('parqueos')
+            ->select('*')
+            ->join('reservas','reservas.id_parqueos', '=','parqueos.id_parqueos')
+            ->where('reservas.id_parqueos','=',$id)
+            ->get();
+
+        //dd($parqueo);
+
+        if(count($reservas)==0){
+            $parqueo = DB::table('parqueos')
+                ->select('*')
+                ->where('id_parqueos','=',$id)
+                ->get();
+
+            //No funciona la eliminacion xq se tendria que hacer con cascade. 
+            //$parqueo->delete();
+            return redirect('parqueos')->with('success','El parqueo fue eliminado');
+
+
+        }else{
+            return redirect('parqueos')->with('success','No se puede eliminar el parqueo ya que existen reservas activas');
+        }
+
+
+
+
     }
 
     /*public function getParqueoEdit()
