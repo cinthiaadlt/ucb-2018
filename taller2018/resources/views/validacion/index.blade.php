@@ -114,6 +114,8 @@
 
         var locationsfalse = <?php print_r(json_encode($locationsfalse)) ?>;
         var locationstrue = <?php print_r(json_encode($locationstrue)) ?>;
+        var locationsvac = <?php print_r(json_encode($locationsvac)) ?>; // parqueos cerrados termporalmente
+
         var mymap = new GMaps({
             el: '#mymap',
             lat: -16.4897,
@@ -123,6 +125,8 @@
         var verde = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/009900/");
 
         var colrojo = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/red.png");
+
+        var azul = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/blue.png");
 
         GMaps.geolocate({
             success: function(position) {
@@ -160,7 +164,7 @@
                     '<br>'+value.cantidad_p+
                     '<br><b>Foto de referencia:</b><br>' +
                     '<br><img width="200" height="100" src="./images/'+value.foto+'"><br>'+
-                    '<br><b>Estado del parqueo:  </b> '+$vl
+                    '<br><b>Validacion del parqueo:  </b> '+$vl
 
                 }
 
@@ -173,6 +177,9 @@
                 $vl="No Validado";
             else
                 $vl="Validado";
+
+            if(value.cat_estado_parqueo == '1')
+                $aaa="Abierto en funcionamiento";
 
             mymap.addMarker({
                 icon : verde,
@@ -188,7 +195,41 @@
                     '<br>'+value.cantidad_p+
                     '<br><b>Foto de referencia:</b><br>' +
                     '<br><img width="200" height="100" src="./images/'+value.foto+'"><br>'+
-                    '<br><b>Estado del parqueo:  </b> '+$vl
+                    '<br><b>Validacion del parqueo:  </b> '+$vl+
+                    '<br><b>El parqueo esta:  </b> '+ $aaa
+
+                }
+
+            });
+        });
+
+
+        $.each( locationsvac, function( index, value ){
+
+            if(value.estado_funcionamiento == '0')
+                $vl="No Validado";
+            else
+                $vl="Validado";
+
+            if(value.cat_estado_parqueo == '0')
+                $aaa="Cerrado temporalmente";
+
+            mymap.addMarker({
+                icon : azul,
+                scale : 6,
+                lat: value.latitud_x,
+                lng: value.longitud_y,
+                title: value.direccion,
+                infoWindow: {
+                    content:
+                    '<b>Direccion: </b>'+
+                    '<br>'+value.direccion+
+                    '<br><b>Espacios del parqueo:</b>'+
+                    '<br>'+value.cantidad_p+
+                    '<br><b>Foto de referencia:</b><br>' +
+                    '<br><img width="200" height="100" src="./images/'+value.foto+'"><br>'+
+                    '<br><b>Validacion del parqueo:  </b> '+$vl+
+                    '<br><b>El parqueo esta:  </b> '+ $aaa
 
                 }
 

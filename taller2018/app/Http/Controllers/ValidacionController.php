@@ -17,11 +17,19 @@ class ValidacionController extends Controller
     {
         $locationsfalse = DB::table('parqueos')
             ->where('estado_funcionamiento', 'LIKE', 'false')
+            ->where('cat_estado_parqueo','=',1)
             ->get();
 
         $locationstrue = DB::table('parqueos')
             ->where('estado_funcionamiento', 'LIKE', 'true')
+            ->where('cat_estado_parqueo','=',1)
             ->get();
+
+        $locationsvac = DB::table('parqueos')
+            ->where('estado_funcionamiento', 'LIKE', 'true')
+            ->where('cat_estado_parqueo','=',0)
+            ->get();
+        // la variable locationvac muestra a los parqueos que entraron en vacaciones o no quieren mostrarse en servicio por un tiempo
 
         $pq2 = DB::table('zonas')
             ->select('*')
@@ -29,8 +37,9 @@ class ValidacionController extends Controller
             ->get();
 
         $parqueos=\App\Parqueo::paginate(10);
+        //dd($locationsvac);
 
-        return view('validacion.index',compact('parqueos','pq2','locationsfalse','locationstrue'));
+        return view('validacion.index',compact('parqueos','pq2','locationsfalse','locationstrue','locationsvac'));
 
     }
 
@@ -107,7 +116,7 @@ class ValidacionController extends Controller
         $parqueo->hora_cierre = $request->input('hora_cierre');
         $parqueo->tarifa_hora_normal = $request->input('tarifa_hora_normal');
         $parqueo->estado_funcionamiento = $request->input('estado_funcionamiento');
-        $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
+        //$parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
         $parqueo->observaciones_validacion = $request->input('observaciones_validacion');
         $parqueo->foto_validacion = $name;
