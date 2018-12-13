@@ -7,6 +7,7 @@ use App\Reserva;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use Carbon;
@@ -102,10 +103,8 @@ class ReservaController extends Controller
         }
 
         if($request->input('hora_inicio')>$request->input('hora_fin')){
-            return back()->withInput()->withErrors("La hora de inicio no puede ser mayor que la hora de fin de reserva intente de nuevo");
+            return back()->withInput()->withErrors("La hora de inicio no puede ser mayor que la hora de fin de reserva y el rango debe estar dentro del mismo dia");
         }
-
-
 
         date_default_timezone_set('America/La_Paz');
         if($v->dia_reserva == date("Y-m-d") && strtotime($v->h_inicio_reserva) < strtotime(date("H:i"))){
@@ -133,6 +132,24 @@ class ReservaController extends Controller
             return back()->withInput()->withErrors('El parqueo se encuentra lleno.');
         }
 
+        $reservasCliente = DB::table('reservas')
+                        ->where('id_user', Auth::id())
+                        ->where('dia_reserva', $v->dia_reserva)
+                        ->where('estado_reserva','!=',0)
+                        ->get();
+        foreach($reservasCliente as $reCli){
+            if(strtotime($reCli->h_inicio_reserva) <= strtotime($v->h_inicio_reserva) && strtotime($reCli->h_fin_reserva) > strtotime($v->h_inicio_reserva)){
+                return back()->withInput()->withErrors('Ya tienes una reserva este dia de: ' . $reCli->h_inicio_reserva . " a " . $reCli->h_fin_reserva);
+            }
+        }
+
+        //ver si un cliente tiene vehiculos registrados
+        $vehiculosCliente = DB::table('vehiculos')
+                        ->where('id_users', Auth::id())
+                        ->get();
+        if(count($vehiculosCliente) == 0){
+            return back()->withInput()->withErrors('Usted no tiene ningun vehiculo registrado, registre uno e intente de nuevo');
+        }
         /*Este if deberia validar que no se reserve a la misma hora el mismo dia en un parqueo
          * if(($reservas_bd[0]->h_inicio_reserva == $request->input('hora_inicio')) && ($reservas_bd[0]->h_fin_reserva == $request->input('hora_fin'))){
             return back()->withInput()->withErrors('El parqueo ya fue reservado el dia: '.$request->input('dia_reserva').' en la hora'.$request->input('hora_inicio').' - '.$request->input('hora_fin') );
@@ -153,7 +170,6 @@ class ReservaController extends Controller
             ->where('id_parqueos', $v->id_parqueos)
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual-1]);
 
-            
         return redirect('reservas')->with('success','Reserva Exitosa');
     }
 
