@@ -32,7 +32,7 @@
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Registro de Parqueos:</h3>
+                                <h3 class="mb-0">Edicion de Parqueo:</h3>
                             </div>
                         </div>
                     </div>
@@ -144,9 +144,27 @@
                                             </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
-                                            <label for="Estado">Estado Funcionamiento:</label>
-                                            <input type="text" value="Inactivo" class="form-control" name="estado_funcionamiento" readonly>
+                                            <label for="Estado">Validacion Parqueo:</label>
+                                            <?php
+                                                if($parqueo->estado_funcionamiento == true)
+                                                    $valor='Activo/Validado';
+                                                else
+                                                    $valor='Inactivo/ No Validado';
+
+
+                                            ?>
+                                            <input type="text" value={{$valor}} class="form-control" name="estado_funcionamiento" readonly>
                                         </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="Estado">Funcionamiento actual:</label>
+                                            <select name="cat_estado_parqueo" id="cat_estado_parqueo" value="{{$parqueo->cat_estado_parqueo}}" class="form-control">
+                                                <option value="1">En funcionamiento </option>
+                                                <option value="0">Cerrado Temporalmente </option>
+                                                </option>
+
+                                            </select>
+                                        </div>
+
                                     </div>
                                 <div class="row">
                                   <div class="col-md-4"></div>
