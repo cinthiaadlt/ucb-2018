@@ -145,12 +145,14 @@ class ReservaController extends Controller
         $tiempores=($h_salida-$h_entrada)/60/60; //Se encuentran las horas que estara en el parqueo
         $precio=$tiempores*$precio_hora;
         $v->total_reserva=$precio;
+        $v->estado_reserva='2'; // Reservado
 
         $v->save();
         //actualizar cantidad espacios disponibles parqueo
         DB::table('parqueos')
             ->where('id_parqueos', $v->id_parqueos)
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual-1]);
+
             
         return redirect('reservas')->with('success','Reserva Exitosa');
     }
