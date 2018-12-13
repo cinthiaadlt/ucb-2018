@@ -14,11 +14,21 @@
 
                     <div class="table-responsive">
 
-                        @if (\Session::has('success'))
-                        <div class="alert alert-success">
-                            <p>{{ \Session::get('success') }}</p>
-                        </div><br />
-                        @endif
+                        @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> Se encontro un error.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if(Session::has('success'))
+                    <div class="alert alert-info">
+                        {{Session::get('success')}}
+                    </div>
+                    @endif
 
                         <table class="table align-items-center table-flush">
                             <thead>
@@ -68,7 +78,7 @@
                                     <form action="{{action('ParqueoController@destroy', $parqueo['id_parqueos'])}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Desea Eliminar el parquep de forma permanente?')">Eliminar</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Desea Eliminar el parqueo de forma permanente?')">Eliminar</button>
                                     </form>
                                 </td>
 

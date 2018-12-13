@@ -440,28 +440,21 @@ class ParqueoController extends Controller
             ->select('*')
             ->join('reservas','reservas.id_parqueos', '=','parqueos.id_parqueos')
             ->where('reservas.id_parqueos','=',$id)
+            ->where('reservas.dia_reserva','>=',date("Y-m-d"))
             ->get();
 
         //dd($parqueo);
-
         if(count($reservas)==0){
-            $parqueo = DB::table('parqueos')
-                ->select('*')
+             DB::table('precios_alquiler')
                 ->where('id_parqueos','=',$id)
-                ->get();
-
-            //No funciona la eliminacion xq se tendria que hacer con cascade.
-            //$parqueo->delete();
-            return redirect('parqueos')->with('success','El parqueo fue eliminado');
-
-
-        }else{
+                ->delete();
+            DB::table('parqueos')
+                ->where('id_parqueos','=',$id)
+                ->delete();
             return redirect('parqueos')->with('success','No se puede eliminar el parqueo ya que existen reservas activas');
+        }else{
+            return back()->withErrors("Existe una reserva activa el dia: " . date("d/m/Y", strtotime($reservas[0]->dia_reserva)));
         }
-
-
-
-
     }
 
     /*public function getParqueoEdit()
