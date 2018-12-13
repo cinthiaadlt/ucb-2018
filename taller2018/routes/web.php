@@ -8,7 +8,7 @@ Auth::routes ();
     Route::resource('parqueo_admin','ParqueoAdminController',['middleware' => ['auth', 'admin']]);
     Route::resource('denuncia','DenunciaController',['middleware' => ['auth', 'admin', 'user']]);
     Route::resource('validacion','ValidacionController')->middleware('auth');
-
+    Route::resource('zonaadmin','ZonaController',['middleware' => ['auth', 'admin']]);
 
 // Rutas de CLIENTE O USUARIO;
     Route::resource('/','ClienteController', ['middleware'=>['auth', 'user']]);

@@ -36,7 +36,7 @@
             <ul class="navbar-nav">
             @if (auth::user ()->myActualRole () == 1)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('zona') }}">
+                    <a class="nav-link" href="{{ url('zonaadmin') }}">
                         <i class="ni ni-world"></i> Zonas
                     </a>
                 </li>
@@ -52,12 +52,13 @@
                         <i class="ni ni-circle-08 text-black"></i> Usuarios
                     </a>
                 </li>
-
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('reservas') }}">
                         <i class="ni ni-single-copy-04"></i> Reservas
                     </a>
                 </li>
+                -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('validacion') }}">
@@ -112,13 +113,13 @@
                         <i class="ni ni-collection"></i>realizar denuncia
                     </a>
                 </li>
-                -->
+
                 <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="ni ni-settings"></i> Editar Perfil
                     </a>
                 </li>
-
+                    -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -183,7 +184,7 @@
 
             @if (auth::user()->hasRole ('Owner') && auth::user ()->myActualRole () != 3)
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('zona') }}">
+                <a class="nav-link" href="{{ url('parqueos') }}">
                     <i class="ni ni-circle-08 text-yellow"></i>Modo Host
                 </a>
             </li>
