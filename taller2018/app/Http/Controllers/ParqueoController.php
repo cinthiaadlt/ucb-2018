@@ -127,7 +127,8 @@ class ParqueoController extends Controller
         $parqueo->hora_cierre = $request->input('hora_cierre');
         $parqueo->tarifa_hora_normal = $request->input('tarifa_hora_normal');
         $parqueo->estado_funcionamiento = 'false';
-        $parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
+        $parqueo->cat_estado_parqueo = '1';
+            //$parqueo->cat_estado_parqueo = $request->input('cat_estado_parqueo');
         $parqueo->cat_validacion = $request->input('cat_validacion');
 
         //algoritmo para determinar el estado de los dias con los checkbox
@@ -420,7 +421,9 @@ class ParqueoController extends Controller
         }
 
         //si todo es correcto volver a parqueos
+
         $parqueo->save();
+        //dd($parqueo);
         return redirect('parqueos');
     }
 
