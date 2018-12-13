@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservaClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $prueba = DB::table('reservas')
@@ -27,11 +23,7 @@ class ReservaClienteController extends Controller
         return view('reservacliente.index',compact('prueba'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
 
@@ -45,12 +37,7 @@ class ReservaClienteController extends Controller
         return view('reservacliente.historia',compact('prueba'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
@@ -72,31 +59,77 @@ class ReservaClienteController extends Controller
 
     public function edit($id)
     {
-        //
+
     }
 
 
     public function update(Request $request, $id)
     {
+
+
+    }
+
+
+    public function finalizar($id){
+
         //
+        //Boton finalizar reserva de cliente reserva.index
+        //
+        $reserva = DB::table('reservas')->where('id_reservas','=',$id)->first();
+
+        //dd($id);
+        $parqueo = DB::table('parqueos')
+            ->select('*')
+            ->where('id_parqueos', $reserva->id_parqueos)
+            ->get();
+
+        //volver a subir el numero
+        DB::table('parqueos')
+            ->where('id_parqueos', $reserva->id_parqueos)
+            ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual+1]);
+
+        //$reserva->delete();
+        /*
+         * Estados
+         * Cancelado = 0
+         * Finalizada = 1
+         */
+
+        DB::table('reservas')
+            ->where('id_reservas',$id)
+            ->update(['estado_reserva'=> '1'] );
+
+        //$reserva->estado_reserva='1';
+        //$reserva->update('');
+
+        return redirect('reservacliente')->with('success','Se finalizo la reserva');
     }
 
 
     public function destroy($id)
     {
-        //
+        //Boton cancelado de cliente reserva.index
         //
         $reserva = \App\Reserva::find($id);
-        //volver a subir el numero
+        //dd($reserva);
         $parqueo = DB::table('parqueos')
                     ->select('*')
                     ->where('id_parqueos', $reserva->id_parqueos)
                     ->get();
+
+        //volver a subir el numero
         DB::table('parqueos')
             ->where('id_parqueos', $reserva->id_parqueos)
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual+1]);
         
-        $reserva->delete();
-        return redirect('reservacliente')->with('success','Information has been  deleted');
+        //$reserva->delete();
+        /*
+         * Estados
+         * Cancelado = 0
+         * Finalizada = 1
+         */
+        $reserva->estado_reserva='0';
+        $reserva->update();
+        return redirect('reservacliente')->with('success','La reserva fue cancelada');
     }
 }

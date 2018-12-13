@@ -36,7 +36,8 @@
                             <tbody>
 
                             @foreach($prueba as $reserva)
-                            @if($reserva->dia_reserva == date("Y-m-d"))
+                            @if($reserva->dia_reserva == date("Y-m-d") )
+                                @if($reserva->estado_reserva =='2')
                             <tr>
                                 <td>{{$reserva->telefono_contacto_1}}</td>
                                 <td>{{ $reserva->direccion }}</td>
@@ -51,15 +52,14 @@
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Cancelar</button>
                                         <a class="btn btn-sm btn-facebook" href="{{route('reservacliente.show', $reserva->id_parqueos)}}">Denunciar</a>
+                                        <a class="btn btn-sm btn-warning" href="{{action('ReservaClienteController@finalizar',$reserva->id_reservas)}}">Finalizar</a>
                                     </form>
-                                    <form action="{{action('ReservaClienteController@destroy', $reserva->id_reservas)}}" method="post">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-danger" hidden="true" OnClick="false" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Finalizar</button>
-                                    </form>
+
+
 
                                 </td>
                             </tr>
+                                @endif
                             @endif
                             @endforeach
                             </tbody>
@@ -101,14 +101,8 @@
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Cancelar</button>
-                                        <a class="btn btn-sm btn-facebook" href="{{route('reservacliente.show', $reserva->id_parqueos)}}">Denunciar</a>
-                                    </form>
-                                    <form action="{{action('ReservaClienteController@destroy', $reserva->id_reservas)}}" method="post">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-danger" hidden="true" OnClick="false" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Finalizar</button>
-                                    </form>
 
+                                    </form>
                                 </td>
                             </tr>
                             @endif

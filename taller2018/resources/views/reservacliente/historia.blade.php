@@ -31,12 +31,17 @@
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
                                 <th>Total Pagado</th>
+                                <th>Estado Reserva</th>
+
                             </tr>
                             </thead>
                             <tbody>
-                            <?php date_default_timezone_set('America/La_Paz');?>
+                            <?php date_default_timezone_set('America/La_Paz');
+                            $cliente = auth()->user()->id;
+                            ?>
                             @foreach($prueba as $reserva)
-                            @if($reserva->dia_reserva < date("Y-m-d"))
+
+                                @if($reserva->estado_reserva != '2' && $reserva->id_user == $cliente )
                             <tr>
                                 <td>{{$reserva->telefono_contacto_1}}</td>
                                 <td>{{$reserva->dia_reserva}}</td>
@@ -46,8 +51,18 @@
                                 <td>{{$reserva->h_inicio_reserva}}</td>
                                 <td>{{$reserva->h_fin_reserva}}</td>
                                 <td>{{ number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
+                                <td>
+                                    @if($reserva->estado_reserva == '0')
+                                        <b> Cancelado</b>
+                                    @endif
+
+                                    @if($reserva->estado_reserva == '1')
+                                            <b>Finalizado</b>
+                                    @endif
+                                </td>
                             </tr>
-                            @endif
+                                @endif
+
                             @endforeach
                             </tbody>
                         </table>
