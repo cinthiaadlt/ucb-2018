@@ -80,6 +80,7 @@
                                 <th>Precio Hora</th>
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
+                                <th>Total a Pagar:</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
@@ -87,7 +88,8 @@
 
                             @foreach($prueba as $reserva)
                             @if($reserva->dia_reserva > date("Y-m-d"))
-                            <tr>
+                            @if($reserva->estado_reserva == 2)
+                                <tr>
                                 <td>{{$reserva->dia_reserva}}</td>
                                 <td>{{$reserva->telefono_contacto_1}}</td>
                                 <td>{{ $reserva->direccion }}</td>
@@ -101,9 +103,11 @@
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere cancelar la reserva?')">Cancelar</button>
-
+                                        
                                     </form>
                                 </td>
+                                @endif
+
                             </tr>
                             @endif
                             @endforeach
