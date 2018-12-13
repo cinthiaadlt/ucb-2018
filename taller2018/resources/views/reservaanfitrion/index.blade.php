@@ -30,6 +30,7 @@
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
                                 <th>Precio Total</th>
+                                <th>Estado de la reserva</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
@@ -37,6 +38,7 @@
 
                             @foreach($reservasanfitrion as $reserva)
                             @if($reserva->dia_reserva == date("Y-m-d"))
+                                @if($reserva->estado_reserva =='2')
                             <tr>
                                 <td>@foreach($pq2 as $p)
                                     @if($p->id == $reserva->id_user){{ $p->sur_name }}&nbsp;{{ $p->last_name }}@endif
@@ -55,13 +57,18 @@
                                 <td>{{$reserva->h_fin_reserva}}</td>
                                 <td>{{number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                                 <td>
+
+                                        <b>Reservado</b>
+                                </td>
+                                <td>
                                     <form action="{{action('ReservaAnfitrionController@destroy', $reserva->id_reservas)}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Eliminar/button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Cancelar</button>
                                     </form>
                                 </td>
                             </tr>
+                                @endif
                             @endif
                             @endforeach
                             </tbody>
@@ -83,6 +90,7 @@
                                 <th>Inicio Reserva</th>
                                 <th>Fin Reserva</th>
                                 <th>Precio Total</th>
+                                <th>Estado de la reserva</th>
                                 <th colspan="2">Action</th>
                             </tr>
                             </thead>
@@ -90,6 +98,7 @@
 
                             @foreach($reservasanfitrion as $reserva)
                             @if($reserva->dia_reserva > date("Y-m-d"))
+                                @if($reserva->estado_reserva =='2')
                             <tr>
                                 <td>{{$reserva->dia_reserva}}</td>
                                 <td>@foreach($pq2 as $p)
@@ -109,13 +118,17 @@
                                 <td>{{$reserva->h_fin_reserva}}</td>
                                 <td>{{number_format((float)$reserva->total_reserva, 2, '.', '') }}Bs</td>
                                 <td>
+                                    <b>Reservado</b>
+                                </td>
+                                <td>
                                     <form action="{{action('ReservaAnfitrionController@destroy', $reserva->id_reservas)}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Eliminar</button>
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Quiere borrar la reserva?')">Cancelar</button>
                                     </form>
                                 </td>
                             </tr>
+                              @endif
                             @endif
                             @endforeach
                             </tbody>

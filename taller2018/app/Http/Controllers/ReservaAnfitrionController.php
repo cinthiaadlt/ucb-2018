@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservaAnfitrionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $pq2 = DB::table('users')
@@ -38,11 +34,7 @@ class ReservaAnfitrionController extends Controller
        return view('reservaanfitrion.index',compact('reservasanfitrion','pq2','pq1','pq3'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
@@ -63,76 +55,63 @@ class ReservaAnfitrionController extends Controller
                                 ->select('*')
                                 ->join('parqueos', 'parqueos.id_parqueos', '=', 'reservas.id_parqueos')
                                 ->where('parqueos.id_users', Auth::id())
+                                ->where('estado_reserva','!=',2)
                                 ->orderBy('h_inicio_reserva')
                                 ->get();
+         //dd($reservasanfitrion);
          return view('reservaanfitrion.historia',compact('reservasanfitrion','pq2','pq1','pq3'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
+
+        //Boton cancelado de cliente reservaanfitrion.index
         //
         $reserva = \App\Reserva::find($id);
-        //volver a subir el numero
+
         $parqueo = DB::table('parqueos')
-                    ->select('*')
-                    ->where('id_parqueos', $reserva->id_parqueos)
-                    ->get();
+            ->select('*')
+            ->where('id_parqueos', $reserva->id_parqueos)
+            ->get();
+
+        //volver a subir el numero
         DB::table('parqueos')
             ->where('id_parqueos', $reserva->id_parqueos)
             ->update(['cantidad_actual'=>$parqueo[0]->cantidad_actual+1]);
-        
-        $reserva->delete();
-        return redirect('reservasanfitrion')->with('success','La reserva fue eliminada');
+
+        //$reserva->delete();
+        /*
+         * Estados
+         * Cancelado = 0
+         * Reservado = 2
+         */
+        $reserva->estado_reserva='0';
+        $reserva->update();
+        return redirect('reservasanfitrion')->with('success','La reserva fue cancelada');
     }
 }
