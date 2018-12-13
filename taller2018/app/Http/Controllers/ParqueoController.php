@@ -163,10 +163,10 @@ class ParqueoController extends Controller
                 //validar que la hora de inicio sea mayor a la de fin
                 if($parqueo->hora_apertura > $parqueo->hora_cierre){
                     if($hora_ci->hour != 0){
-                        return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                        return back()->withInput()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
                     }else{
                         if($hora_ci->minute == 30){
-                            return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                            return back()->withInput()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
                         }
                     }
                 }
@@ -381,7 +381,7 @@ class ParqueoController extends Controller
                                 ->where('id_dias', $veri->id_dias)
                                 ->update(['estado'=>true]);
                             
-                            return back()->withErrors('Existe una reserva activa el dia '.$chozni[$veri->id_dias-1].' eliminela e intente de nuevo');
+                            return back()->withInput()->withErrors('Existe una reserva activa el dia '.$chozni[$veri->id_dias-1].' eliminela e intente de nuevo');
                         }
                     }
                 }
@@ -397,27 +397,27 @@ class ParqueoController extends Controller
         //validar que la hora de inicio sea mayor a la de fin
         if($parqueo->hora_apertura > $parqueo->hora_cierre){
             if($hora_ci->hour != 0){
-                return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                return back()->withInput()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
             }else{
                 if($hora_ci->minute == 30){
-                    return back()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
+                    return back()->withInput()->withErrors("Error en Hora Apertura: $parqueo->hora_apertura y Hora Cierre: $parqueo->hora_cierre seleccione horas validas e intente de nuevo");
                 }
             }
         }
         //validar que tengan una hora de diferencia
         if($hora_ap->diffInHours($hora_ci) == 0 && $hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 < 60){
-            return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
+            return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener como minimo una hora de diferencia con Hora Cierre: $parqueo->hora_cierre");
         }
 
         //validar que tengan una hora de diferencia exacta
         if($hora_ap->diffInMinutes($hora_ci) - $hora_ap->diffInHours($hora_ci)*60 != 0){
-            return back()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
+            return back()->withInput()->withErrors("Hora Apertura: $parqueo->hora_apertura debe tener exactamente horas de diferencia con Hora Cierre: $parqueo->hora_cierre (Ejemplo: 10:00-15:00)");
         }
 
         //validar que los minutos no sean diferentes a 0 o 30
         if($hora_ap->minute != 0 || $hora_ci->minute != 0){
             if($hora_ap->minute != 30 || $hora_ci->minute != 30){
-            return back()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");
+            return back()->withInput()->withErrors("Las horas deben ser unicamente cada media hora (Ejemplos: 10:00, 10:30, 11:00, 11:30)");
             }
         }
 
@@ -454,7 +454,7 @@ class ParqueoController extends Controller
                 ->delete();
             return redirect('parqueos')->with('success','Eliminado correctamente.');
         }else{
-            return back()->withErrors("Existe una reserva activa el dia: " . date("d/m/Y", strtotime($reservas[0]->dia_reserva)));
+            return back()->withInput()->withErrors("Existe una reserva activa el dia: " . date("d/m/Y", strtotime($reservas[0]->dia_reserva)));
         }
     }
 
