@@ -18,6 +18,7 @@ class ClienteController extends Controller
 
         $locations = DB::table('parqueos')
             ->where('estado_funcionamiento','=',1)
+            ->where('cat_estado_parqueo','=',1)
             ->get();
         return view('cliente.busqueda_parqueo',compact('locations'));
 
