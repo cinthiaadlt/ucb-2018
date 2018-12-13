@@ -35,6 +35,9 @@ Auth::routes ();
     Route::get('/lista_reservas','ReservaController@lista_estado', ['middleware' => ['auth', 'user']]);
     Route::get('mostrar_reserva','ReservaController@edit', ['middleware' => ['auth', 'user']]);
     Route::resource('parqueos_favoritos','ParqueoFavoritoController', ['middleware' => ['auth', 'user']]);
+    Route::get('reservacliente/{reservacliente}/edit ','ReservaClienteController@edit', ['middleware' => ['auth', 'user']]);
+
+    Route::get('finalizar/{finalizar}','ReservaClienteController@finalizar', ['middleware' => ['auth', 'user']]);
 
 
 
