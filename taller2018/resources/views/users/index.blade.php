@@ -38,12 +38,6 @@
                           <a class="btn btn-sm btn-primary " href="#" disabled="false" >Administrador</a>
                         @endif
 
-                        @if (!$user->hasRole ("User"))
-                          <a class="btn btn-sm btn-primary " href="#" disabled="true" >Cliente</a>
-                          @else
-                          <a class="btn btn-sm btn-primary " href="#" disabled="false" >Cliente</a>
-                        @endif
-
                       </td>
                     </tr>
                   @endforeach
